@@ -1,0 +1,99 @@
+/* ============================================================
+   GLOBAL RESET & BASE STYLES
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font: var(--text-body-1-regular);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  min-height: 100dvh;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--nav-height) + var(--space-5));
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* No offset needed — nav scrolls with page */
+
+/* Max content width utility */
+.content-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .content-wrap {
+    padding: 0 var(--space-4);
+  }
+}
+
+/* ── Image cluster tooltip ── */
+.image-tooltip {
+  position: fixed;
+  z-index: 200;
+  pointer-events: none;
+  white-space: nowrap;
+
+  background: #6F6C62;
+  color: #FFFFFF;
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-sm); /* 8px — distinct from pill buttons */
+  padding: 10px 20px;
+
+  /* Vertically centred on cursor, slides up slightly on enter */
+  transform: translateY(calc(-50% + 5px));
+  opacity: 0;
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+
+.image-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(-50%);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+/* Reduced motion safety net */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

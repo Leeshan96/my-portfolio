@@ -1,0 +1,152 @@
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+/* ── Logo flower spin ── */
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(1080deg); } /* 3 full rotations */
+}
+
+.logo-flower.is-spinning {
+  animation: logo-spin 2s cubic-bezier(0.2, 0, 0.4, 1) forwards;
+}
+
+.site-nav {
+  height: var(--nav-height);
+  background: var(--color-bg-primary);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav-logo__icon {
+  height: 20px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.nav-logo__name {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+}
+
+/* Desktop links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: flex-start;
+  /* Clip to exactly one line — height = font-size × line-height of body-1-medium (16px × 1.6) */
+  height: 1.6em;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font: var(--text-body-1-medium);
+  letter-spacing: 0.02em;
+}
+
+/* Screen-reader label — visually hidden, keeps accessible text */
+.nav-link-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Two stacked copies — total height is 2 × line-height; only one is visible at a time */
+.nav-link-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Both spans use the same line-height so stacking is predictable */
+.nav-link-text {
+  display: block;
+  line-height: 1.6;
+}
+
+/* Slide the stack up by 50% of its own height (= one line) on hover */
+.nav-link:hover .nav-link-inner {
+  transform: translateY(-50%);
+}
+
+/* Active state — accent colour on the first (resting) span only */
+.nav-link.is-active .nav-link-text:nth-child(1) {
+  color: var(--color-accent);
+}
+
+/* Hamburger button (mobile) */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--color-text-primary);
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  transform-origin: center;
+}
+
+.nav-hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile drawer */
+.nav-mobile-drawer {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  overflow: hidden;
+}
+
+.nav-mobile-drawer .nav-link {
+  font: var(--text-h5);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .site-nav { height: 48px; }
+}

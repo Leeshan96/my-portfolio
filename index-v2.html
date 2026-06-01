@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lian Lee Shan — Product Designer based in Singapore. Designing digital experiences with clarity and care.">
+  <title>Lian Lee Shan — Product Designer</title>
+
+  <!-- Inter Display loaded from /assets/fonts — no external sources -->
+  <link rel="stylesheet" href="css/v2.css">
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav">
+    <div class="nav__inner">
+
+      <a href="index-v2.html" class="nav__logo" aria-label="Lian Lee Shan — home">
+        <img src="assets/icons/logo.svg" alt="Lian Lee Shan">
+      </a>
+
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="index-v2.html"  class="nav__link nav__link--active">Work</a>
+        <a href="about.html"     class="nav__link">About</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener" class="nav__link">Resume ↗</a>
+      </nav>
+
+      <button class="nav__hamburger"
+              aria-expanded="false"
+              aria-controls="mobile-nav"
+              aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <nav class="nav__drawer" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index-v2.html"  class="nav__drawer-link">Work</a>
+    <a href="about.html"     class="nav__drawer-link">About</a>
+    <a href="assets/resume.pdf" target="_blank" rel="noopener" class="nav__drawer-link">Resume ↗</a>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" aria-label="Introduction">
+
+    <!-- Left: text -->
+    <div class="hero__text">
+
+      <p class="hero__eyebrow">
+        <span class="hero__eyebrow-dash" aria-hidden="true"></span>
+        Product Designer &nbsp;·&nbsp; Singapore
+      </p>
+
+      <h1 class="hero__name">
+        <span class="hero__name-line">Lian</span>
+        <span class="hero__name-line">Lee Shan</span>
+      </h1>
+
+      <p class="hero__tagline">
+        Crafting digital products that feel<br>
+        considered, clear, and human.
+      </p>
+
+      <a href="#work" class="hero__cta" aria-label="Jump to work section">
+        View work
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M7 2v10M7 12L3 8M7 12l4-4"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+    </div>
+
+    <!-- Right: overlapping image composition -->
+    <div class="hero__visual" aria-hidden="true">
+      <img
+        class="hero__img hero__img--secondary"
+        src="assets/pages/home/images/design-system-thumbnail.webp"
+        alt=""
+      >
+      <img
+        class="hero__img hero__img--primary"
+        src="assets/pages/home/images/menocare-thumbnail.webp"
+        alt=""
+      >
+
+      <p class="hero__note">
+        <span class="hero__note-dot" aria-hidden="true"></span>
+        Open to new projects
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       WORK
+       ============================================================ -->
+  <section class="work" id="work" aria-label="Selected work">
+
+    <span class="section-label">Selected Work</span>
+
+    <!-- Asymmetric grid: featured left (tall), two compact right -->
+    <div class="cs-grid">
+
+      <!-- CS1: Menocare — featured -->
+      <article class="cs-tile cs-tile--featured" aria-label="Case study: Menocare">
+        <a href="case-study-1.html" class="cs-tile__link">
+
+          <div class="cs-tile__cover">
+            <img
+              class="cs-tile__img"
+              src="assets/pages/home/images/menocare-thumbnail.webp"
+              alt="Menocare — mobile health app screens"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="cs-tile__body">
+            <span class="cs-tile__num">01</span>
+            <h2 class="cs-tile__title">Menocare</h2>
+            <p class="cs-tile__desc">
+              A mobile health app helping women navigate menopause with personalised
+              symptom tracking and care guidance.
+            </p>
+            <div class="tags">
+              <span class="tag">Healthcare</span>
+              <span class="tag">Mobile App</span>
+              <span class="tag">UX Research</span>
+            </div>
+          </div>
+
+        </a>
+      </article>
+
+
+      <!-- CS2: Design System -->
+      <article class="cs-tile" aria-label="Case study: Design System">
+        <a href="case-study-2.html" class="cs-tile__link">
+
+          <div class="cs-tile__cover">
+            <img
+              class="cs-tile__img"
+              src="assets/pages/home/images/design-system-thumbnail.webp"
+              alt="Design system — component library interface"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="cs-tile__body">
+            <span class="cs-tile__num">02</span>
+            <h2 class="cs-tile__title">Design System</h2>
+            <p class="cs-tile__desc">
+              Building a scalable component library and token-based design language
+              for a growing product team.
+            </p>
+            <div class="tags">
+              <span class="tag">Design Systems</span>
+              <span class="tag">Components</span>
+              <span class="tag">Documentation</span>
+            </div>
+          </div>
+
+        </a>
+      </article>
+
+
+      <!-- CS3: Roaming — coming soon -->
+      <article class="cs-tile cs-tile--soon"
+               role="article"
+               aria-label="Case study: Roaming — coming soon">
+
+        <div class="cs-tile__cover cs-tile__cover--empty"
+             aria-label="Case study 3 cover image — coming soon placeholder">
+        </div>
+
+        <div class="cs-tile__body">
+          <span class="cs-tile__coming-soon">Coming soon</span>
+          <h2 class="cs-tile__title">Roaming</h2>
+          <p class="cs-tile__desc">
+            Redesigning international roaming for a major telco — simplifying a
+            complex experience for travellers.
+          </p>
+          <div class="tags">
+            <span class="tag">Telecom</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">UX</span>
+          </div>
+        </div>
+
+      </article>
+
+    </div><!-- /.cs-grid -->
+
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__label">Say hi</span>
+        <a href="mailto:lianleeshan@gmail.com" class="footer__link">lianleeshan@gmail.com</a>
+        <a href="https://linkedin.com/in/lianleeshan"
+           target="_blank" rel="noopener"
+           class="footer__link">Linkedin</a>
+      </div>
+      <div class="footer__right">Updated January 2026</div>
+    </div>
+  </footer>
+
+
+  <!-- Motion (standalone, same engine as Framer Motion) + v2 script -->
+  <script type="module" src="js/v2.js"></script>
+
+</body>
+</html>

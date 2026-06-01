@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open *)",
+      "Bash(npm install *)",
+      "Bash(lsof -ti:5174)"
+    ]
+  }
+}

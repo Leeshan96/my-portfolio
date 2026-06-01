@@ -1,0 +1,195 @@
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* ── Logo ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-logo img {
+  height: 24px;
+  width: auto;
+}
+
+/* ── Desktop links ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.nav-link {
+  position: relative;
+  font: var(--text-body-1-medium);
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease-out;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--color-accent);
+  transition: width 0.22s ease-out;
+}
+
+.nav-link:hover {
+  color: var(--color-text-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active state — set data-page on <body> */
+[data-page="work"]   .nav-link[href="index.html"],
+[data-page="about"]  .nav-link[href="about.html"] {
+  color: var(--color-text-primary);
+}
+
+[data-page="work"]   .nav-link[href="index.html"]::after,
+[data-page="about"]  .nav-link[href="about.html"]::after {
+  width: 100%;
+}
+
+/* ── Resume button ── */
+.nav-link--resume {
+  padding: var(--space-2) var(--space-4);
+  border: 1.5px solid var(--color-border-primary);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  font: var(--text-body-1-medium);
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease-out, color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.nav-link--resume::after {
+  display: none;
+}
+
+.nav-link--resume:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(214, 73, 51, 0.12);
+}
+
+/* ── Mobile hamburger ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  transform-origin: center;
+}
+
+/* Hamburger → X when open */
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ── */
+.nav-mobile-drawer {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+  padding: var(--space-5) var(--content-padding) var(--space-6);
+  flex-direction: column;
+  gap: var(--space-4);
+  z-index: 99;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+.nav-mobile-drawer.is-open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav-mobile-drawer .nav-link {
+  font: var(--text-h5);
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  padding: var(--space-2) 0;
+}
+
+.nav-mobile-drawer .nav-link::after {
+  display: none;
+}
+
+.nav-mobile-drawer .nav-link--resume {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: var(--space-2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-mobile-drawer {
+    display: flex;
+  }
+}

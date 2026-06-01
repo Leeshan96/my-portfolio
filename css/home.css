@@ -1,0 +1,414 @@
+/* ============================================================
+   HOME PAGE
+   ============================================================ */
+
+/* ── Page offset for fixed nav ── */
+.page-home {
+  padding-top: var(--nav-height);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  min-height: calc(100vh - var(--nav-height));
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: var(--space-8);
+  align-items: center;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-9) var(--content-padding) var(--space-8);
+}
+
+/* ── Left column ── */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-7); /* 48px — generous air before headline */
+}
+
+.hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.hero-heading {
+  font: 500 96px/0.95 var(--font-family);
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-5); /* 24px — tagline sits close under the name */
+}
+
+/* "Hi, I'm" — smaller setup line */
+.hero-heading__intro {
+  display: block;
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2); /* 8px — tight to the name */
+}
+
+.hero-heading em {
+  display: block;
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.hero-tagline {
+  font: 400 18px/1.65 var(--font-family);
+  letter-spacing: 0.005em;
+  color: var(--color-text-secondary);
+  max-width: 400px;
+  margin-bottom: var(--space-8); /* 64px — clear air before the CTA */
+}
+
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease-out, gap 0.2s ease-out;
+}
+
+.hero-scroll:hover {
+  color: var(--color-text-primary);
+  gap: var(--space-4);
+}
+
+.hero-scroll svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease-out;
+}
+
+.hero-scroll:hover svg {
+  transform: translateY(3px);
+}
+
+/* ── Right column – image composition ── */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 480px;
+}
+
+.hero-img-primary {
+  position: absolute;
+  width: 300px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  transform: rotate(-2deg) translate(-20px, 10px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
+}
+
+.hero-img-secondary {
+  position: absolute;
+  width: 240px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+  transform: rotate(4deg) translate(60px, -30px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+  opacity: 0.88;
+}
+
+.hero-visual:hover .hero-img-primary {
+  transform: rotate(-4deg) translate(-30px, 5px) scale(1.02);
+}
+
+.hero-visual:hover .hero-img-secondary {
+  transform: rotate(6deg) translate(70px, -40px) scale(1.01);
+}
+
+/* ── Placeholder frames for hero images ── */
+.hero-img-placeholder {
+  background-color: var(--color-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   WORK SECTION
+   ============================================================ */
+
+.work-section {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-9) var(--content-padding);
+}
+
+.section-label {
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-7);
+}
+
+/* ── Case study cards ── */
+.work-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Featured card (CS1) — horizontal layout */
+.cs-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border-primary);
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--color-bg-primary);
+  transition: box-shadow 0.25s ease-out, transform 0.25s ease-out;
+  min-height: 400px;
+}
+
+.cs-card:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.10);
+  transform: translateY(-3px);
+}
+
+.cs-card--coming-soon {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: grayscale(0.4);
+}
+
+.cs-card--coming-soon:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+/* ── Second row — two equal cards ── */
+.work-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+/* Compact card (CS2, CS3) — stacked layout */
+.cs-card--compact {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 360px;
+}
+
+/* ── Card cover image ── */
+.cs-card__cover {
+  overflow: hidden;
+  background-color: var(--color-bg-secondary);
+  position: relative;
+}
+
+.cs-card--compact .cs-card__cover {
+  height: 220px;
+}
+
+.cs-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease-out;
+}
+
+.cs-card:hover .cs-card__cover img {
+  transform: scale(1.04);
+}
+
+.cs-card--coming-soon .cs-card__cover img {
+  filter: saturate(0.3);
+}
+
+/* Placeholder cover */
+.cs-card__cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Card body ── */
+.cs-card__body {
+  padding: var(--space-7) var(--space-7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.cs-card--compact .cs-card__body {
+  padding: var(--space-5) var(--space-5);
+  justify-content: flex-start;
+}
+
+.cs-card__coming-soon-label {
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.cs-card__number {
+  font: var(--text-body-2-regular);
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+}
+
+.cs-card__title {
+  font: var(--text-h3);
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.cs-card--compact .cs-card__title {
+  font: var(--text-h4);
+  letter-spacing: 0.02em;
+}
+
+.cs-card__description {
+  font: var(--text-body-1-regular);
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  max-width: 400px;
+}
+
+.cs-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.cs-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  transition: gap 0.2s ease-out;
+}
+
+.cs-card:hover .cs-card__cta {
+  gap: var(--space-3);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-7);
+    gap: var(--space-7);
+  }
+
+  .hero-heading {
+    font-size: 64px;
+    line-height: 0.97;
+  }
+
+  .hero-heading__intro {
+    font-size: 22px;
+  }
+
+  .hero-visual {
+    height: 360px;
+    order: -1;
+  }
+
+  .hero-img-primary {
+    width: 240px;
+    height: 300px;
+  }
+
+  .hero-img-secondary {
+    width: 200px;
+    height: 250px;
+  }
+
+  .cs-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 280px 1fr;
+    min-height: unset;
+  }
+
+  .cs-card__body {
+    padding: var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-heading {
+    font-size: 44px;
+    line-height: 0.97;
+  }
+
+  .hero-heading__intro {
+    font-size: 18px;
+  }
+
+  .hero-visual {
+    height: 280px;
+  }
+
+  .hero-img-primary {
+    width: 180px;
+    height: 220px;
+  }
+
+  .hero-img-secondary {
+    width: 150px;
+    height: 190px;
+  }
+
+  .work-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-card--compact {
+    min-height: unset;
+  }
+}

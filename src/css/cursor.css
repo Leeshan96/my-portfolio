@@ -1,0 +1,70 @@
+/* ============================================================
+   CUSTOM CURSOR
+   Only applies on true pointer devices — touch is unaffected
+   ============================================================ */
+
+@media (hover: hover) and (pointer: fine) {
+
+  /* Hide OS cursor globally */
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+
+  /* ── Cursor container ── */
+  /* Zero-size fixed anchor at mouse position; children centre themselves */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0; /* hidden until first mousemove */
+    will-change: transform;
+  }
+
+  /* ── Flower icon ── */
+  .cursor-flower {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    max-width: none; /* override global img { max-width: 100% } on zero-size container */
+    translate: -50% -50%;
+    transition:
+      opacity  0.2s ease-out,
+      scale    0.2s ease-out;
+    opacity: 1;
+    scale: 1;
+  }
+
+  /* ── "View Project" pill ── */
+  .cursor-pill {
+    position: absolute;
+    translate: -50% -50%;
+    white-space: nowrap;
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+    font: var(--text-body-1-medium);
+    letter-spacing: 0.01em;
+    border-radius: var(--radius-full);
+    padding: 8px 16px;
+    transition:
+      opacity  0.2s ease-out,
+      scale    0.2s ease-out;
+    opacity: 0;
+    scale: 0.85;
+  }
+
+  /* ── Card hover state — swap flower → pill ── */
+  .custom-cursor.is-hovering-card .cursor-flower {
+    opacity: 0;
+    scale: 0.6;
+  }
+
+  .custom-cursor.is-hovering-card .cursor-pill {
+    opacity: 1;
+    scale: 1;
+  }
+
+}

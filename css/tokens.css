@@ -1,0 +1,93 @@
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ── Colours: Text ── */
+  --color-text-primary:   #252422;
+  --color-text-secondary: #6F6C62;
+  --color-text-grey:      #6F6F82;
+  --color-accent:         #D64933;
+  --color-text-inverse:   #FFFFFF;
+
+  /* ── Colours: Backgrounds ── */
+  --color-bg-primary:     #FFFFFF;
+  --color-bg-secondary:   #F3F3F3;
+  --color-bg-light-blue:  #F2F6FD;
+
+  /* ── Colours: Border ── */
+  --color-border-primary: #E0DDD7;
+
+  /* ── Font family ── */
+  --font-family: 'Inter Display', sans-serif;
+
+  /* ── Typography: Headings ── */
+  --text-h1: 500 40px/1.1 var(--font-family);
+  --text-h2: 500 32px/1.4 var(--font-family);
+  --text-h3: 500 24px/1.4 var(--font-family);
+  --text-h4: 500 20px/1.8 var(--font-family);
+  --text-h5: 500 18px/1.4 var(--font-family);
+  --text-h6: 500 16px/1.4 var(--font-family);
+
+  /* ── Typography: Body ── */
+  --text-body-1-medium:  500 16px/1.6 var(--font-family);
+  --text-body-1-regular: 400 16px/1.6 var(--font-family);
+  --text-body-2-medium:  500 14px/1.6 var(--font-family);
+  --text-body-2-regular: 400 14px/1.6 var(--font-family);
+
+  /* ── Spacing ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ── Border Radius ── */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+
+  /* ── Layout ── */
+  --nav-height:      80px;
+  --content-max:     1200px;
+  --content-padding: var(--space-6);
+}
