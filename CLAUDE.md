@@ -27,7 +27,7 @@ This is a personal product design portfolio website for **Lian Lee Shan**. Build
 - Currently App (side project) → warm yellow-green (`#F5F2DC` or similar)
 When given a new mockup image, always sample its ambient colour and use that as the card background. Never default to white.
 
-**Background colour rule:** White (`--color-bg-primary`) is the page background throughout. Card-level backgrounds use the per-card sampled colour above. Light grey (`--color-bg-secondary`) and light blue (`--color-bg-light-blue`) are only used for small inline elements such as callout blocks — never for full-width page sections.
+**Background colour rule:** `#F9F9F9` (`--color-bg-primary`) is the page background throughout. Card-level backgrounds use the per-card sampled colour above. Light grey (`--color-bg-secondary`) and light blue (`--color-bg-light-blue`) are only used for small inline elements such as callout blocks — never for full-width page sections.
 
 **Deployment:** Custom domain is ready. Build with clean URLs and no trailing slashes. Netlify handles routing.
 
@@ -96,7 +96,7 @@ When given a new mockup image, always sample its ambient colour and use that as 
   --color-text-inverse:     #FFFFFF;
 
   /* Backgrounds */
-  --color-bg-primary:       #FFFFFF;
+  --color-bg-primary:       #F9F9F9;
   --color-bg-secondary:     #F3F3F3;
   --color-bg-light-blue:    #F2F6FD;
 
@@ -645,7 +645,7 @@ import { useReducedMotion } from 'framer-motion';
 
 ## Navigation
 
-- Fixed top nav, full width, white background with `border-bottom: 1px solid var(--color-border-primary)`
+- Nav scrolls with the page, background `var(--color-bg-primary)` (#F9F9F9)
 - Height: `var(--nav-height)` (80px)
 - Left: Logo SVG — `<img src="/assets/icons/logo.svg" alt="Lian Lee Shan">` linking to `/`
 - Right: `Work` → `/`, `About` → `/about`, `Resume` → opens `/assets/resume.pdf` in new tab
@@ -786,7 +786,7 @@ Use `IntersectionObserver` in a `useSidenav()` React hook — same logic as befo
 ---
 
 ## Image Conventions
-- All images: `border-radius: var(--radius-lg)`, `border: 3px solid #FFFFFF`, `box-shadow: 0 4px 20px rgba(0,0,0,0.10)`
+- All images: `border-radius: var(--radius-lg)`, `box-shadow: 0 4px 20px rgba(0,0,0,0.10)`
 - `object-fit: cover` inside fixed containers
 - Always descriptive `alt` text
 

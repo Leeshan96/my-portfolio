@@ -1,0 +1,489 @@
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+
+/* ── Hero / Intro ── */
+.about-hero {
+  padding: var(--space-10) 0 var(--space-8); /* top 128px, bottom 64px */
+}
+
+.about-hero__inner {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── Photo ── */
+.about-hero__photo {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+}
+
+.about-hero__photo:hover {
+  transform: rotate(3deg) scale(1.02);
+}
+
+/* ── Text ── */
+.about-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 560px;
+}
+
+.about-hero__headline {
+  font: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+}
+
+.about-hero__body {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+/* ── Section Divider ── */
+.about-divider-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  box-sizing: border-box;
+}
+
+.about-divider {
+  border: none;
+  border-top: 1.5px dashed var(--color-border-primary);
+}
+
+/* ── Skills & Stacks ── */
+.about-skills {
+  padding: var(--space-8) 0;
+}
+
+.about-skills-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.about-skills-title {
+  font: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  margin-bottom: var(--space-7);
+}
+
+/* Three-column grid — Skills takes 2fr, Stack and AI Tools take 1fr each */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* Skills column — internal two-column list */
+.skills-list-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--space-5);
+}
+
+.skills-col__heading {
+  font: var(--text-body-2-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: var(--space-5);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.skills-list li {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ── My Crafts — Marquee ── */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.about-crafts {
+  padding: var(--space-8) 0;
+}
+
+/* Standard content container — clips the marquee to 1200px */
+.about-crafts-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.about-crafts-title {
+  font: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  margin-bottom: var(--space-6);
+}
+
+/* Clip the animated track to the container width */
+.crafts-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.crafts-track {
+  display: flex;
+  gap: var(--space-4);
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.craft-img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.craft-img:hover {
+  transform: none;
+}
+
+/* Respect reduced motion — pause marquee */
+@media (prefers-reduced-motion: reduce) {
+  .crafts-track {
+    animation-play-state: paused;
+  }
+}
+
+/* ── What I've Been Reading ── */
+.about-reads {
+  padding: var(--space-8) 0;
+}
+
+.about-reads-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.about-reads-title {
+  font: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  margin-bottom: var(--space-7);
+}
+
+/* ── Book cluster ── */
+.books-cluster {
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-6) 0;
+}
+
+.book-img {
+  width: 130px;
+  height: 195px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  margin-left: -40px;
+  transition: margin-left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* First book — no negative offset */
+.book-img:first-child {
+  margin-left: 0;
+}
+
+/* Uniform rotation for all books */
+.book-img {
+  transform: rotate(6deg);
+}
+
+/* Hover — spread books out, keep rotation */
+.books-cluster:hover .book-img {
+  margin-left: var(--space-3);
+  transform: rotate(6deg);
+}
+
+.books-cluster:hover .book-img:first-child {
+  margin-left: 0;
+}
+
+/* ── My Adventures ── */
+.about-adventures {
+  padding: var(--space-8) 0;
+}
+
+.about-adventures-inner {
+  max-width: 960px; /* matches .about-hero__inner */
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.about-adventures-title {
+  font: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+
+.about-adventures-sub {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+/* Outer drag boundary — full container width, white margin surrounds the grid */
+.adventures-outer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Inner grid background — inset by 40px top/bottom, 60px left/right */
+.adventures-grid {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  right: 60px;
+  bottom: 40px;
+  border-radius: var(--radius-lg);
+  background-image: url('/assets/images/Grid.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+/* Polaroid card */
+.polaroid-card {
+  position: absolute;
+  background: #ffffff;
+  padding: 12px 12px 32px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  cursor: grab;
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.polaroid-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ── Responsive — Tablet ── */
+@media (max-width: 1024px) {
+  .about-hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero__photo {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .about-hero__text {
+    max-width: 100%;
+  }
+
+  .book-img {
+    width: 110px;
+    height: 165px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .skills-col--wide {
+    grid-column: 1 / -1;
+  }
+
+  .craft-img {
+    width: 190px;
+    height: 190px;
+  }
+
+  .adventures-outer {
+    height: 420px;
+  }
+
+  .adventures-grid {
+    top: 32px;
+    left: 40px;
+    right: 40px;
+    bottom: 32px;
+  }
+
+  .polaroid-card {
+    width: 150px;
+    padding: 10px 10px 28px;
+  }
+}
+
+/* ── Responsive — Mobile ── */
+@media (max-width: 640px) {
+  .about-adventures {
+    padding: var(--space-6) 0;
+  }
+
+  .about-adventures-inner {
+    padding: 0 var(--space-4);
+  }
+
+  .adventures-outer {
+    height: 360px;
+  }
+
+  .adventures-grid {
+    top: 24px;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+  }
+
+  .polaroid-card {
+    width: 120px;
+    padding: 8px 8px 24px;
+  }
+
+  .polaroid-tape {
+    width: 30px;
+    top: -22px;
+  }
+
+  .about-skills {
+    padding: var(--space-6) 0;
+  }
+
+  .about-skills-inner {
+    padding: 0 var(--space-4);
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .skills-col--wide {
+    grid-column: auto;
+  }
+
+  .about-reads {
+    padding: var(--space-6) 0;
+  }
+
+  .about-reads-inner {
+    padding: 0 var(--space-4);
+  }
+
+  .book-img {
+    width: 84px;
+    height: 126px;
+    margin-left: -24px;
+  }
+
+  .book-img:first-child {
+    margin-left: 0;
+  }
+
+  .books-cluster:hover .book-img {
+    margin-left: var(--space-2);
+  }
+
+  .books-cluster:hover .book-img:first-child {
+    margin-left: 0;
+  }
+
+  .about-crafts {
+    padding: var(--space-6) 0;
+  }
+
+  .about-crafts-inner {
+    padding: 0 var(--space-4);
+  }
+
+  .craft-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .crafts-track {
+    animation-duration: 20s;
+  }
+
+  .about-hero {
+    padding: var(--space-7) 0;
+  }
+
+  .about-hero__inner {
+    padding: 0 var(--space-4);
+  }
+
+  .about-hero__photo {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .about-hero__text {
+    max-width: 100%;
+    text-align: left;
+  }
+}
