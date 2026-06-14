@@ -89,7 +89,7 @@
 .skills-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--space-8);
+  gap: var(--space-7);
   align-items: start;
 }
 

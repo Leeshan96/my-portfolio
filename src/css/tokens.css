@@ -43,7 +43,7 @@
   --color-text-inverse:   #FFFFFF;
 
   /* ── Background colours ── */
-  --color-bg-primary:     #F9F9F9;
+  --color-bg-primary:     #FFFFFF;
   --color-bg-secondary:   #F3F3F3;
   --color-bg-light-blue:  #F2F6FD;
 
@@ -56,6 +56,9 @@
   --color-card-menocare:      #F5F3FA;
   --color-card-currently:     #F5F2DC;
 
+  /* ── Case study hero backgrounds (match card gradients) ── */
+  --bg-cs-menocare: linear-gradient(160deg, #F6F4FC 0%, #E2DBF5 100%);
+
   /* ── Font family ── */
   --font-family: 'Inter Display', sans-serif;
 
@@ -63,7 +66,7 @@
   --text-h1: 500 40px/1.1 var(--font-family);
   --text-h2: 500 32px/1.4 var(--font-family);
   --text-h3: 500 24px/1.4 var(--font-family);
-  --text-h4: 500 20px/1.8 var(--font-family);
+  --text-h4: 500 20px/1.4 var(--font-family);
   --text-h5: 500 18px/1.4 var(--font-family);
   --text-h6: 500 16px/1.4 var(--font-family);
 

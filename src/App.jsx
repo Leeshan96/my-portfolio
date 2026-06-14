@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 import Home from './pages/Home';
 import About from './pages/About';
+import Menocare from './pages/Menocare';
 import './css/cursor.css';
 
 function AnimatedRoutes() {
@@ -15,7 +16,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/"               element={<Home />} />
         <Route path="/about"          element={<About />} />
-        <Route path="/case-study-1"   element={<Home />} />
+        <Route path="/case-study-1"   element={<Menocare />} />
         <Route path="/case-study-2"   element={<Home />} />
         <Route path="/case-study-3"   element={<Home />} />
         <Route path="/personal-project" element={<Home />} />
@@ -27,6 +28,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <CustomCursor />
       <Nav />
       <AnimatedRoutes />

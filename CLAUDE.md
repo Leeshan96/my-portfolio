@@ -27,7 +27,9 @@ This is a personal product design portfolio website for **Lian Lee Shan**. Build
 - Currently App (side project) → warm yellow-green (`#F5F2DC` or similar)
 When given a new mockup image, always sample its ambient colour and use that as the card background. Never default to white.
 
-**Background colour rule:** `#F9F9F9` (`--color-bg-primary`) is the page background throughout. Card-level backgrounds use the per-card sampled colour above. Light grey (`--color-bg-secondary`) and light blue (`--color-bg-light-blue`) are only used for small inline elements such as callout blocks — never for full-width page sections.
+**Focus rings:** Use the browser default focus ring on all interactive elements (links, buttons, images). Do not apply custom `outline` or `:focus-visible` overrides — the native blue outline is intentional and consistent across the site.
+
+**Background colour rule:** `#FFFFFF` (`--color-bg-primary`) is the page background throughout. Card-level backgrounds use the per-card sampled colour above. Light grey (`--color-bg-secondary`) and light blue (`--color-bg-light-blue`) are only used for small inline elements such as callout blocks — never for full-width page sections.
 
 **Deployment:** Custom domain is ready. Build with clean URLs and no trailing slashes. Netlify handles routing.
 
@@ -96,7 +98,7 @@ When given a new mockup image, always sample its ambient colour and use that as 
   --color-text-inverse:     #FFFFFF;
 
   /* Backgrounds */
-  --color-bg-primary:       #F9F9F9;
+  --color-bg-primary:       #FFFFFF;
   --color-bg-secondary:     #F3F3F3;
   --color-bg-light-blue:    #F2F6FD;
 
@@ -153,7 +155,7 @@ Font family: **'Inter Display'** — self-hosted. Do NOT use Google Fonts CDN.
   --text-h1: 500 40px/1.1 var(--font-family);
   --text-h2: 500 32px/1.4 var(--font-family);
   --text-h3: 500 24px/1.4 var(--font-family);
-  --text-h4: 500 20px/1.8 var(--font-family);
+  --text-h4: 500 20px/1.4 var(--font-family);
   --text-h5: 500 18px/1.4 var(--font-family);
   --text-h6: 500 16px/1.4 var(--font-family);
 

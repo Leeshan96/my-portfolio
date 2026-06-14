@@ -12,12 +12,12 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -64,6 +64,26 @@ button {
   }
 }
 
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-2) var(--space-5);
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+  font: var(--text-body-1-medium);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease-out;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* ── Image cluster tooltip ── */
 .image-tooltip {
   position: fixed;
@@ -88,6 +108,49 @@ button {
   opacity: 1;
   transform: translateY(-50%);
   transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+/* ── Lightbox ── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: var(--space-5);
+  right: var(--space-5);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 1001;
+  transition: background 0.2s ease-out;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+  cursor: default;
 }
 
 /* Reduced motion safety net */
