@@ -4,7 +4,7 @@
 
 /* ── Case study title block ── */
 .cs-title {
-  padding: var(--space-8) 0;
+  padding: var(--space-6) 0;
 }
 
 .cs-title__inner {
@@ -16,7 +16,7 @@
 .cs-breadcrumb {
   display: inline-block;
   font: var(--text-body-2-medium);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   letter-spacing: 0.02em;
   text-decoration: none;
   margin-bottom: var(--space-5);
@@ -24,7 +24,7 @@
 }
 
 .cs-breadcrumb:hover {
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .cs-title__heading {
@@ -36,7 +36,7 @@
 
 /* ── Hero banner ── */
 .cs-hero {
-  padding: var(--space-5) 0;
+  padding: 0;
 }
 
 .cs-hero--menocare {
@@ -106,14 +106,14 @@
 
 .cs-overview__label {
   font: var(--text-body-1-regular);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   letter-spacing: 0.02em;
   margin: 0 0 var(--space-5);
 }
 
 .cs-overview__body {
   font: var(--text-body-1-regular);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   letter-spacing: 0.02em;
   margin: 0 0 var(--space-5);
 }
@@ -165,6 +165,7 @@
 }
 
 .cs-section__num {
+  font: var(--text-h3);
   color: var(--color-text-secondary);
 }
 
@@ -185,6 +186,11 @@
   max-width: 65ch;
 }
 
+.cs-body--medium {
+  font: var(--text-body-1-medium);
+  color: var(--color-text-primary);
+}
+
 /* H3 subheading */
 .cs-h3 {
   font: var(--text-h3);
@@ -193,10 +199,17 @@
   margin: 0 0 var(--space-4);
 }
 
+.cs-h4 {
+  font: var(--text-h4);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-4);
+}
+
 /* Bullet list */
 .cs-list {
   font: var(--text-body-1-regular);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   letter-spacing: 0.02em;
   padding-left: var(--space-5);
   margin: 0 0 var(--space-6);
@@ -311,6 +324,10 @@
   margin: 0;
 }
 
+.cs-figure-captioned {
+  margin: 0;
+}
+
 /* Image caption */
 .cs-image-caption {
   font: var(--text-body-2-regular);
@@ -357,6 +374,44 @@
 
 .cs-callout__body--regular {
   font: var(--text-body-1-regular);
+}
+
+/* ── Project nav (end of case study) ── */
+.cs-project-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.cs-project-nav__divider {
+  border: none;
+  border-top: 1.5px dashed var(--color-border-primary);
+  margin: 0 0 var(--space-7);
+}
+
+.cs-project-nav__heading {
+  font: var(--text-h3);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-5);
+}
+
+.cs-project-nav__links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cs-project-nav__link {
+  font: var(--text-h4);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+
+.cs-project-nav__link:hover {
+  color: var(--color-text-primary);
 }
 
 /* ── Responsive ── */
@@ -411,7 +466,7 @@
   }
 
   .cs-hero {
-    padding: var(--space-6) 0;
+    padding: 0;
   }
 
   .cs-hero__image {

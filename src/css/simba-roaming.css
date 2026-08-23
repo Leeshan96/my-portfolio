@@ -1,0 +1,328 @@
+/* ============================================================
+   SIMBA ROAMING — PAGE-SPECIFIC STYLES
+   ============================================================ */
+
+/* ── Hero background ── */
+.cs-hero--simba-roaming {
+  background: linear-gradient(160deg, #FDFBF2 0%, #F5E8B8 100%);
+}
+
+/* ── Image placeholders ── */
+.cs-placeholder {
+  width: 100%;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font: var(--text-body-2-regular);
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: var(--space-5);
+}
+
+.cs-placeholder--hero {
+  height: 320px;
+}
+
+.cs-placeholder--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.cs-placeholder--tall {
+  aspect-ratio: 4 / 3;
+}
+
+/* ── Callout bullet list ── */
+.cs-callout__list {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin: 0;
+  padding-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ── Figure with caption ── */
+.cs-figure {
+  margin: 0;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.cs-figure__img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+.cs-figure__caption {
+  font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin-top: var(--space-3);
+  text-align: left;
+}
+
+/* ── Key pattern card ── */
+.cs-pattern-label {
+  font: var(--text-body-1-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: var(--space-7) 0 var(--space-4);
+}
+
+.cs-pattern-card {
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.cs-pattern-card__comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: var(--space-5);
+  row-gap: var(--space-4);
+}
+
+/* Explicit column pins — eliminates auto-placement ambiguity */
+.cs-pattern-card__left {
+  grid-column: 1;
+  align-self: start;
+}
+
+.cs-pattern-card__right {
+  grid-column: 3;
+  align-self: start;
+}
+
+.cs-pattern-card__col-heading {
+  font: var(--text-body-2-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.cs-pattern-card__col-body {
+  font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.cs-pattern-card__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* vs spans all 3 rows so it centres across the full comparison height */
+.cs-pattern-card__vs {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-align: center;
+  align-self: center;
+  padding: 0 var(--space-3);
+}
+
+.cs-pattern-card__divider {
+  border: none;
+  border-top: 1px solid var(--color-border-primary);
+  margin: var(--space-6) 0;
+}
+
+.cs-pattern-card__challenge {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+  max-width: 65ch;
+}
+
+.cs-pattern-card__challenge-label {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .cs-pattern-card__comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-pattern-card__vs {
+    text-align: left;
+  }
+}
+
+/* ── Ordered list (next steps) ── */
+.cs-ordered-list {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  padding-left: var(--space-5);
+  margin: 0 0 var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 65ch;
+}
+
+.cs-nested-list {
+  list-style-type: disc;
+  margin-top: var(--space-3);
+  margin-bottom: 0;
+}
+
+/* ── Italic list (user testing questions) ── */
+.cs-list--italic li {
+  font-style: italic;
+}
+
+/* ── User testing insight cards ── */
+.ut-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.ut-card {
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ut-card__num {
+  font: var(--text-h2);
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+
+.ut-card__body {
+  font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.ut-card__num--muted {
+  color: var(--color-text-secondary);
+}
+
+.ut-card__title {
+  font: var(--text-body-2-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.ut-card__quote {
+  font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  margin: 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-border-primary);
+}
+
+@media (max-width: 640px) {
+  .ut-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Expanding scope comparison ── */
+.cs-expanding-comparison {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: var(--space-5);
+  background: #F2F6FD;
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  align-items: start;
+  margin-top: var(--space-5);
+}
+
+.cs-expanding-comparison__static img {
+  width: 100%;
+  display: block;
+}
+
+.cs-expanding-comparison__scroll {
+  max-height: 404px;
+  overflow-y: auto;
+}
+
+.cs-expanding-comparison__scroll img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .cs-expanding-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-expanding-comparison__scroll {
+    max-height: 360px;
+  }
+}
+
+/* ── Goals two-column grid ── */
+.cs-goals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.cs-goals-card {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.cs-goals-card__label {
+  display: block;
+  font: var(--text-body-1-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.cs-goals-card__body {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .cs-goals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cs-placeholder--hero {
+    height: 260px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cs-placeholder--hero {
+    height: 180px;
+  }
+}

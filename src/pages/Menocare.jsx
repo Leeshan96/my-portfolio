@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/PageWrapper';
 import { Lightbox } from '../components/Lightbox';
+import { ProjectNav } from '../components/ProjectNav';
 import '../css/case-study.css';
 
 /* ── Sidenav sections ── */
@@ -68,7 +69,7 @@ export default function CaseStudy1() {
         {/* ── Title ── */}
         <section className="cs-title">
           <div className="cs-title__inner">
-            <Link to="/" className="cs-breadcrumb">← Work</Link>
+            <Link to="/#work" className="cs-breadcrumb">← Work</Link>
             <h1 className="cs-title__heading">Menocare (Menopause App)</h1>
           </div>
         </section>
@@ -77,7 +78,7 @@ export default function CaseStudy1() {
         <section className="cs-hero cs-hero--menocare">
           <div className="cs-hero__inner">
             <img
-              src="/assets/images/menocare-thumbnail.png"
+              src="/assets/images/menocare-hero.webp"
               alt="Menocare design challenge — winning team"
               className="cs-hero__image"
             />
@@ -955,6 +956,11 @@ export default function CaseStudy1() {
         </div>
 
       </main>
+
+      <ProjectNav
+        prev={{ title: 'Design Systems', href: '/design-system' }}
+        next={{ title: 'Currently', href: '/currently' }}
+      />
 
       <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={closeLightbox} />
     </PageWrapper>

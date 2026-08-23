@@ -108,11 +108,53 @@
   font-weight: 600;
 }
 
+/* ── Projects heading + tabs ── */
+.projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-7);
+}
+
+.projects-heading {
+  font: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.projects-tabs {
+  display: flex;
+  gap: var(--space-2);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-full);
+  padding: var(--space-1);
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+}
+
+.projects-tab {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  font: var(--text-body-2-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s ease-out, color 0.2s ease-out;
+}
+
+.projects-tab.is-active {
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
 /* ── Hero divider ── */
 /* ── Hero divider wrapper — mirrors .content-wrap layout ── */
 .hero-divider-wrap {
   max-width: 1200px;
-  margin: var(--space-8) auto;
+  margin: var(--space-9) auto;
   padding: 0 var(--space-6);
   box-sizing: border-box;
 }

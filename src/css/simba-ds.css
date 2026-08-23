@@ -1,0 +1,73 @@
+/* ============================================================
+   SIMBA DESIGN SYSTEM — PAGE-SPECIFIC STYLES
+   ============================================================ */
+
+/* ── Hero background ── */
+.cs-hero--simba-ds {
+  background: linear-gradient(160deg, #F2F5F9 0%, #D8E2EF 100%);
+}
+
+/* ── Case study video ── */
+.cs-video {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-5);
+}
+
+/* ── Implementation steps (ordered list) ── */
+.cs-implementation-steps {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-5) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  counter-reset: step-counter;
+  max-width: 65ch;
+}
+
+.cs-implementation-steps li {
+  counter-increment: step-counter;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.cs-implementation-steps li > span {
+  flex: 1;
+}
+
+.cs-implementation-steps li::before {
+  content: counter(step-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font: var(--text-body-2-medium);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cs-implementation-steps li strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* ── Goals card bullet lists ── */
+.cs-goals-card ul.cs-goals-card__body {
+  padding-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  list-style-type: disc;
+}

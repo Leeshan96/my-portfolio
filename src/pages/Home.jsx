@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/PageWrapper';
 import { ImageCluster } from '../components/ImageCluster';
@@ -48,26 +49,26 @@ const staggerItem = {
 const workCards = [
   {
     id: 'simba-roaming',
-    title: 'SIMBA Roaming Page',
+    title: 'SIMBA Roaming',
     tags: [],
     year: '2026',
     thumbnail: '/assets/images/roaming-thumbnail-v2.png',
     thumbnailAlt: 'SIMBA Roaming Page case study thumbnail',
     cardBg: 'linear-gradient(160deg, #FDFBF2 0%, #F5E8B8 100%)',
-    href: '/case-study-1',
+    href: '/roaming',
     folderColor: '#F5E8B8',
     cardBorder: '#F5E8B8',
     restScale: 0.8,
   },
   {
     id: 'simba-ds',
-    title: 'SIMBA Design System',
+    title: 'Design Systems',
     tags: [],
     year: '2025',
     thumbnail: '/assets/images/design-system-thumbnail.png',
     thumbnailAlt: 'SIMBA Design System case study thumbnail',
     cardBg: 'linear-gradient(160deg, #F2F5F9 0%, #D8E2EF 100%)',
-    href: '/case-study-2',
+    href: '/design-system',
     folderColor: '#DDE3ED',
     cardBorder: '#D8E2EF',
   },
@@ -79,7 +80,7 @@ const workCards = [
     thumbnail: '/assets/images/menocare-thumbnail.png',
     thumbnailAlt: 'Menocare design challenge thumbnail',
     cardBg: 'var(--bg-cs-menocare)',
-    href: '/case-study-1',
+    href: '/menocare',
     folderColor: '#E2DBF5',
     cardBorder: '#E2DBF5',
   },
@@ -94,7 +95,7 @@ const sideProjectCards = [
     thumbnail: '/assets/images/currently-thumbnail.png',
     thumbnailAlt: 'Currently App side project thumbnail',
     cardBg: 'linear-gradient(160deg, #F8F6E8 0%, #E8E3B4 100%)',
-    href: '/personal-project',
+    href: '/currently',
     folderColor: '#E8E3B4',
     cardBorder: '#E8E3B4',
   },
@@ -102,7 +103,102 @@ const sideProjectCards = [
 
 /* ============================================================ */
 
+function ProjectsSection({ workCards, sideProjectCards, staggerContainer, staggerItem, scrollReveal }) {
+  const [activeTab, setActiveTab] = useState('work');
+
+  return (
+    <section className="work-section" id="work" aria-label="Projects">
+      <div className="content-wrap">
+
+        {/* Heading + tab toggle */}
+        <motion.div
+          className="projects-header"
+          variants={scrollReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <h2 className="projects-heading">Some of my projects</h2>
+
+          <div className="projects-tabs" role="tablist">
+            <button
+              className={`projects-tab${activeTab === 'work' ? ' is-active' : ''}`}
+              onClick={() => setActiveTab('work')}
+              role="tab"
+              aria-selected={activeTab === 'work'}
+            >
+              Work
+            </button>
+            <button
+              className={`projects-tab${activeTab === 'side' ? ' is-active' : ''}`}
+              onClick={() => setActiveTab('side')}
+              role="tab"
+              aria-selected={activeTab === 'side'}
+            >
+              Personal
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Work tab */}
+        {activeTab === 'work' && (
+          <>
+            <motion.div
+              className="work-grid work-grid--row"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              {workCards.slice(0, 2).map(card => (
+                <motion.div key={card.id} variants={staggerItem}>
+                  <WorkCard {...card} />
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              className="work-grid work-grid--half"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div key={workCards[2].id} variants={staggerItem}>
+                <WorkCard {...workCards[2]} />
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+
+        {/* Side tab */}
+        {activeTab === 'side' && (
+          <motion.div
+            className="work-grid work-grid--half"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            {sideProjectCards.map(card => (
+              <motion.div key={card.id} variants={staggerItem}>
+                <WorkCard {...card} />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, [hash]);
+
   return (
     <PageWrapper>
       <main className="page-home">
@@ -169,83 +265,14 @@ export default function Home() {
           <div className="hero-divider" aria-hidden="true" />
         </div>
 
-        {/* ── Work ── */}
-        <section className="work-section" id="work" aria-label="Case studies">
-          <div className="content-wrap">
-
-            <motion.p
-              className="section-label"
-              variants={scrollReveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-            >
-              <span className="section-label__num">01</span>
-              <span className="section-label__text">WORK</span>
-            </motion.p>
-
-            {/* Row 1: 2 cards */}
-            <motion.div
-              className="work-grid work-grid--row"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {workCards.slice(0, 2).map(card => (
-                <motion.div key={card.id} variants={staggerItem}>
-                  <WorkCard {...card} />
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Row 2: Menocare full-width (left half) */}
-            <motion.div
-              className="work-grid work-grid--half"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              <motion.div key={workCards[2].id} variants={staggerItem}>
-                <WorkCard {...workCards[2]} />
-              </motion.div>
-            </motion.div>
-
-          </div>
-        </section>
-
-        {/* ── Side Projects ── */}
-        <section className="side-projects-section" id="side-projects" aria-label="Side projects">
-          <div className="content-wrap">
-
-            <motion.p
-              className="section-label"
-              variants={scrollReveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-            >
-              <span className="section-label__num">02</span>
-              <span className="section-label__text">SIDE PROJECTS</span>
-            </motion.p>
-
-            <motion.div
-              className="work-grid work-grid--half"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {sideProjectCards.map(card => (
-                <motion.div key={card.id} variants={staggerItem}>
-                  <WorkCard {...card} />
-                </motion.div>
-              ))}
-            </motion.div>
-
-          </div>
-        </section>
+        {/* ── Projects ── */}
+        <ProjectsSection
+          workCards={workCards}
+          sideProjectCards={sideProjectCards}
+          staggerContainer={staggerContainer}
+          staggerItem={staggerItem}
+          scrollReveal={scrollReveal}
+        />
 
       </main>
     </PageWrapper>
