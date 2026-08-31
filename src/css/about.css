@@ -445,7 +445,7 @@
   }
 
   .books-cluster:hover .book-img {
-    margin-left: var(--space-2);
+    margin-left: var(--space-1);
   }
 
   .books-cluster:hover .book-img:first-child {
@@ -480,6 +480,7 @@
   .about-hero__photo {
     max-width: 100%;
     margin: 0;
+    transform: none !important;
   }
 
   .about-hero__text {
