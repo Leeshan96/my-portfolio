@@ -605,10 +605,11 @@
   }
 
   .image-cluster {
-    width: 100%;
-    max-width: 300px;
+    width: calc(100% + 32px);
+    max-width: 360px;
     height: 200px;
-    overflow: hidden;
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
   .cluster-img {
