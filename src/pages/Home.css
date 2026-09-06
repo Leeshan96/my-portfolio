@@ -520,6 +520,10 @@
     font-size: 24px;
   }
 
+  .work-card-full__desc {
+    max-width: none;
+  }
+
   .work-card-full__bg-element--desktop {
     display: none;
   }
