@@ -14,12 +14,29 @@ const hoveredPositions = [
   { rotate:  10, x:  150, y: 0 },
 ];
 
+// Tighter fan for mobile — images stay within the narrower container
+const hoveredPositionsMobile = [
+  { rotate: -10, x: -100, y: 0 },
+  { rotate:   0, x:    0, y: -18 },
+  { rotate:  10, x:  100, y: 0 },
+];
+
 const zIndices = [1, 3, 2];
 const springConfig = { type: 'spring', stiffness: 280, damping: 22 };
 
 /* ── Component ── */
 export function ImageCluster({ images, tooltips = [], motionProps = {} }) {
   const [hovered, setHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth <= 640
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
   const tooltipEl = useRef(null);
 
   /* Inject a single reusable tooltip div into <body> on mount */
@@ -65,7 +82,8 @@ export function ImageCluster({ images, tooltips = [], motionProps = {} }) {
       {...motionProps}
     >
       {images.map((src, i) => {
-        const target = hovered ? hoveredPositions[i] : defaultPositions[i];
+        const fanPositions = isMobile ? hoveredPositionsMobile : hoveredPositions;
+        const target = hovered ? fanPositions[i] : defaultPositions[i];
         return (
           <motion.img
             key={i}

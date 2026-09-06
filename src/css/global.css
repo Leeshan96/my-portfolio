@@ -110,6 +110,18 @@ button {
   transition: opacity 200ms ease-out, transform 200ms ease-out;
 }
 
+/* On mobile, center the tooltip horizontally so it never clips off-screen */
+@media (max-width: 640px) {
+  .image-tooltip {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) translateY(calc(-50% + 5px));
+  }
+  .image-tooltip.is-visible {
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
 /* ── Lightbox ── */
 .lightbox-overlay {
   position: fixed;

@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
+const getPrefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 import { PageWrapper } from '../components/PageWrapper';
 import { ImageCluster } from '../components/ImageCluster';
 import { WorkCard } from '../components/WorkCard';
@@ -129,7 +133,8 @@ const sideProjectCards = [
 
 /* ============================================================ */
 
-function ProjectsSection({ workCards, sideProjectCards, staggerContainer, staggerItem, scrollReveal }) {
+function ProjectsSection({ workCards, sideProjectCards, staggerContainer, staggerItem, scrollReveal, reduced }) {
+  const ini = reduced ? false : 'hidden';
   return (
     <section className="work-section" id="work" aria-label="Projects">
       <div className="content-wrap">
@@ -138,7 +143,7 @@ function ProjectsSection({ workCards, sideProjectCards, staggerContainer, stagge
         <motion.h2
           className="projects-section-heading"
           variants={scrollReveal}
-          initial="hidden"
+          initial={ini}
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
         >
@@ -149,7 +154,7 @@ function ProjectsSection({ workCards, sideProjectCards, staggerContainer, stagge
         <motion.div
           className="work-list"
           variants={staggerContainer}
-          initial="hidden"
+          initial={ini}
           whileInView="visible"
           viewport={{ once: true, amount: 0.05 }}
         >
@@ -164,7 +169,7 @@ function ProjectsSection({ workCards, sideProjectCards, staggerContainer, stagge
         <motion.h2
           className="projects-section-heading"
           variants={scrollReveal}
-          initial="hidden"
+          initial={ini}
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           style={{ marginTop: 'var(--space-9)' }}
@@ -176,7 +181,7 @@ function ProjectsSection({ workCards, sideProjectCards, staggerContainer, stagge
         <motion.div
           className="work-list"
           variants={staggerContainer}
-          initial="hidden"
+          initial={ini}
           whileInView="visible"
           viewport={{ once: true, amount: 0.05 }}
         >
@@ -194,11 +199,20 @@ function ProjectsSection({ workCards, sideProjectCards, staggerContainer, stagge
 
 export default function Home() {
   const { hash } = useLocation();
+  // Synchronous read on first render — avoids the null→true re-render blink
+  const [reduced] = useState(getPrefersReducedMotion);
+  const ini = reduced ? false : 'hidden';
 
   useEffect(() => {
-    if (!hash) return;
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
     const el = document.getElementById(hash.slice(1));
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (!el) return;
+    const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 80;
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight - 24;
+    window.scrollTo({ top, behavior: 'smooth' });
   }, [hash]);
 
   return (
@@ -212,7 +226,7 @@ export default function Home() {
             <motion.p
               className="hero-greeting"
               variants={heroItem(0)}
-              initial="hidden"
+              initial={ini}
               animate="visible"
             >
               Hi! I'm Lee Shan.
@@ -221,13 +235,13 @@ export default function Home() {
             <ImageCluster
               images={clusterImages}
               tooltips={clusterTooltips}
-              motionProps={{ variants: heroItem(1), initial: 'hidden', animate: 'visible' }}
+              motionProps={{ variants: heroItem(1), initial: ini, animate: 'visible' }}
             />
 
             <motion.h1
               className="hero-tagline"
               variants={heroItem(2)}
-              initial="hidden"
+              initial={ini}
               animate="visible"
             >
               A product designer who solves complex problems. Thinking people and systems before pixels.
@@ -236,7 +250,7 @@ export default function Home() {
             <motion.p
               className="hero-current"
               variants={heroItem(3)}
-              initial="hidden"
+              initial={ini}
               animate="visible"
             >
               Currently a designer at SIMBA Telecom
@@ -245,7 +259,7 @@ export default function Home() {
             <motion.div
               className="hero-cta"
               variants={heroItem(4)}
-              initial="hidden"
+              initial={ini}
               animate="visible"
             >
               <motion.a
@@ -274,6 +288,7 @@ export default function Home() {
           staggerContainer={staggerContainer}
           staggerItem={staggerItem}
           scrollReveal={scrollReveal}
+          reduced={reduced}
         />
 
       </main>
