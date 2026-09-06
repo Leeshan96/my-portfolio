@@ -174,7 +174,7 @@
 
 .work-card-full {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
+  grid-template-columns: minmax(380px, 1fr) minmax(420px, 1.25fr);
   align-items: center;
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -265,6 +265,7 @@
   height: 100%;
   width: auto;
 }
+
 
 .work-card-full__deco {
   position: absolute;
@@ -503,10 +504,66 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 1024px) {
-  .hero-tagline {
-    font-size: 32px;
-    max-width: 520px;
+
+/* ≤860px — single column mobile layout */
+@media (max-width: 860px) {
+  .work-card-full {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .work-card-full__content {
+    padding: var(--space-6);
+  }
+
+  .work-card-full__title {
+    font-size: 24px;
+  }
+
+  .work-card-full__bg-element--desktop {
+    display: none;
+  }
+
+  .work-card-full__bg-element--small {
+    display: block;
+    bottom: -30px;
+    right: -20px;
+    width: 75%;
+    height: auto;
+  }
+
+  /* Roaming small */
+  .work-card-full__bg-element--small {
+    left: calc(-20px + 5%);
+    bottom: -18%;
+    right: auto;
+    width: 135%;
+  }
+
+  /* DS small */
+  .work-card-full__bg-element--ds-small {
+    left: 5%;
+    right: auto;
+    bottom: calc(-20px - 15%);
+    width: 130%;
+  }
+
+  /* Menocare small */
+  .work-card-full__bg-element--menocare-small {
+    left: 5%;
+    right: auto;
+    bottom: -20px;
+    width: 130%;
+  }
+
+  /* Currently small */
+  .work-card-full__bg-element--currently-small {
+    bottom: 0;
+    top: auto;
+    right: 0;
+    left: auto;
+    height: 65%;
+    width: auto;
   }
 
   .work-grid--row,
@@ -522,21 +579,12 @@
     width: 100%;
   }
 
-  .work-card-full__bg-element--desktop {
-    width: 90%;
-    top: -10px;
-    right: -60px;
-  }
-
-  .work-card-full__bg-element--currently {
-    top: -18%;
-    right: 0;
-    left: auto;
-    height: 122%;
-    width: auto;
+  .content-wrap {
+    padding: 0 var(--space-4);
   }
 }
 
+/* ≤640px — hero / cluster tweaks only */
 @media (max-width: 640px) {
   .hero {
     padding: var(--space-8) 0 0;
@@ -564,73 +612,5 @@
     height: 120px;
     margin-top: -60px;
     margin-left: -60px;
-  }
-
-  .work-grid--row,
-  .work-grid--half {
-    grid-template-columns: 1fr;
-  }
-
-  .work-card {
-    width: 100%;
-  }
-
-  .work-card-full__bg-element--desktop {
-    display: none;
-  }
-
-  .work-card-full__bg-element--small {
-    display: block;
-    bottom: -30px;
-    right: -20px;
-    width: 75%;
-    height: auto;
-  }
-
-  .work-card-full {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .work-card-full__content {
-    padding: var(--space-6);
-  }
-
-  .work-card-full__title {
-    font-size: 24px;
-  }
-
-  .work-card-full__bg-element--small {
-    left: -20px;
-    bottom: -13%;
-    right: auto;
-    width: 130%;
-  }
-
-  .work-card-full__bg-element--ds-small {
-    left: 5%;
-    right: auto;
-    bottom: calc(-20px - 15%);
-    width: 130%;
-  }
-
-  .work-card-full__bg-element--menocare-small {
-    left: 5%;
-    right: auto;
-    bottom: -20px;
-    width: 130%;
-  }
-
-  .work-card-full__bg-element--currently-small {
-    bottom: 0;
-    top: auto;
-    right: 0;
-    left: auto;
-    height: 65%;
-    width: auto;
-  }
-
-  .content-wrap {
-    padding: 0 var(--space-4);
   }
 }

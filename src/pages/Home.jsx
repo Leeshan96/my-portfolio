@@ -60,6 +60,7 @@ const workCards = [
     imageAlign: 'center',
     href: '/roaming',
     bgElement: '/assets/images/roaming-work-card-element-line.svg',
+    bgElementClass: 'work-card-full__bg-element--roaming',
     bgElementSmall: '/assets/images/roaming-work-card-element-line.svg',
     folderColor: '#FFE8CC',
     cardBorder: '#FFE8CC',

@@ -26,7 +26,11 @@ export function WorkCard({ title, tags, year, thumbnail, thumbnailAlt, cardBg, c
             <img src={bgElementSmall} alt="" aria-hidden="true" className={`work-card-full__bg-element work-card-full__bg-element--small${bgElementSmallClass ? ` ${bgElementSmallClass}` : ''}`} />
           )}
           <div className="work-card-full__content">
-            {company && <span className="work-card-full__company">{company}</span>}
+            {company && (
+              <span className="work-card-full__company">
+                {company}{year && ` · ${year}`}
+              </span>
+            )}
             <h2 className="work-card-full__title">{title}</h2>
             {description && <p className="work-card-full__desc">{description}</p>}
             <div className="work-card-full__cta" aria-hidden="true">
