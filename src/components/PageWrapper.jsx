@@ -8,7 +8,7 @@ export function PageWrapper({ children }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      style={{ willChange: 'opacity', transform: 'translateZ(0)' }}
+      style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
     >
       {children}
     </motion.div>

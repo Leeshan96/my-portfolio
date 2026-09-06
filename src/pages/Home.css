@@ -13,6 +13,8 @@
   align-items: center;
   text-align: center;
   gap: var(--space-3);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .hero-inner .image-cluster {
