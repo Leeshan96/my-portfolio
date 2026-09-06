@@ -70,7 +70,7 @@ const workCards = [
     id: 'simba-ds',
     company: 'SIMBA',
     title: 'Design Systems',
-    description: 'Building a scalable design system.',
+    description: 'Building a scalable design system that brings consistency across products.',
     tags: [],
     year: '2025',
     thumbnail: '/assets/images/design-system-thumbnail.png',
