@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Nav } from './components/Nav';
@@ -10,18 +10,13 @@ import SimbaRoaming from './pages/SimbaRoaming';
 import SimbaDesignSystem from './pages/SimbaDesignSystem';
 import PersonalProject from './pages/PersonalProject';
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
-  return null;
-}
-
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+    >
       <Routes location={location} key={location.pathname}>
         <Route path="/"               element={<Home />} />
         <Route path="/about"          element={<About />} />
@@ -38,8 +33,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <a href="#main-content" className="skip-link">Skip to main content</a>
-      <ScrollToTop />
-<Nav />
+      <Nav />
       <AnimatedRoutes />
       <Footer />
     </BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/PageWrapper';
@@ -49,47 +49,67 @@ const staggerItem = {
 const workCards = [
   {
     id: 'simba-roaming',
-    title: 'SIMBA Roaming',
+    company: 'SIMBA',
+    title: 'Roaming Page Redesign',
+    description: 'Simplifying a confusing roaming page for SIMBA\'s customers.',
     tags: [],
     year: '2026',
     thumbnail: '/assets/images/roaming-thumbnail-v2.png',
     thumbnailAlt: 'SIMBA Roaming Page case study thumbnail',
-    cardBg: 'linear-gradient(160deg, #FDFBF2 0%, #F5E8B8 100%)',
+    cardBg: 'linear-gradient(160deg, #FFFBE8 0%, #F0E49C 100%)',
+    imageAlign: 'center',
     href: '/roaming',
-    folderColor: '#F5E8B8',
-    cardBorder: '#F5E8B8',
+    bgElement: '/assets/images/roaming-work-card-element-line.svg',
+    bgElementSmall: '/assets/images/roaming-work-card-element-line.svg',
+    folderColor: '#FFE8CC',
+    cardBorder: '#FFE8CC',
     restScale: 0.8,
   },
   {
     id: 'simba-ds',
+    company: 'SIMBA',
     title: 'Design Systems',
+    description: 'Building a scalable design system.',
     tags: [],
     year: '2025',
     thumbnail: '/assets/images/design-system-thumbnail.png',
     thumbnailAlt: 'SIMBA Design System case study thumbnail',
     cardBg: 'linear-gradient(160deg, #F2F5F9 0%, #D8E2EF 100%)',
+    bgElement: '/assets/images/designsystems-work-card-element-line.svg',
+    bgElementClass: 'work-card-full__bg-element--ds',
+    bgElementSmall: '/assets/images/designsystems-work-card-element-line.svg',
+    bgElementSmallClass: 'work-card-full__bg-element--ds-small',
     href: '/design-system',
     folderColor: '#DDE3ED',
     cardBorder: '#D8E2EF',
   },
   {
     id: 'menocare',
-    title: 'Menocare (Design Challenge) · Winning Team',
+    company: 'DESIGN CHALLENGE · WINNING TEAM',
+    title: 'Menocare',
+    description: 'Empowering menopausal women to cope with the transitional phase with ease.',
     tags: [],
     year: '2023',
     thumbnail: '/assets/images/menocare-thumbnail.png',
     thumbnailAlt: 'Menocare design challenge thumbnail',
     cardBg: 'var(--bg-cs-menocare)',
+    imageAlign: 'center',
     href: '/menocare',
     folderColor: '#E2DBF5',
     cardBorder: '#E2DBF5',
+    bgElement: '/assets/images/menocare-work-card-element-line.svg',
+    bgElementClass: 'work-card-full__bg-element--menocare',
+    bgElementSmall: '/assets/images/menocare-work-card-element-line.svg',
+    bgElementSmallClass: 'work-card-full__bg-element--menocare-small',
   },
 ];
 
 const sideProjectCards = [
   {
     id: 'currently',
-    title: 'Currently App · Lovable',
+    company: 'SIDE PROJECT',
+    title: 'Currently App',
+    description: 'A private space for friends to share what they\'re into.',
     tags: [],
     year: '2026',
     thumbnail: '/assets/images/currently-thumbnail.png',
@@ -98,92 +118,73 @@ const sideProjectCards = [
     href: '/currently',
     folderColor: '#E8E3B4',
     cardBorder: '#E8E3B4',
+    imageAlign: 'center',
+    bgElement: '/assets/images/currently-work-card-element-line.svg',
+    bgElementClass: 'work-card-full__bg-element--currently',
+    bgElementSmall: '/assets/images/currently-work-card-element-line.svg',
+    bgElementSmallClass: 'work-card-full__bg-element--currently-small',
   },
 ];
 
 /* ============================================================ */
 
 function ProjectsSection({ workCards, sideProjectCards, staggerContainer, staggerItem, scrollReveal }) {
-  const [activeTab, setActiveTab] = useState('work');
-
   return (
     <section className="work-section" id="work" aria-label="Projects">
       <div className="content-wrap">
 
-        {/* Heading + tab toggle */}
-        <motion.div
-          className="projects-header"
+        {/* 01 Selected Work */}
+        <motion.h2
+          className="projects-section-heading"
           variants={scrollReveal}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
         >
-          <h2 className="projects-heading">Some of my projects</h2>
+          <span className="projects-section-heading__num">01</span>
+          Selected Work
+        </motion.h2>
 
-          <div className="projects-tabs" role="tablist">
-            <button
-              className={`projects-tab${activeTab === 'work' ? ' is-active' : ''}`}
-              onClick={() => setActiveTab('work')}
-              role="tab"
-              aria-selected={activeTab === 'work'}
-            >
-              Work
-            </button>
-            <button
-              className={`projects-tab${activeTab === 'side' ? ' is-active' : ''}`}
-              onClick={() => setActiveTab('side')}
-              role="tab"
-              aria-selected={activeTab === 'side'}
-            >
-              Personal
-            </button>
-          </div>
+        <motion.div
+          className="work-list"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.05 }}
+        >
+          {workCards.map(card => (
+            <motion.div key={card.id} variants={staggerItem}>
+              <WorkCard {...card} fullWidth />
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Work tab */}
-        {activeTab === 'work' && (
-          <>
-            <motion.div
-              className="work-grid work-grid--row"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-            >
-              {workCards.slice(0, 2).map(card => (
-                <motion.div key={card.id} variants={staggerItem}>
-                  <WorkCard {...card} />
-                </motion.div>
-              ))}
-            </motion.div>
+        {/* 02 Side Projects */}
+        <motion.h2
+          className="projects-section-heading"
+          variants={scrollReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          style={{ marginTop: 'var(--space-9)' }}
+        >
+          <span className="projects-section-heading__num">02</span>
+          Side Project
+        </motion.h2>
 
-            <motion.div
-              className="work-grid work-grid--half"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.div key={workCards[2].id} variants={staggerItem}>
-                <WorkCard {...workCards[2]} />
-              </motion.div>
+        <motion.div
+          className="work-list"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.05 }}
+        >
+          {sideProjectCards.map(card => (
+            <motion.div key={card.id} variants={staggerItem}>
+              <WorkCard {...card} fullWidth />
             </motion.div>
-          </>
-        )}
-
-        {/* Side tab */}
-        {activeTab === 'side' && (
-          <motion.div
-            className="work-grid work-grid--half"
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-          >
-            {sideProjectCards.map(card => (
-              <motion.div key={card.id} variants={staggerItem}>
-                <WorkCard {...card} />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+          ))}
+        </motion.div>
 
       </div>
     </section>
@@ -228,7 +229,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
             >
-              A product designer who solves<br />complex problems. Thinking people<br />and systems before pixels.
+              A product designer who solves complex problems. Thinking people and systems before pixels.
             </motion.h1>
 
             <motion.p
