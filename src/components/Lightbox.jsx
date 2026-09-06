@@ -1,17 +1,41 @@
 import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function Lightbox({ src, alt, onClose }) {
   const closeRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const scrollLocked = useRef(false);
 
-  /* Focus management: move focus in on open, return it on close */
+  /* Scroll lock + focus management */
   useEffect(() => {
     if (src) {
+      const scrollY = window.scrollY;
+      // Compensate for scrollbar disappearing on desktop to prevent layout shift
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+      // position:fixed is the only reliable scroll lock on iOS Safari
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      scrollLocked.current = true;
+
       previousFocusRef.current = document.activeElement;
-      closeRef.current?.focus();
-    } else {
-      previousFocusRef.current?.focus();
+      closeRef.current?.focus({ preventScroll: true });
+    } else if (scrollLocked.current) {
+      // Only restore if we actually locked — skip initial mount where src is null
+      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.paddingRight = '';
+      window.scrollTo(0, scrollY);
+      scrollLocked.current = false;
+
+      previousFocusRef.current?.focus({ preventScroll: true });
       previousFocusRef.current = null;
     }
   }, [src]);
@@ -27,7 +51,12 @@ export function Lightbox({ src, alt, onClose }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [src, onClose]);
 
-  return (
+  /*
+   * Portal into document.body so position:fixed on the overlay is always
+   * relative to the viewport — not to PageWrapper's transform:translateZ(0)
+   * ancestor, which would shift the overlay off-screen when scroll-locking.
+   */
+  return ReactDOM.createPortal(
     <AnimatePresence>
       {src && (
         <motion.div
@@ -64,6 +93,7 @@ export function Lightbox({ src, alt, onClose }) {
           />
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

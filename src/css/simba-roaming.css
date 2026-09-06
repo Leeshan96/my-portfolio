@@ -154,11 +154,18 @@
 
 @media (max-width: 640px) {
   .cs-pattern-card__comparison {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-3);
   }
 
+  /* Remap right column from 3 → 2 so both columns share the space equally */
+  .cs-pattern-card__right {
+    grid-column: 2;
+  }
+
+  /* Hide vs on mobile — not enough horizontal room */
   .cs-pattern-card__vs {
-    text-align: left;
+    display: none;
   }
 }
 
