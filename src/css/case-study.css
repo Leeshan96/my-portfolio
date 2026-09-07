@@ -165,7 +165,7 @@
 }
 
 .cs-section__num {
-  font: var(--text-h3);
+  font: var(--text-body-1-regular);
   color: var(--color-text-secondary);
 }
 
