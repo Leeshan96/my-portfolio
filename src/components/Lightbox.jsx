@@ -28,12 +28,22 @@ export function Lightbox({ src, alt, onClose }) {
     } else if (scrollLocked.current) {
       // Only restore if we actually locked — skip initial mount where src is null
       const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+
+      // Disable smooth scroll for this one restore — html { scroll-behavior: smooth }
+      // would otherwise animate from 0 → scrollY, causing the visible "scroll back down"
+      document.documentElement.style.scrollBehavior = 'auto';
+
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
       document.body.style.paddingRight = '';
       window.scrollTo(0, scrollY);
       scrollLocked.current = false;
+
+      // Restore smooth scroll in the next frame once the position is settled
+      requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = '';
+      });
 
       previousFocusRef.current?.focus({ preventScroll: true });
       previousFocusRef.current = null;
