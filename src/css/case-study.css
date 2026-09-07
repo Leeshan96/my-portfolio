@@ -419,36 +419,6 @@
   .cs-hero__image {
     height: 260px;
   }
-
-  .cs-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .cs-sidenav {
-    position: static;
-    display: flex;
-    gap: var(--space-2);
-    overflow-x: auto;
-    padding-bottom: var(--space-3);
-    border-bottom: 1px solid var(--color-border-primary);
-    margin-bottom: var(--space-6);
-  }
-
-  .sidenav-link {
-    white-space: nowrap;
-    padding: var(--space-2) var(--space-4);
-    border-left: none;
-    border-radius: var(--radius-full);
-    background: var(--color-bg-secondary);
-    font: var(--text-body-2-regular);
-  }
-
-  .sidenav-link.is-active {
-    background: var(--color-text-primary);
-    color: var(--color-text-inverse);
-    font: var(--text-body-2-medium);
-    border-left: none;
-  }
 }
 
 @media (max-width: 640px) {
@@ -474,6 +444,7 @@
   }
 
   .cs-layout {
+    grid-template-columns: 1fr;
     padding: var(--space-6) var(--space-4);
   }
 
