@@ -56,7 +56,7 @@ export function Nav() {
               <span className="nav-link-sr">About</span>
             </Link>
             <a
-              href="/assets/resume.pdf"
+              href="https://drive.google.com/file/d/1qoRIL_Rae5YLFJpGq6BChMuZJBJUyhUg/view?usp=sharing"
               className="nav-link"
               target="_blank"
               rel="noopener noreferrer"
@@ -108,7 +108,7 @@ export function Nav() {
               </span>
               <span className="nav-link-sr">About</span>
             </Link>
-            <a href="/assets/resume.pdf" className="nav-link" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
+            <a href="https://drive.google.com/file/d/1qoRIL_Rae5YLFJpGq6BChMuZJBJUyhUg/view?usp=sharing" className="nav-link" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>
               <span className="nav-link-inner" aria-hidden="true">
                 <span className="nav-link-text">Resume</span>
                 <span className="nav-link-text">Resume</span>
