@@ -11,10 +11,11 @@ import '../css/simba-ds.css';
 const sections = [
   { id: 'background',      label: 'Background' },
   { id: 'research',        label: 'Discovery' },
+  { id: 'priorities',      label: 'Navigating Priorities' },
+  { id: 'implementation',  label: 'Claude Code Integration' },
   { id: 'approach',        label: 'Research' },
   { id: 'system',          label: 'Building Blocks' },
   { id: 'prototype',       label: 'Prototype' },
-  { id: 'implementation',  label: 'Claude Code Integration' },
   { id: 'impact',          label: 'Impact' },
   { id: 'learnings',       label: 'Learnings' },
 ];
@@ -315,7 +316,119 @@ export default function SimbaDesignSystem() {
 
             </section>
 
-            {/* ── 03 Research ── */}
+            {/* ── 03 Navigating Priorities ── */}
+            <section id="priorities" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">03</span> Navigating Priorities
+              </motion.h2>
+
+              <motion.h3
+                className="cs-h3"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Proposing a collaborative build
+              </motion.h3>
+
+              <motion.p
+                className="cs-body"
+                variants={reveal(0.12)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Once the direction for the design system was set, I proposed building it together with the developers rather than designing it alone and handing it over after. Leadership and the dev team were on board — it meant consistency now, and a head start for other products planned down the line.
+              </motion.p>
+
+              <motion.h3
+                className="cs-h3"
+                style={{ marginTop: 'var(--space-8)' }}
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                What didn't happen
+              </motion.h3>
+
+              <motion.p
+                className="cs-body"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                The collaborative build never really got off the ground. The team liked the idea, but actual implementation kept losing out to other urgent work, so it was never prioritised. The gap I'd found in the audit — developers relying on their own component library — stayed open.
+              </motion.p>
+
+              <motion.h3
+                className="cs-h3"
+                style={{ marginTop: 'var(--space-8)' }}
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Closing the gap myself
+              </motion.h3>
+
+              <motion.p
+                className="cs-body"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Rather than wait, I changed approach. I built the design system on my own and connected it directly to code, so I could hand developers working components instead of specs for them to reinterpret.
+              </motion.p>
+
+            </section>
+
+            {/* ── 04 Claude Code Integration ── */}
+            <section id="implementation" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">04</span> Claude Code Integration
+              </motion.h2>
+
+              <motion.h3
+                className="cs-h3"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Connecting Figma to code with AI
+              </motion.h3>
+
+              <motion.p
+                className="cs-body"
+                variants={reveal(0.12)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                With the design system established in Figma, I connected it to Claude Code via the Figma MCP integration, giving Claude direct read access to component structure, variants and tokens, with no manual spec handoffs needed. I documented the full system in a CLAUDE.md file as the source of truth, so every component Claude generates automatically follows the design system's tokens and conventions. This closed the gap between design and development, and the DS is embedded directly into the workflow.
+              </motion.p>
+
+            </section>
+
+            {/* ── 05 Research ── */}
             <section id="approach" className="cs-section">
 
               <motion.h2
@@ -325,7 +438,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">03</span> Research
+                <span className="cs-section__num">05</span> Research
               </motion.h2>
 
               <motion.h3
@@ -380,7 +493,7 @@ export default function SimbaDesignSystem() {
 
             </section>
 
-            {/* ── 04 Defining the Building Blocks ── */}
+            {/* ── 06 Defining the Building Blocks ── */}
             <section id="system" className="cs-section">
 
               <motion.h2
@@ -390,7 +503,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">04</span> Defining the Building Blocks
+                <span className="cs-section__num">06</span> Defining the Building Blocks
               </motion.h2>
 
               <motion.h3
@@ -617,7 +730,7 @@ export default function SimbaDesignSystem() {
 
             </section>
 
-            {/* ── 05 Prototype ── */}
+            {/* ── 07 Prototype ── */}
             <section id="prototype" className="cs-section">
 
               <motion.h2
@@ -627,7 +740,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">05</span> Prototype
+                <span className="cs-section__num">07</span> Prototype
               </motion.h2>
 
               <motion.h3
@@ -689,42 +802,7 @@ export default function SimbaDesignSystem() {
 
             </section>
 
-            {/* ── 06 Claude Code Implementation ── */}
-            <section id="implementation" className="cs-section">
-
-              <motion.h2
-                className="cs-section__heading"
-                variants={reveal(0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                <span className="cs-section__num">06</span> Claude Code Integration
-              </motion.h2>
-
-              <motion.h3
-                className="cs-h3"
-                variants={reveal(0.06)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                Connecting Figma to code with AI
-              </motion.h3>
-
-              <motion.p
-                className="cs-body"
-                variants={reveal(0.12)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                With the design system established in Figma, I connected it to Claude Code via the Figma MCP integration, giving Claude direct read access to component structure, variants and tokens, with no manual spec handoffs needed. I documented the full system in a CLAUDE.md file as the source of truth, so every component Claude generates automatically follows the design system's tokens and conventions. This closed the gap between design and development, and the DS is embedded directly into the workflow.
-              </motion.p>
-
-            </section>
-
-            {/* ── 07 Impact ── */}
+            {/* ── 08 Impact ── */}
 
             <section id="impact" className="cs-section">
 
@@ -735,7 +813,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">07</span> Impact
+                <span className="cs-section__num">08</span> Impact
               </motion.h2>
 
               <motion.h3
@@ -762,7 +840,7 @@ export default function SimbaDesignSystem() {
 
             </section>
 
-            {/* ── 08 Learnings ── */}
+            {/* ── 09 Learnings ── */}
             <section id="learnings" className="cs-section">
 
               <motion.h2
@@ -772,7 +850,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">08</span> Learnings
+                <span className="cs-section__num">09</span> Learnings
               </motion.h2>
 
               <motion.p
