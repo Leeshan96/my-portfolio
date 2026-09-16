@@ -84,7 +84,7 @@ const workCards = [
     bgElementClass: 'work-card-full__bg-element--ds',
     bgElementSmall: '/assets/images/designsystems-work-card-element-line.svg',
     bgElementSmallClass: 'work-card-full__bg-element--ds-small',
-    href: '/design-system',
+    href: '/design-systems',
     folderColor: '#DDE3ED',
     cardBorder: '#D8E2EF',
   },

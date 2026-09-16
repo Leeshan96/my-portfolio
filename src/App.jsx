@@ -22,7 +22,7 @@ function AnimatedRoutes() {
         <Route path="/about"          element={<About />} />
         <Route path="/menocare"       element={<Menocare />} />
         <Route path="/roaming"        element={<SimbaRoaming />} />
-        <Route path="/design-system"  element={<SimbaDesignSystem />} />
+        <Route path="/design-systems" element={<SimbaDesignSystem />} />
         <Route path="/currently"      element={<PersonalProject />} />
       </Routes>
     </AnimatePresence>

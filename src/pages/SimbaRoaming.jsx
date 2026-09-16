@@ -787,7 +787,7 @@ export default function SimbaRoaming() {
 
       <ProjectNav
         prev={{ title: 'Currently', href: '/currently' }}
-        next={{ title: 'Design Systems', href: '/design-system' }}
+        next={{ title: 'Design Systems', href: '/design-systems' }}
       />
 
       <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={closeLightbox} />

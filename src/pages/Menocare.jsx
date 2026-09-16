@@ -958,7 +958,7 @@ export default function CaseStudy1() {
       </main>
 
       <ProjectNav
-        prev={{ title: 'Design Systems', href: '/design-system' }}
+        prev={{ title: 'Design Systems', href: '/design-systems' }}
         next={{ title: 'Currently', href: '/currently' }}
       />
 
