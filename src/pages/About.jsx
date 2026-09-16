@@ -169,11 +169,11 @@ function AdventuresGrid({ photos }) {
 }
 
 const bookImages = [
-  { src: '/assets/images/before-the-coffee-gets-cold.png', alt: 'Before the Coffee Gets Cold by Toshikazu Kawaguchi' },
-  { src: '/assets/images/how-to-think-like-a-roman-emperor.png', alt: 'How to Think Like a Roman Emperor by Donald Robertson' },
-  { src: '/assets/images/how-do-you-live.png', alt: 'How Do You Live by Yoshino Genzaburo' },
-  { src: '/assets/images/project-hail-mary.png', alt: 'Project Hail Mary by Andy Weir' },
-  { src: '/assets/images/sapiens.png', alt: 'Sapiens: A Brief History of Humankind by Yuval Noah Harari' },
+  { src: '/assets/images/before-the-coffee-gets-cold.webp', alt: 'Before the Coffee Gets Cold by Toshikazu Kawaguchi' },
+  { src: '/assets/images/how-to-think-like-a-roman-emperor.webp', alt: 'How to Think Like a Roman Emperor by Donald Robertson' },
+  { src: '/assets/images/how-do-you-live.webp', alt: 'How Do You Live by Yoshino Genzaburo' },
+  { src: '/assets/images/project-hail-mary.webp', alt: 'Project Hail Mary by Andy Weir' },
+  { src: '/assets/images/sapiens.webp', alt: 'Sapiens: A Brief History of Humankind by Yuval Noah Harari' },
 ];
 
 const craftImages = [
