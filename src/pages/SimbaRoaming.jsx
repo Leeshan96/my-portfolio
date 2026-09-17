@@ -514,21 +514,8 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                I conducted in-person moderated testing with 4 users and showed them the design for feedback. Each user was given the same questions:
+                I conducted in-person moderated testing with 4 users and showed them the design for feedback.
               </motion.p>
-
-              <motion.ul
-                className="cs-list cs-list--italic"
-                variants={reveal(0.12)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                <li>"You are planning to travel to China. Show me how you would buy a roaming plan."</li>
-                <li>"What would you do if you run out of roaming data?"</li>
-                <li>"Tell me what you understand from the data allowance chart."</li>
-                <li>"Is the countries pop-up information clear to you?"</li>
-              </motion.ul>
 
               <motion.h3
                 className="cs-h3"
