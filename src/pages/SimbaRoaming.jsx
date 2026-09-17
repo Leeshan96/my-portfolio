@@ -14,9 +14,10 @@ const sections = [
   { id: 'problem',      label: 'Reframing the Problem' },
   { id: 'exploration',  label: 'Design Explorations' },
   { id: 'solution',          label: 'User Testing' },
-  { id: 'expanding-scope',  label: 'Expanding Scope' },
-  { id: 'next-steps',   label: 'Next Steps' },
-  { id: 'learnings',    label: 'Learnings' },
+  { id: 'expanding-scope',       label: 'Expanding Scope' },
+  { id: 'working-with-devs',    label: 'Working with Developers' },
+  { id: 'next-steps',           label: 'Next Steps' },
+  { id: 'learnings',            label: 'Learnings' },
 ];
 
 /* ── Active section tracking via IntersectionObserver ── */
@@ -423,7 +424,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                1. Top 12 destinations
+                Top 12 destinations
               </motion.h3>
 
               <motion.p
@@ -451,46 +452,6 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.1 }}
               />
 
-              <motion.h3
-                className="cs-h3"
-                style={{ marginTop: 'var(--space-8)' }}
-                variants={reveal(0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                2. Roaming charges
-              </motion.h3>
-
-              <motion.p
-                className="cs-body"
-                variants={reveal(0.06)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                The roaming charges table had to be clear for users to easily distinguish between included and pay-per-use roaming. I used a single table for version 1 with a divider between the two, version 2 with separate sub-sections to make the distinction clearer upfront, and version 3 in table format with sub-tags under Group A to reflect updated roaming plan entitlements.
-              </motion.p>
-
-              <motion.figure
-                className="cs-figure-captioned"
-                variants={reveal(0.12)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-              >
-                <img
-                  src="/assets/images/roaming/Design-exploration-2.webp"
-                  alt="Three versions of roaming charges table — different presentations for roaming charges"
-                  className="cs-image cs-image--no-shadow lightbox-trigger"
-                  loading="lazy"
-                  tabIndex={0}
-                  role="button"
-                  onClick={() => openLightbox('/assets/images/roaming/Design-exploration-2.webp', 'Three versions of roaming charges table — different presentations for roaming charges')}
-                  onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/roaming/Design-exploration-2.webp', 'Three versions of roaming charges table — different presentations for roaming charges')}
-                />
-                <figcaption className="cs-image-caption">Different presentations for roaming charges</figcaption>
-              </motion.figure>
 
             </section>
 
@@ -696,6 +657,62 @@ export default function SimbaRoaming() {
 
             </section>
 
+            {/* ── Working with Developers ── */}
+            <section id="working-with-devs" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">07</span> Working with Developers
+              </motion.h2>
+
+              <motion.h3
+                className="cs-h3"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Changing the Rendering Strategy
+              </motion.h3>
+
+              <motion.p
+                className="cs-body"
+                variants={reveal(0.12)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. I worked with the developers to move the roaming pages to server-side rendering, migrating the build from React to Next.js so the HTML that rendered was actually visible to crawlers.
+              </motion.p>
+
+              <motion.h3
+                className="cs-h3"
+                style={{ marginTop: 'var(--space-8)' }}
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Building in the right stack
+              </motion.h3>
+
+              <motion.p
+                className="cs-body"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to, so the code could go straight to the developer for integration rather than being rebuilt in the right stack first.
+              </motion.p>
+
+            </section>
+
             {/* ── Next Steps ── */}
             <section id="next-steps" className="cs-section">
 
@@ -706,7 +723,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">07</span> Next Steps
+                <span className="cs-section__num">08</span> Next Steps
               </motion.h2>
 
               <motion.ol
@@ -717,7 +734,7 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.15 }}
               >
                 <li>
-                  To facilitate the implementation of the new roaming pages, I built the pages on Claude Code with the same framework that works with our website. The code has been passed to the developer for implementation.
+                  The code has been passed to the developer for implementation.
                 </li>
                 <li>
                   To validate whether this redesign actually solves the problems I identified, I recommended tracking specific metrics:
@@ -743,7 +760,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">08</span> Learnings
+                <span className="cs-section__num">09</span> Learnings
               </motion.h2>
 
               <motion.div
