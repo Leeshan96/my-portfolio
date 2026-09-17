@@ -127,7 +127,7 @@ export default function SimbaRoaming() {
                 </div>
                 <div className="cs-meta__col">
                   <span className="cs-meta__label">Duration</span>
-                  <span className="cs-meta__value">Placeholder</span>
+                  <span className="cs-meta__value">4 months</span>
                 </div>
                 <div className="cs-meta__col">
                   <span className="cs-meta__label">Team</span>
