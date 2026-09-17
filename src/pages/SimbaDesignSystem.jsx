@@ -329,37 +329,6 @@ export default function SimbaDesignSystem() {
                 <span className="cs-section__num">03</span> Navigating Priorities
               </motion.h2>
 
-              <motion.h3
-                className="cs-h3"
-                variants={reveal(0.06)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                Proposing a collaborative build
-              </motion.h3>
-
-              <motion.p
-                className="cs-body"
-                variants={reveal(0.12)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                Once the direction for the design system was set, I proposed building it together with the developers rather than designing it alone and handing it over after. Leadership and the dev team were on board — it meant consistency now, and a head start for other products planned down the line.
-              </motion.p>
-
-              <motion.h3
-                className="cs-h3"
-                style={{ marginTop: 'var(--space-8)' }}
-                variants={reveal(0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                What didn't happen
-              </motion.h3>
-
               <motion.p
                 className="cs-body"
                 variants={reveal(0.06)}
@@ -367,28 +336,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                The collaborative build never really got off the ground. The team liked the idea, but actual implementation kept losing out to other urgent work, so it was never prioritised. The gap I'd found in the audit — developers relying on their own component library — stayed open.
-              </motion.p>
-
-              <motion.h3
-                className="cs-h3"
-                style={{ marginTop: 'var(--space-8)' }}
-                variants={reveal(0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                Closing the gap myself
-              </motion.h3>
-
-              <motion.p
-                className="cs-body"
-                variants={reveal(0.06)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                Rather than wait, I changed approach. I built the design system on my own and connected it directly to code, so I could hand developers working components instead of specs for them to reinterpret.
+                Once the design system was ready, I proposed building it into the product together with the developers rather than handing it over as a static Figma file. Leadership and the dev team were on board, however actual implementation kept getting pushed behind other deadlines. So I changed my approach, and found a way to implement the design system myself.
               </motion.p>
 
             </section>
