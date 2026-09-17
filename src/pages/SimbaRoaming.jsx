@@ -285,20 +285,6 @@ export default function SimbaRoaming() {
                 To understand industry patterns and identify opportunities to differentiate SIMBA's approach, I analysed the roaming pages of Singtel, Starhub, M1 and MyRepublic.
               </motion.p>
 
-              <motion.img
-                src="/assets/images/roaming/Competitive_analysis_-_roaming.webp"
-                alt="Competitive analysis comparing roaming pages of Singtel, Starhub, M1 and MyRepublic"
-                className="cs-image cs-image--no-shadow lightbox-trigger"
-                loading="lazy"
-                tabIndex={0}
-                role="button"
-                onClick={() => openLightbox('/assets/images/roaming/Competitive_analysis_-_roaming.webp', 'Competitive analysis comparing roaming pages of Singtel, Starhub, M1 and MyRepublic')}
-                onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/roaming/Competitive_analysis_-_roaming.webp', 'Competitive analysis comparing roaming pages of Singtel, Starhub, M1 and MyRepublic')}
-                variants={reveal(0.12)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-              />
 
               {/* Key pattern that emerged */}
               <motion.p
