@@ -11,8 +11,33 @@
 .cs-video {
   width: 100%;
   display: block;
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   margin-top: var(--space-5);
+}
+
+/* ── Side-by-side video pair ── */
+.cs-video-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  align-items: start;
+}
+
+.cs-video-pair__item {
+  margin: 0;
+}
+
+.cs-video-pair__item .cs-video {
+  margin-top: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .cs-video-pair {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── Implementation steps (ordered list) ── */

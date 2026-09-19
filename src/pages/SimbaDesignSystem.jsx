@@ -374,6 +374,57 @@ export default function SimbaDesignSystem() {
                 With the design system established in Figma, I connected it to Claude Code via the Figma MCP integration, giving Claude direct read access to component structure, variants and tokens, with no manual spec handoffs needed. I documented the full system in a CLAUDE.md file as the source of truth, so every component Claude generates automatically follows the design system's tokens and conventions. This closed the gap between design and development, and the DS is embedded directly into the workflow.
               </motion.p>
 
+              <motion.div
+                className="cs-video-pair"
+                variants={reveal(0.18)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <figure className="cs-video-pair__item">
+                  <video
+                    className="cs-video"
+                    src="/assets/videos/design-system/Claude-prompt-DS-1.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                  <figcaption className="cs-image-caption">With CLAUDE.md</figcaption>
+                </figure>
+                <figure className="cs-video-pair__item">
+                  <video
+                    className="cs-video"
+                    src="/assets/videos/design-system/Claude-prompt-1.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                  <figcaption className="cs-image-caption">Without CLAUDE.md</figcaption>
+                </figure>
+              </motion.div>
+
+              <motion.figure
+                className="cs-figure-captioned"
+                style={{ marginTop: 'var(--space-6)' }}
+                variants={reveal(0.18)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <img
+                  src="/assets/images/design-system/Claude-prompt.webp"
+                  alt="Claude Code prompt using CLAUDE.md design system context"
+                  className="cs-image cs-image--no-shadow lightbox-trigger"
+                  loading="lazy"
+                  tabIndex={0}
+                  role="button"
+                  onClick={() => openLightbox('/assets/images/design-system/Claude-prompt.webp', 'Claude Code prompt using CLAUDE.md design system context')}
+                  onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/design-system/Claude-prompt.webp', 'Claude Code prompt using CLAUDE.md design system context')}
+                />
+              </motion.figure>
+
             </section>
 
             {/* ── 05 Research ── */}
