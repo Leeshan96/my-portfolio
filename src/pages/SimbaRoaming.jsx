@@ -673,7 +673,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. I worked with the developers to move the roaming pages to server-side rendering, migrating the build from React to Next.js so the HTML that rendered was actually visible to crawlers.
+                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. I worked with the developers to move the roaming pages to server-side rendering, <strong style={{ font: 'var(--text-body-1-medium)' }}>migrating the build from React to Next.js</strong> so the HTML that rendered was actually visible to crawlers.
               </motion.p>
 
               <motion.h3
@@ -694,7 +694,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to, so the code could go straight to the developer for integration rather than being rebuilt in the right stack first.
+                Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to, so the developer could review and integrate the code directly, instead of having to rebuild it in the right stack first.
               </motion.p>
 
             </section>
@@ -720,7 +720,10 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.15 }}
               >
                 <li>
-                  The code has been passed to the developer for implementation.
+                  The code has been pushed to Git, where the developer, added as a collaborator on the repository, pulls the latest updates for implementation.
+                </li>
+                <li>
+                  To extend this beyond my own workflow, I'm sharing knowledge to help the rest of the team use Claude Code and Git effectively, so everyone can build directly in the codebase.
                 </li>
                 <li>
                   To validate whether this redesign actually solves the problems I identified, I recommended tracking specific metrics:
