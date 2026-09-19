@@ -374,6 +374,17 @@ export default function SimbaDesignSystem() {
                 With the design system established in Figma, I connected it to Claude Code via the Figma MCP integration, giving Claude direct read access to component structure, variants and tokens, with no manual spec handoffs needed. I documented the full system in a CLAUDE.md file as the source of truth, so every component Claude generates automatically follows the design system's tokens and conventions. This closed the gap between design and development, and the DS is embedded directly into the workflow.
               </motion.p>
 
+              <motion.h3
+                className="cs-h3"
+                style={{ marginTop: 'var(--space-8)' }}
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                Designs generated with Claude
+              </motion.h3>
+
               <motion.div
                 className="cs-video-pair"
                 variants={reveal(0.18)}
@@ -423,6 +434,7 @@ export default function SimbaDesignSystem() {
                   onClick={() => openLightbox('/assets/images/design-system/Claude-prompt.webp', 'Claude Code prompt using CLAUDE.md design system context')}
                   onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/design-system/Claude-prompt.webp', 'Claude Code prompt using CLAUDE.md design system context')}
                 />
+                <figcaption className="cs-image-caption">Prompts i gave Claude</figcaption>
               </motion.figure>
 
             </section>
