@@ -49,6 +49,144 @@
   padding: var(--space-9) var(--space-6);
 }
 
+/* ── Section divider ── */
+.pp-divider {
+  border: none;
+  border-top: 1px solid var(--color-border-primary);
+  margin: var(--space-8) 0 var(--space-7);
+}
+
+/* ── Section heading ── */
+.pp-section-heading {
+  font: var(--text-h3);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-5);
+}
+
+/* ── Process diagram ── */
+.pp-process {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-7);
+  flex-wrap: nowrap;
+}
+
+.pp-process__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--space-3) var(--space-3);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.pp-process__step-num {
+  font: 500 11px/1.4 var(--font-family);
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+
+.pp-process__step-label {
+  font: 500 13px/1.4 var(--font-family);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.pp-process__step-tool {
+  font: 400 11px/1.4 var(--font-family);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.pp-process__arrow {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .pp-process {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .pp-process__step {
+    flex: 0 0 calc(50% - var(--space-2));
+  }
+}
+
+/* ── Decisions toggle ── */
+.pp-toggle {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.pp-toggle__btn {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-primary);
+  background: transparent;
+  font: var(--text-body-2-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.pp-toggle__btn--active {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border-color: var(--color-bg-secondary);
+}
+
+/* ── Design decisions table ── */
+.pp-table-wrap {
+  margin-top: var(--space-5);
+  overflow-x: auto;
+}
+
+.pp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.pp-table th {
+  font: var(--text-body-2-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.pp-table td {
+  padding: var(--space-4);
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.pp-table td:first-child {
+  font: var(--text-body-1-medium);
+  color: var(--color-text-primary);
+  width: 40%;
+}
+
+.pp-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 /* ── App recording wrapper ── */
 .pp-video-wrap {
   margin-top: var(--space-7);
