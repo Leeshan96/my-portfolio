@@ -113,7 +113,7 @@ const sideProjectCards = [
   {
     id: 'currently',
     company: 'SIDE PROJECT',
-    title: 'Currently App',
+    title: 'Currently Web App',
     description: 'A private space for friends to share what they\'re into.',
     tags: [],
     year: '2026',
