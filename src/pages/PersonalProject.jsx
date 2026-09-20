@@ -54,6 +54,8 @@ export default function PersonalProject() {
             </div>
             <div className="cs-meta__col">
               <span className="cs-meta__label">Tools</span>
+              <span className="cs-meta__value">Claude</span>
+              <span className="cs-meta__value">Figma</span>
               <span className="cs-meta__value">Lovable</span>
               <span className="cs-meta__value">Supabase</span>
               <span className="cs-meta__value">Vercel</span>
@@ -185,6 +187,14 @@ export default function PersonalProject() {
             >
               Technical
             </button>
+            <button
+              className={`pp-toggle__btn${decisionsTab === 'removed' ? ' pp-toggle__btn--active' : ''}`}
+              onClick={() => setDecisionsTab('removed')}
+              role="tab"
+              aria-selected={decisionsTab === 'removed'}
+            >
+              Features I removed
+            </button>
           </div>
 
           <div className="pp-table-wrap">
@@ -203,7 +213,7 @@ export default function PersonalProject() {
                   </tr>
                   <tr>
                     <td>6-digit alphanumeric space code</td>
-                    <td>~2.1 billion possible combinations is almost impossible to guess. No public discovery and no password needs to be created or stored in the database</td>
+                    <td>~2.1 billion possible combinations makes it almost impossible to guess. There's little security worry, and no password needs to be created or stored in the database</td>
                   </tr>
                   <tr>
                     <td>Space code revealed after creator's first post</td>
@@ -272,6 +282,35 @@ export default function PersonalProject() {
                 </tr>
               </tbody>
             </table>
+            )}
+
+            {decisionsTab === 'removed' && (
+              <table className="pp-table pp-table--three-col">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>What Claude suggested</th>
+                    <th>Why I cut it</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Filter by member</td>
+                    <td>Let people filter the board to just one friend's posts</td>
+                    <td>The board works because everyone's posts are shown together. Filters mean sorting people, however Currently is meant to be inclusive. This feature didn't sit well with the design philosophy I had in mind</td>
+                  </tr>
+                  <tr>
+                    <td>Category colour coding</td>
+                    <td>Give each of the 6 categories its own colour (sage, blue etc) for easy scanning</td>
+                    <td>There will be accessibility issues with different tag pill colours sitting on coloured bg and images uploaded by friends. To be safe, I replaced it with a single consistent style #FFFFFF at 70% opacity</td>
+                  </tr>
+                  <tr>
+                    <td>Seen-by indicator</td>
+                    <td>Show who's viewed a post, alongside the wave, so posters know it was seen without needing a reply</td>
+                    <td>One acknowledgment mechanic is enough. Adding a second made the wave feel redundant and started to feel like read receipts, which is the opposite of low-pressure</td>
+                  </tr>
+                </tbody>
+              </table>
             )}
           </div>
 

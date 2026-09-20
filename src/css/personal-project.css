@@ -183,6 +183,18 @@
   width: 40%;
 }
 
+.pp-table--three-col td:first-child {
+  width: 22%;
+}
+
+.pp-table--three-col td:nth-child(2) {
+  width: 35%;
+}
+
+.pp-table--three-col td:nth-child(3) {
+  width: 43%;
+}
+
 .pp-table tbody tr:last-child td {
   border-bottom: none;
 }
