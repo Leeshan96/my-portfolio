@@ -250,39 +250,109 @@
   }
 }
 
-/* ── Expanding scope comparison ── */
-.cs-expanding-comparison {
-  display: grid;
-  grid-template-columns: 168px 1fr;
-  gap: var(--space-5);
-  background: #F2F6FD;
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  align-items: start;
+/* ── Design explorations video carousel ── */
+.cs-video-carousel {
   margin-top: var(--space-5);
 }
 
-.cs-expanding-comparison__static img {
+.cs-video-carousel video {
   width: 100%;
   display: block;
 }
 
-.cs-expanding-comparison__scroll {
+/* ── Expanding scope — single image containers ── */
+.cs-expanding-comparison--single {
+  background: #F2F6FD;
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.cs-expanding-comparison--single img {
+  width: 100%;
+  display: block;
+}
+
+.cs-expanding-comparison--carousel {
+  overflow: hidden;
+}
+
+.cs-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) 0 var(--space-3);
+}
+
+.cs-carousel__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.cs-carousel__chevron:hover:not(:disabled) {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-secondary);
+}
+
+.cs-carousel__chevron:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cs-expanding-comparison--static {
+  height: 404px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-expanding-comparison--static img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.cs-expanding-comparison--scroll {
   max-height: 404px;
   overflow-y: auto;
 }
 
-.cs-expanding-comparison__scroll img {
-  width: 100%;
+.cs-expanding-comparison--scroll img {
+  width: 80%;
+  margin: 0 auto;
   display: block;
 }
 
-@media (max-width: 640px) {
-  .cs-expanding-comparison {
-    grid-template-columns: 1fr;
-  }
+.cs-carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-border-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease-out, transform 0.2s ease-out;
+}
 
-  .cs-expanding-comparison__scroll {
+.cs-carousel__dot--active {
+  background: var(--color-text-secondary);
+  transform: scale(1.3);
+}
+
+@media (max-width: 640px) {
+  .cs-expanding-comparison--static,
+  .cs-expanding-comparison--scroll {
     max-height: 360px;
   }
 }

@@ -59,6 +59,9 @@ export default function SimbaRoaming() {
   const activeId = useSidenav(sectionIds);
 
   const [lightbox, setLightbox] = useState({ src: null, alt: '' });
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [videoCarouselIndex, setVideoCarouselIndex] = useState(0);
+
   const openLightbox = useCallback((src, alt) => setLightbox({ src, alt }), []);
   const closeLightbox = useCallback(() => setLightbox({ src: null, alt: '' }), []);
   const onLightboxKeyDown = useCallback((e, src, alt) => {
@@ -439,20 +442,69 @@ export default function SimbaRoaming() {
                 Surfacing the top 12 destinations upfront reduces our users' cognitive load by focusing on the countries they actually travel to. After choosing the destinations, users will see the plans and roaming groups available, making it a destination-based search rather than plan-based search.
               </motion.p>
 
-              <motion.img
-                src="/assets/images/roaming/Design-exploration-1.webp"
-                alt="Design exploration — Top 12 destinations concept for SIMBA Roaming page"
-                className="cs-image cs-image--no-shadow lightbox-trigger"
-                loading="lazy"
-                tabIndex={0}
-                role="button"
-                onClick={() => openLightbox('/assets/images/roaming/Design-exploration-1.webp', 'Design exploration — Top 12 destinations concept for SIMBA Roaming page')}
-                onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/roaming/Design-exploration-1.webp', 'Design exploration — Top 12 destinations concept for SIMBA Roaming page')}
+              <motion.div
+                className="cs-video-carousel"
                 variants={reveal(0.22)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-              />
+              >
+                <div style={{ display: videoCarouselIndex === 0 ? 'block' : 'none' }}>
+                  <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)', marginTop: 0 }}>Modal Ver 1 — users see roaming details</p>
+                  <video
+                    src="/assets/videos/simba-roaming/modal-ver-1.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-label="Design exploration — Top 12 destinations, version 1"
+                  />
+                </div>
+                <div style={{ display: videoCarouselIndex === 1 ? 'block' : 'none' }}>
+                  <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)', marginTop: 0 }}>Modal Ver 2 — stronger CTA to directly buy plans</p>
+                  <video
+                    src="/assets/videos/simba-roaming/modal-ver-2.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-label="Design exploration — Top 12 destinations, version 2"
+                  />
+                </div>
+              </motion.div>
+
+              <div className="cs-carousel__controls">
+                <button
+                  className="cs-carousel__chevron"
+                  onClick={() => setVideoCarouselIndex(i => Math.max(0, i - 1))}
+                  disabled={videoCarouselIndex === 0}
+                  aria-label="Previous video"
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                {['Version 1', 'Version 2'].map((label, i) => (
+                  <button
+                    key={i}
+                    className={`cs-carousel__dot${videoCarouselIndex === i ? ' cs-carousel__dot--active' : ''}`}
+                    onClick={() => setVideoCarouselIndex(i)}
+                    aria-label={label}
+                  />
+                ))}
+
+                <button
+                  className="cs-carousel__chevron"
+                  onClick={() => setVideoCarouselIndex(i => Math.min(1, i + 1))}
+                  disabled={videoCarouselIndex === 1}
+                  aria-label="Next video"
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
 
 
             </section>
@@ -624,38 +676,57 @@ export default function SimbaRoaming() {
                 To fix this, we restructured the modal into dedicated, indexable country pages that search engines and LLMs can surface directly.
               </motion.p>
 
+              <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)' }}>
+                Modal vs Indexable country pages <em>(scroll me)</em>
+              </p>
+
               <motion.div
-                className="cs-expanding-comparison"
+                className="cs-expanding-comparison cs-expanding-comparison--single cs-expanding-comparison--carousel"
                 variants={reveal(0.24)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                <div className="cs-expanding-comparison__static">
-                  <img
-                    src="/assets/images/roaming/Modal.webp"
-                    alt="Before — SIMBA roaming modal showing Malaysia plan details"
-                    loading="lazy"
-                  />
+                <div className="cs-expanding-comparison--static" style={{ display: carouselIndex === 0 ? 'flex' : 'none' }}>
+                  <img src="/assets/images/roaming/Modal.webp" alt="Before — SIMBA roaming modal showing Malaysia plan details" />
                 </div>
-                <div className="cs-expanding-comparison__scroll">
-                  <img
-                    src="/assets/images/roaming/south-korea-country-page.webp"
-                    alt="After — dedicated South Korea country page with full roaming details"
-                    loading="lazy"
-                  />
+                <div className="cs-expanding-comparison--scroll" style={{ display: carouselIndex === 1 ? 'block' : 'none' }}>
+                  <img src="/assets/images/roaming/south-korea-country-page.webp" alt="After — dedicated South Korea country page with full roaming details" />
                 </div>
               </motion.div>
 
-              <motion.p
-                className="cs-image-caption"
-                variants={reveal(0.3)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                Modal vs Indexable country pages <em>(scroll me)</em>
-              </motion.p>
+              <div className="cs-carousel__controls">
+                <button
+                  className="cs-carousel__chevron"
+                  onClick={() => setCarouselIndex(i => Math.max(0, i - 1))}
+                  disabled={carouselIndex === 0}
+                  aria-label="Previous image"
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                {['Before: Modal', 'After: Country page'].map((label, i) => (
+                  <button
+                    key={i}
+                    className={`cs-carousel__dot${carouselIndex === i ? ' cs-carousel__dot--active' : ''}`}
+                    onClick={() => setCarouselIndex(i)}
+                    aria-label={label}
+                  />
+                ))}
+
+                <button
+                  className="cs-carousel__chevron"
+                  onClick={() => setCarouselIndex(i => Math.min(1, i + 1))}
+                  disabled={carouselIndex === 1}
+                  aria-label="Next image"
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
 
             </section>
 
