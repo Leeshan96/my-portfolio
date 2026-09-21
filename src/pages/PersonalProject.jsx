@@ -8,9 +8,9 @@ import '../css/personal-project.css';
 
 /* ── Sidenav sections ── */
 const sections = [
+  { id: 'live-prototype', label: 'Live prototype' },
   { id: 'the-process',   label: 'The process' },
   { id: 'the-decisions', label: 'The decisions' },
-  { id: 'live-prototype', label: 'Live prototype' },
   { id: 'learnings',     label: 'Learnings' },
 ];
 
@@ -99,23 +99,25 @@ export default function PersonalProject() {
             <section className="cs-overview">
 
               <motion.div
-                className="cs-meta"
+                className="pp-meta"
                 variants={reveal(0)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <div className="cs-meta__col">
+                <div className="pp-meta__row">
                   <span className="cs-meta__label">Duration</span>
                   <span className="cs-meta__value">3 weeks</span>
                 </div>
-                <div className="cs-meta__col">
+                <div className="pp-meta__row">
                   <span className="cs-meta__label">Tools</span>
-                  <span className="cs-meta__value">Claude</span>
-                  <span className="cs-meta__value">Figma</span>
-                  <span className="cs-meta__value">Lovable</span>
-                  <span className="cs-meta__value">Supabase</span>
-                  <span className="cs-meta__value">Vercel</span>
+                  <div className="pp-meta__tools">
+                    <span className="cs-meta__value">Claude</span>
+                    <span className="cs-meta__value">Figma</span>
+                    <span className="cs-meta__value">Lovable</span>
+                    <span className="cs-meta__value">Supabase</span>
+                    <span className="cs-meta__value">Vercel</span>
+                  </div>
                 </div>
               </motion.div>
 
@@ -151,6 +153,59 @@ export default function PersonalProject() {
 
             </section>
 
+            {/* ── Live prototype section ── */}
+            <section id="live-prototype" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">01</span> Live prototype
+              </motion.h2>
+
+              <motion.div
+                className="pp-video-wrap"
+                variants={reveal(0.2)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <p className="pp-mobile-note">Optimised for mobile</p>
+                <video
+                  className="pp-video"
+                  src="/assets/videos/currently-recording.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              </motion.div>
+
+              <motion.div
+                variants={reveal(0.1)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                style={{ marginTop: 'var(--space-6)' }}
+              >
+                <motion.a
+                  href="https://currentlyboard.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary"
+                  whileHover={{ y: -2, boxShadow: '0 6px 20px rgba(37,36,34,0.18)' }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  Try it yourself
+                </motion.a>
+              </motion.div>
+
+            </section>
+
             {/* ── Process section ── */}
             <section id="the-process" className="cs-section">
 
@@ -161,7 +216,7 @@ export default function PersonalProject() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">01</span> The process
+                <span className="cs-section__num">02</span> The process
               </motion.h2>
 
               <motion.div
@@ -198,7 +253,7 @@ export default function PersonalProject() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">02</span> The decisions
+                <span className="cs-section__num">03</span> The decisions
               </motion.h2>
 
               {/* ── Decisions toggle ── */}
@@ -297,20 +352,12 @@ export default function PersonalProject() {
                         <td>App capped at 430px max-width so it renders as a mobile experience on all screen sizes</td>
                       </tr>
                       <tr>
-                        <td>Delete post</td>
-                        <td>Hard deletes from Supabase, cascades waves. Real-time removal for all members</td>
-                      </tr>
-                      <tr>
                         <td>Leave space</td>
                         <td>Hard deletes member from Supabase. Posts stay on board. Remaining members see update in real time</td>
                       </tr>
                       <tr>
                         <td>Delete space</td>
                         <td>Creator only. Cascade deletes all space data. All members redirected to home via Supabase real-time</td>
-                      </tr>
-                      <tr>
-                        <td>Cascade deletes</td>
-                        <td>All foreign keys use ON DELETE CASCADE — clean removal with no orphaned records</td>
                       </tr>
                     </tbody>
                   </table>
@@ -348,58 +395,6 @@ export default function PersonalProject() {
 
             </section>
 
-            {/* ── Live prototype section ── */}
-            <section id="live-prototype" className="cs-section">
-
-              <motion.h2
-                className="cs-section__heading"
-                variants={reveal(0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                <span className="cs-section__num">03</span> Live prototype
-              </motion.h2>
-
-              <motion.div
-                className="pp-video-wrap"
-                variants={reveal(0.2)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-              >
-                <video
-                  className="pp-video"
-                  src="/assets/videos/currently-recording.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-              </motion.div>
-
-              <motion.div
-                variants={reveal(0.1)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                style={{ marginTop: 'var(--space-6)' }}
-              >
-                <motion.a
-                  href="https://currentlyboard.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--primary"
-                  whileHover={{ y: -2, boxShadow: '0 6px 20px rgba(37,36,34,0.18)' }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                >
-                  Try it yourself
-                </motion.a>
-              </motion.div>
-
-            </section>
-
             {/* ── Learnings section ── */}
             <section id="learnings" className="cs-section">
 
@@ -420,7 +415,7 @@ export default function PersonalProject() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                It was my first time building something through vibe coding. I had to figure out what tech stack to use, and how to connect them in order to deploy the web app successfully. Learning to prompt effectively was the biggest takeaway. A vague prompt gave Lovable too much room to interpret, while specific, scoped prompts gave much better results. What caught me off guard the most was probably how many times (17 in total) I had to debug and fix something I had no prior knowledge of. It was fun building something from scratch and seeing it come to life.
+                This was my first time building through vibe coding, and I had to figure out the tech stack and how to connect it all to deploy successfully. Writing the PRD took longer than expected, but it paid off with fewer back-and-forths during the build. The biggest takeaway was learning to prompt effectively: vague prompts gave Lovable too much room to interpret, while specific, scoped ones worked much better. What caught me off guard most was debugging 17 issues I had no prior knowledge of. Still, it was fun building something from scratch and seeing it come to life.
               </motion.p>
 
             </section>
