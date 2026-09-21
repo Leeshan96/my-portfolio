@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageWrapper } from '../components/PageWrapper';
@@ -8,7 +8,7 @@ import '../css/personal-project.css';
 
 /* ── Sidenav sections ── */
 const sections = [
-  { id: 'live-prototype', label: 'Live prototype' },
+  { id: 'live-prototype', label: 'Live web app' },
   { id: 'the-process',   label: 'The process' },
   { id: 'the-decisions', label: 'The decisions' },
   { id: 'learnings',     label: 'Learnings' },
@@ -50,6 +50,15 @@ export default function PersonalProject() {
   const sectionIds = sections.map(s => s.id);
   const activeId = useSidenav(sectionIds);
   const [decisionsTab, setDecisionsTab] = useState('design');
+  const [codeRevealed, setCodeRevealed] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText('ES9BS7').then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  }, []);
 
   return (
     <PageWrapper>
@@ -163,7 +172,7 @@ export default function PersonalProject() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">01</span> Live prototype
+                <span className="cs-section__num">01</span> Live web app
               </motion.h2>
 
               <motion.div
@@ -185,6 +194,7 @@ export default function PersonalProject() {
               </motion.div>
 
               <motion.div
+                className="pp-cta-row"
                 variants={reveal(0.1)}
                 initial="hidden"
                 whileInView="visible"
@@ -202,6 +212,48 @@ export default function PersonalProject() {
                 >
                   Try it yourself
                 </motion.a>
+
+                {/* ── Space code reveal ── */}
+                <div className="pp-space-code">
+                  <button
+                    className="pp-space-code__toggle"
+                    onClick={() => setCodeRevealed(r => !r)}
+                    aria-label={codeRevealed ? 'Hide space code' : 'Reveal space code'}
+                  >
+                    <span className="pp-space-code__icon" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <rect x="2" y="6.5" width="10" height="6.5" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+                        {codeRevealed
+                          ? <path d="M4.5 6.5V4a2.5 2.5 0 0 1 5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          : <path d="M4.5 6.5V4a2.5 2.5 0 0 1 5 0v2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        }
+                      </svg>
+                    </span>
+                    {codeRevealed ? (
+                      <span className="pp-space-code__value">ES9BS7</span>
+                    ) : (
+                      <span className="pp-space-code__label">Space code</span>
+                    )}
+                  </button>
+                  {codeRevealed && (
+                    <button
+                      className="pp-space-code__copy"
+                      onClick={handleCopy}
+                      aria-label="Copy space code"
+                    >
+                      {copied ? (
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                          <path d="M2 7l3.5 3.5L12 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      ) : (
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                          <rect x="5" y="5" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+                          <path d="M9 5V3.5A1.5 1.5 0 0 0 7.5 2H3.5A1.5 1.5 0 0 0 2 3.5v4A1.5 1.5 0 0 0 3.5 9H5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      )}
+                    </button>
+                  )}
+                </div>
               </motion.div>
 
             </section>

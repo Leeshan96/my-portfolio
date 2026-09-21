@@ -171,6 +171,22 @@ export default function SimbaRoaming() {
                 I was the sole designer, from research through to build, where I handed off the code to the developer. I also worked cross-functionally, presenting research findings to stakeholders and aligning marketing around a shared design direction.
               </motion.p>
 
+              <motion.div
+                variants={reveal(0.28)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <a
+                  href="https://simba.sg/roaming"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary"
+                >
+                  Live website ↗
+                </a>
+              </motion.div>
+
             </section>
 
             {/* ── Background ── */}
