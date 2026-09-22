@@ -54,6 +54,61 @@
   letter-spacing: 0.02em;
 }
 
+/* Bottom row: copyright + flower like */
+.footer-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Flower like button */
+.flower-like-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.flower-like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  font: var(--text-body-2-regular);
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease-out;
+}
+
+.flower-like-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.flower-like-btn:active {
+  transform: scale(0.96);
+}
+
+.flower-like-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.flower-like-count {
+  min-width: 1.5em;
+}
+
+/* Burst particles — positioned relative to the wrap */
+.flower-burst-particle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
 /* Right: icon links */
 .footer-icons {
   display: flex;

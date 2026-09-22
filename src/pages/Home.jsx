@@ -8,7 +8,9 @@ const getPrefersReducedMotion = () =>
 import { PageWrapper } from '../components/PageWrapper';
 import { ImageCluster } from '../components/ImageCluster';
 import { WorkCard } from '../components/WorkCard';
+import { ThanksForStoppingBy } from '../components/ThanksForStoppingBy';
 import './Home.css';
+import '../css/thanks-for-stopping-by.css';
 
 /* ── Personal photos for the hero cluster ── */
 const clusterImages = [
@@ -290,6 +292,9 @@ export default function Home() {
           scrollReveal={scrollReveal}
           reduced={reduced}
         />
+
+        {/* ── Thanks for stopping by ── */}
+        <ThanksForStoppingBy />
 
       </main>
     </PageWrapper>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FlowerLikeButton } from './FlowerLikeButton';
 import '../css/footer.css';
 
 export function Footer() {
@@ -13,7 +14,10 @@ export function Footer() {
               lianleeshan@gmail.com
             </a>
           </div>
-          <span className="footer-updated">© 2026</span>
+          <div className="footer-bottom-row">
+            <span className="footer-updated">© 2026</span>
+            <FlowerLikeButton />
+          </div>
         </div>
 
         <div className="footer-icons">

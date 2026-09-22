@@ -41,7 +41,37 @@ function useSidenav(ids) {
     return () => observers.forEach(o => o.disconnect());
   }, [ids]);
 
-  return activeId;
+  function scrollToSection(id) {
+    const unloaded = Array.from(document.querySelectorAll('img')).filter(img => {
+      if (img.complete) return false;
+      const rect = img.getBoundingClientRect();
+      return rect.bottom < 0 || rect.top > window.innerHeight;
+    });
+
+    function doScroll() {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (unloaded.length === 0) {
+      doScroll();
+      return;
+    }
+
+    const promises = unloaded.map(img => new Promise(resolve => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+      img.loading = 'eager';
+      const src = img.src;
+      img.src = '';
+      img.src = src;
+    }));
+
+    Promise.all(promises).then(() => requestAnimationFrame(doScroll));
+  }
+
+  return [activeId, scrollToSection];
 }
 
 /* ── Scroll reveal variants ── */
@@ -53,7 +83,7 @@ const reveal = (delay = 0) => ({
 /* ── Component ── */
 export default function CaseStudy1() {
   const sectionIds = sections.map(s => s.id);
-  const activeId = useSidenav(sectionIds);
+  const [activeId, scrollToSection] = useSidenav(sectionIds);
 
   const [lightbox, setLightbox] = useState({ src: null, alt: '' });
   const openLightbox = useCallback((src, alt) => setLightbox({ src, alt }), []);
@@ -96,6 +126,7 @@ export default function CaseStudy1() {
                   key={id}
                   href={`#${id}`}
                   className={`sidenav-link${activeId === id ? ' is-active' : ''}`}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(id); }}
                 >
                   {label}
                 </a>
