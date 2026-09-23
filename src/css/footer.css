@@ -12,19 +12,19 @@
   margin: 0 auto;
   padding: 0 var(--space-6);
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-5);
-}
-
-/* Left: two stacked rows */
-.footer-left {
-  display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.footer-left__row1 {
+/* Two full-width rows */
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Row 1: contact + icons */
+.footer-contact {
   display: flex;
   align-items: center;
   gap: var(--space-5);
@@ -48,68 +48,14 @@
   color: var(--color-text-secondary);
 }
 
+/* Row 2: copyright + flower */
 .footer-updated {
   font: var(--text-body-2-regular);
   color: var(--color-text-secondary);
   letter-spacing: 0.02em;
 }
 
-/* Bottom row: copyright + flower like */
-.footer-bottom-row {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-/* Flower like button */
-.flower-like-wrap {
-  position: relative;
-  display: inline-flex;
-}
-
-.flower-like-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  font: var(--text-body-2-regular);
-  letter-spacing: 0.02em;
-  transition: color 0.2s ease-out;
-}
-
-.flower-like-btn:hover {
-  color: var(--color-text-primary);
-}
-
-.flower-like-btn:active {
-  transform: scale(0.96);
-}
-
-.flower-like-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-.flower-like-count {
-  min-width: 1.5em;
-}
-
-/* Burst particles — positioned relative to the wrap */
-.flower-burst-particle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
-
-/* Right: icon links */
+/* Social icon links */
 .footer-icons {
   display: flex;
   align-items: center;
@@ -140,14 +86,70 @@
   background-color: var(--color-text-secondary);
 }
 
+/* ── Flower like button ── */
+.flower-like-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.flower-like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-bg-secondary);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-2);
+  min-height: 32px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  font: var(--text-body-2-regular);
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease-out, color 0.2s ease-out, transform 0.15s ease-out;
+}
+
+.flower-like-btn:hover {
+  background: var(--color-border-primary);
+  color: var(--color-text-primary);
+  transform: scale(1.04);
+}
+
+.flower-like-btn:active {
+  transform: scale(0.97);
+}
+
+.flower-like-icon {
+  font-size: 16px;
+  line-height: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.flower-like-count {
+  min-width: 1.2em;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Burst particles — positioned relative to the wrap */
+.flower-burst-particle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: calc(50% - 7px);
+  left: calc(50% - 7px);
+  pointer-events: none;
+}
+
+/* ── Responsive ── */
 @media (max-width: 640px) {
-  .footer-inner {
+  .footer-row--top {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-4);
   }
 
-  .footer-left__row1 {
+  .footer-contact {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);

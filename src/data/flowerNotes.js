@@ -11,15 +11,15 @@ export const flowerNotes = [
     funFact: 'Curious what I build when nobody\'s asking? Check out Currently case study.',
   },
   {
-    mood: 'Adventurous',
+    mood: 'Inspired',
     flower: 'poppy.svg',
     bgColor: '#fbe9e7',
     quotes: [
-      'Hey {name},\n\nThe best stories start with someone brave enough to not know what happens next.',
-      'Hey {name},\n\nAdventure looks good on you. Go chase whatever\'s next.',
-      'Hey {name},\n\nUncertainty isn\'t the enemy of a good plan. Sometimes it\'s the plan.',
+      'Hey {name},\n\nInspiration is a signal, not a coincidence. Follow it somewhere.',
+      'Hey {name},\n\nGlad something here sparked an idea. That\'s kind of the whole point.',
+      'Hey {name},\n\nHold onto that spark — it\'s usually smarter than it feels in the moment.',
     ],
-    funFact: 'I\'ve been to New Zealand on a working holiday. It taught me to embrace uncertainties.',
+    funFact: 'The Design of Everyday Things was the first design book I read',
   },
   {
     mood: 'Optimistic',
@@ -41,7 +41,7 @@ export const flowerNotes = [
       'Hey {name},\n\nStuck is a stop, not a dead end. Give it time.',
       'Hey {name},\n\nSome of the best work happens right after the part where you almost gave up.',
     ],
-    funFact: 'This site\'s work section cards have a decorative line that took 6 rounds of trial and error to sit right at every screen size. Responsive design is 10% vibe coding, 90% patience.',
+    funFact: 'The decorative line on the work section cards took 6 iterations to sit right at every screen size. Responsive design is 10% vibe coding, 90% patience.',
   },
   {
     mood: 'Just Vibing',

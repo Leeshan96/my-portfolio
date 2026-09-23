@@ -190,13 +190,15 @@ export function ThanksForStoppingBy() {
             <span className="tfsby-heading__secondary">Thanks for stopping by,</span>
             <span className="tfsby-heading__primary">
               here's a{' '}
-              <img
+              <motion.img
                 src="/assets/icons/flower-bouquet.svg"
                 alt=""
                 aria-hidden="true"
                 className="tfsby-bouquet-icon"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
               />
-              {' '}message for you
+              {' '}message just for you
             </span>
           </h2>
         </motion.div>
@@ -232,7 +234,7 @@ export function ThanksForStoppingBy() {
                     key={entry.mood}
                     type="button"
                     className={`tfsby-pill${selectedMood === i ? ' tfsby-pill--active' : ''}`}
-                    onClick={() => setSelectedMood(i)}
+                    onClick={() => setSelectedMood(prev => prev === i ? null : i)}
                     aria-pressed={selectedMood === i}
                   >
                     {entry.mood}
@@ -257,67 +259,84 @@ export function ThanksForStoppingBy() {
           {/* Right: note card preview */}
           <div className="tfsby-preview">
             {note ? (
-              <motion.div
-                key={note.mood + note.interpolated}
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, ease: 'easeOut' }}
-                className="tfsby-card"
-                style={{ backgroundColor: note.bgColor }}
-                ref={cardRef}
-              >
-                <div className="tfsby-card__body">
-                  <div className="tfsby-card__note">
-                    {(() => {
-                      const parts = note.interpolated.split('\n\n');
-                      const greeting = parts[0];
-                      const body = parts.slice(1).join('\n\n');
-                      return (
-                        <>
-                          <p className="tfsby-card__greeting">{greeting}</p>
-                          <p className="tfsby-card__quote">{body}</p>
-                        </>
-                      );
-                    })()}
+              <div className="tfsby-card-wrap">
+                <motion.div
+                  key={note.mood + note.interpolated}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  style={{ backgroundColor: note.bgColor }}
+                  className="tfsby-card"
+                  ref={cardRef}
+                >
+                  <div className="tfsby-card__body">
+                    <div className="tfsby-card__note">
+                      {(() => {
+                        const parts = note.interpolated.split('\n\n');
+                        const greeting = parts[0];
+                        const body = parts.slice(1).join('\n\n');
+                        return (
+                          <>
+                            <p className="tfsby-card__greeting">{greeting}</p>
+                            <p className="tfsby-card__quote">{body}</p>
+                          </>
+                        );
+                      })()}
 
-                    <div className="tfsby-card__sign">
-                      <div>
-                        <p className="tfsby-card__sign-pre">Thanks for stopping by,</p>
-                        <p className="tfsby-card__sign-name">Lee Shan</p>
+                      <div className="tfsby-card__sign">
+                        <div>
+                          <p className="tfsby-card__sign-pre">Thanks for stopping by,</p>
+                          <p className="tfsby-card__sign-name">Lee Shan</p>
+                        </div>
+                        <div className="tfsby-card__flower" data-flower={note.flower}>
+                          <img
+                            src={`/assets/icons/${note.flower}`}
+                            alt={getFlowerLabel(note.flower)}
+                            className="tfsby-card__flower-img"
+                          />
+                          <span className="tfsby-card__flower-label">{getFlowerLabel(note.flower)}</span>
+                        </div>
                       </div>
-                      <div className="tfsby-card__flower" data-flower={note.flower}>
-                        <img
-                          src={`/assets/icons/${note.flower}`}
-                          alt={getFlowerLabel(note.flower)}
-                          className="tfsby-card__flower-img"
-                        />
-                        <span className="tfsby-card__flower-label">{getFlowerLabel(note.flower)}</span>
-                      </div>
+                    </div>
+
+                    <div className="tfsby-card__divider" aria-hidden="true" />
+
+                    <div className="tfsby-card__fact">
+                      <span className="tfsby-card__fact-label">Fun fact:</span>
+                      <p className="tfsby-card__fact-body">{note.funFact}</p>
                     </div>
                   </div>
 
-                  <div className="tfsby-card__divider" aria-hidden="true" />
+                </motion.div>
 
-                  <div className="tfsby-card__fact">
-                    <span className="tfsby-card__fact-label">Fun fact:</span>
-                    <p className="tfsby-card__fact-body">{note.funFact}</p>
-                  </div>
-                </div>
-
-              </motion.div>
+                <motion.div
+                  className="tfsby-actions"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeOut', delay: 0.15 }}
+                >
+                  <button
+                    type="button"
+                    className="tfsby-save"
+                    onClick={handleSave}
+                  >
+                    Save as PNG
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M8 2v8m0 0L5 7m3 3 3-3M2 12h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </motion.div>
+              </div>
             ) : (
               <div className="tfsby-preview-empty" aria-hidden="true">
+                <img
+                  src="/assets/icons/flower-bouquet.svg"
+                  alt=""
+                  aria-hidden="true"
+                  className="tfsby-preview-empty__icon"
+                />
                 <span className="tfsby-preview-empty__hint">Get your message to see preview</span>
               </div>
-            )}
-            {note && (
-              <button
-                type="button"
-                className="btn btn--secondary tfsby-save"
-                onClick={handleSave}
-              >
-                Save as PNG
-              </button>
             )}
           </div>
 

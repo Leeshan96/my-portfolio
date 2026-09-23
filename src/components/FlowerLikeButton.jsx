@@ -34,6 +34,35 @@ export function FlowerLikeButton() {
   const [count, setCount] = useState(null);
   const [bursts, setBursts] = useState([]);
   const throttleRef = useRef(false);
+  const tooltipEl = useRef(null);
+
+  useEffect(() => {
+    const el = document.createElement('div');
+    el.className = 'image-tooltip';
+    el.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(el);
+    tooltipEl.current = el;
+    return () => el.remove();
+  }, []);
+
+  const showTooltip = useCallback((e) => {
+    const el = tooltipEl.current;
+    if (!el) return;
+    el.textContent = 'Wanna leave a flower?';
+    el.style.left = `${e.clientX + 16}px`;
+    el.style.top  = `${e.clientY}px`;
+    el.classList.add('is-visible');
+  }, []);
+
+  const moveTooltip = useCallback((e) => {
+    if (!tooltipEl.current?.classList.contains('is-visible')) return;
+    tooltipEl.current.style.left = `${e.clientX + 16}px`;
+    tooltipEl.current.style.top  = `${e.clientY}px`;
+  }, []);
+
+  const hideTooltip = useCallback(() => {
+    tooltipEl.current?.classList.remove('is-visible');
+  }, []);
 
   useEffect(() => {
     fetch('/api/likes')
@@ -66,9 +95,12 @@ export function FlowerLikeButton() {
         type="button"
         className="flower-like-btn"
         onClick={handleClick}
+        onMouseEnter={showTooltip}
+        onMouseMove={moveTooltip}
+        onMouseLeave={hideTooltip}
         aria-label="Like this site"
       >
-        <img src="/assets/icons/flower-bouquet.svg" alt="" className="flower-like-icon" />
+        <span className="flower-like-icon" aria-hidden="true">🌷</span>
         {count !== null && (
           <span className="flower-like-count">{count.toLocaleString()}</span>
         )}
@@ -83,13 +115,13 @@ export function FlowerLikeButton() {
             className="flower-burst-particle"
             initial={{ opacity: 1, x: 0, y: 0, scale: 0.6, rotate: 0 }}
             animate={{
-              opacity: 0,
-              x: burst.x,
-              y: burst.y,
-              scale: 1.1,
-              rotate: burst.rotate,
+              opacity: [1, 1, 0],
+              x: [0, burst.x * 0.7, burst.x],
+              y: [0, burst.y * 0.7, burst.y],
+              scale: [0.54, 1.04, 1.08],
+              rotate: [0, burst.rotate * 0.7, burst.rotate],
             }}
-            transition={{ duration: 0.65, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.85, ease: [0.23, 1, 0.32, 1], times: [0, 0.6, 1] }}
             onAnimationComplete={() => removeBurst(burst.id)}
           />
         ))}

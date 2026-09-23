@@ -43,6 +43,7 @@
 /* ── Heading block ── */
 .tfsby-heading-block {
   margin-bottom: var(--space-7);
+  text-align: center;
 }
 
 .tfsby-heading {
@@ -51,6 +52,7 @@
   margin: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: var(--space-3);
 }
@@ -78,6 +80,7 @@
   grid-template-columns: 1fr 380px;
   gap: var(--space-10);
   align-items: start;
+  justify-content: center;
 }
 
 /* ── Form (left column) ── */
@@ -94,18 +97,34 @@
   align-items: flex-start;
 }
 
-.tfsby-preview-empty {
-  width: 380px;
-  height: 380px;
-  border-radius: var(--radius-lg);
-  border: 1.5px dashed var(--color-border-primary);
+/* Wrapper that keeps card + actions as one unit, sized together */
+.tfsby-card-wrap {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(380px, 100%);
+}
+
+.tfsby-preview-empty {
+  width: min(380px, 100%);
+  aspect-ratio: 1 / 1;
+  background: var(--color-card-simba-roaming);
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--space-4);
+}
+
+.tfsby-preview-empty__icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
 }
 
 .tfsby-preview-empty__hint {
   font: var(--text-body-2-regular);
+  font-family: 'IBM Plex Mono', monospace;
   color: var(--color-text-secondary);
   letter-spacing: 0.02em;
   text-align: center;
@@ -126,15 +145,16 @@
 
 .tfsby-input {
   width: 100%;
-  max-width: 472px;
-  padding: var(--space-3) var(--space-4);
-  border: 1.5px solid var(--color-border-primary);
+  max-width: 560px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-md);
   font: var(--text-body-1-regular);
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   letter-spacing: 0.02em;
-  transition: border-color 0.2s ease-out;
+  box-shadow: none;
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
   box-sizing: border-box;
 }
 
@@ -142,9 +162,14 @@
   color: var(--color-text-secondary);
 }
 
+.tfsby-input:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
 .tfsby-input:focus {
   outline: none;
   border-color: var(--color-text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* ── Mood pills ── */
@@ -155,15 +180,15 @@
 }
 
 .tfsby-pill {
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-1) var(--space-4);
   border-radius: var(--radius-full);
-  border: none;
-  background: var(--color-bg-primary);
+  border: 1.5px solid transparent;
+  background: var(--color-bg-secondary);
   color: var(--color-text-secondary);
   font: var(--text-body-2-regular);
   letter-spacing: 0.02em;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
   transition: border-color 0.2s ease-out, color 0.2s ease-out, background 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
@@ -171,13 +196,11 @@
   color: var(--color-text-primary);
 }
 
-.tfsby-pill:active {
-  transform: scale(0.97);
-}
 
 .tfsby-pill--active {
   background: var(--color-bg-secondary);
   color: var(--color-text-primary);
+  border: 1px solid var(--color-text-primary);
 }
 
 /* ── CTA button ── */
@@ -194,8 +217,8 @@
 /* ── Note card — IBM Plex Mono scoped here ── */
 .tfsby-card {
   padding: var(--space-6);
-  width: 380px;
-  height: 380px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   font-family: 'IBM Plex Mono', monospace;
 }
@@ -320,36 +343,80 @@
   letter-spacing: 0.01em;
 }
 
-/* Save button */
-.tfsby-preview .tfsby-save {
+/* Actions block below card */
+.tfsby-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  align-items: center;
   margin-top: var(--space-4);
-  font-family: var(--font-family);
-  align-self: center;
-  padding: var(--space-2) var(--space-5);
+}
+
+/* Gift row */
+.tfsby-gift-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: nowrap;
+}
+
+.tfsby-gift-label {
   font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Save link */
+.tfsby-save {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: var(--text-body-2-regular);
+  font-family: var(--font-family);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease-out;
+}
+
+.tfsby-save:hover {
+  color: var(--color-text-primary);
 }
 
 /* ── Responsive ── */
-@media (max-width: 640px) {
-  .tfsby-section {
-    padding: var(--space-8) 0;
-  }
-
+@media (max-width: 1024px) {
   .tfsby-layout {
     grid-template-columns: 1fr;
+    gap: var(--space-7);
   }
 
-  .tfsby-preview-empty {
-    display: none;
+  .tfsby-input {
+    box-sizing: border-box;
   }
 
-  .tfsby-card__flower-img {
+  .tfsby-preview {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .tfsby-section {
+    padding-top: var(--space-8);
+  }
+
+.tfsby-card__flower-img {
     width: 96px;
     height: 96px;
   }
 }
 
-@media (max-width: 448px) {
+@media (max-width: 510px) {
   .tfsby-heading {
     font: var(--text-h3);
     letter-spacing: 0.02em;

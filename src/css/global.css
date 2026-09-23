@@ -91,12 +91,14 @@ button {
   pointer-events: none;
   white-space: nowrap;
 
-  background: #6F6C62;
-  color: #FFFFFF;
+  background: rgba(243, 243, 243, 0.9);
+  color: var(--color-text-primary);
   font: var(--text-body-2-medium);
   letter-spacing: 0.01em;
-  border-radius: var(--radius-sm); /* 8px — distinct from pill buttons */
+  border-radius: var(--radius-sm);
   padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 
   /* Vertically centred on cursor, slides up slightly on enter */
   transform: translateY(calc(-50% + 5px));
