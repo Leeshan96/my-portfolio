@@ -194,10 +194,12 @@ export default function About() {
         <section className="about-hero" aria-label="Introduction">
           <div className="about-hero__inner">
 
-            <img
+            <motion.img
               src="/assets/images/about-hero.webp"
               alt="Lee Shan"
               className="about-hero__photo"
+              whileHover={{ rotate: 3, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             />
 
             <div className="about-hero__text">
