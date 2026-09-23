@@ -65,10 +65,19 @@ export function FlowerLikeButton() {
   }, []);
 
   useEffect(() => {
+    const stored = parseInt(localStorage.getItem('flowerCount'), 10);
+    if (!isNaN(stored)) setCount(stored);
+
     fetch('/api/likes')
       .then(r => r.json())
-      .then(d => setCount(Number(d.count) || 0))
-      .catch(() => setCount(0));
+      .then(d => {
+        const n = Number(d.count);
+        if (!isNaN(n)) {
+          setCount(n);
+          localStorage.setItem('flowerCount', n);
+        }
+      })
+      .catch(() => { if (isNaN(stored)) setCount(0); });
   }, []);
 
   const handleClick = useCallback(() => {
@@ -76,12 +85,22 @@ export function FlowerLikeButton() {
     throttleRef.current = true;
     setTimeout(() => { throttleRef.current = false; }, 150);
 
-    setCount(c => (c ?? 0) + 1);
+    setCount(prev => {
+      const next = (prev ?? 0) + 1;
+      localStorage.setItem('flowerCount', next);
+      return next;
+    });
     setBursts(prev => [...prev, ...makeBurst()]);
 
     fetch('/api/likes', { method: 'POST' })
       .then(r => r.json())
-      .then(d => setCount(Number(d.count)))
+      .then(d => {
+        const n = Number(d.count);
+        if (!isNaN(n)) {
+          setCount(n);
+          localStorage.setItem('flowerCount', n);
+        }
+      })
       .catch(() => {});
   }, []);
 

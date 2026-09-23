@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { flowerNotes } from '../data/flowerNotes';
 
@@ -10,7 +10,19 @@ export function ThanksForStoppingBy() {
   const [nickname, setNickname] = useState('');
   const [selectedMood, setSelectedMood] = useState(null);
   const [note, setNote] = useState(null);
+  const [inputMaxWidth, setInputMaxWidth] = useState(undefined);
   const cardRef = useRef(null);
+  const moodsRef = useRef(null);
+
+  useEffect(() => {
+    const el = moodsRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      setInputMaxWidth(el.getBoundingClientRect().width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const trimmed = nickname.trim();
   const canGenerate = trimmed.length > 0 && selectedMood !== null;
@@ -223,12 +235,13 @@ export function ThanksForStoppingBy() {
                 value={nickname}
                 maxLength={25}
                 onChange={e => setNickname(e.target.value)}
+                style={inputMaxWidth ? { maxWidth: inputMaxWidth } : undefined}
               />
             </div>
 
             <div className="tfsby-field">
               <span className="tfsby-label">Select your mood</span>
-              <div className="tfsby-moods" role="group" aria-label="Mood selection">
+              <div className="tfsby-moods" role="group" aria-label="Mood selection" ref={moodsRef}>
                 {flowerNotes.map((entry, i) => (
                   <button
                     key={entry.mood}
