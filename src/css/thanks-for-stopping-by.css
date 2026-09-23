@@ -405,10 +405,6 @@
 }
 
 @media (max-width: 640px) {
-  .tfsby-section {
-    padding-top: var(--space-8);
-  }
-
 .tfsby-card__flower-img {
     width: 96px;
     height: 96px;
