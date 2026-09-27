@@ -83,7 +83,7 @@
 
 .cs-hero__image {
   width: 100%;
-  height: 320px;
+  height: 500px;
   display: block;
   object-fit: contain;
   object-position: center;
@@ -269,7 +269,8 @@
   box-shadow: none;
 }
 
-.cs-image.lightbox-trigger {
+.cs-image.lightbox-trigger,
+.cs-before-after.lightbox-trigger {
   cursor: zoom-in;
 }
 
@@ -361,12 +362,64 @@
 }
 
 /* Image caption */
+.cs-inline-link {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease-out;
+}
+
+.cs-inline-link:hover {
+  color: var(--color-text-secondary);
+}
+
 .cs-image-caption {
   font: var(--text-body-2-regular);
   color: var(--color-text-secondary);
   letter-spacing: 0.02em;
   text-align: center;
   margin: var(--space-3) 0 0;
+}
+
+.cs-image-caption--top {
+  margin: 0 0 var(--space-3);
+}
+
+.cs-before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  background: #F2F6FD;
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  max-height: 404px;
+  overflow-y: auto;
+}
+
+.cs-before-after--lightbox {
+  max-height: none;
+  width: min(80vw, 960px);
+}
+
+.cs-before-after__item {
+  margin: 0;
+}
+
+.cs-before-after__item .cs-image {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  height: auto;
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .cs-before-after {
+    grid-template-columns: 1fr;
+    max-height: none;
+  }
 }
 
 @media (max-width: 640px) {

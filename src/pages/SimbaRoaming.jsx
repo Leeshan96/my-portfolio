@@ -9,15 +9,16 @@ import '../css/simba-roaming.css';
 
 /* ── Sidenav sections ── */
 const sections = [
-  { id: 'background',   label: 'Background' },
-  { id: 'research',     label: 'Discovery' },
-  { id: 'problem',      label: 'Reframing the Problem' },
-  { id: 'exploration',  label: 'Design Explorations' },
+  { id: 'background',        label: 'Background' },
+  { id: 'impact',            label: 'Impact' },
+  { id: 'research',          label: 'Discovery' },
+  { id: 'problem',           label: 'Reframing the Problem' },
+  { id: 'exploration',       label: 'Design Explorations' },
   { id: 'solution',          label: 'User Testing' },
-  { id: 'expanding-scope',       label: 'Expanding Scope' },
-  { id: 'working-with-devs',    label: 'Working with Developers' },
-  { id: 'next-steps',           label: 'Next Steps' },
-  { id: 'learnings',            label: 'Learnings' },
+  { id: 'expanding-scope',   label: 'Expanding Scope' },
+  { id: 'working-with-devs', label: 'Working with Developers' },
+  { id: 'next-steps',        label: 'Next Steps' },
+  { id: 'learnings',         label: 'Learnings' },
 ];
 
 /* ── Active section tracking via IntersectionObserver ── */
@@ -90,12 +91,13 @@ export default function SimbaRoaming() {
   const sectionIds = sections.map(s => s.id);
   const [activeId, scrollToSection] = useSidenav(sectionIds);
 
-  const [lightbox, setLightbox] = useState({ src: null, alt: '' });
+  const [lightbox, setLightbox] = useState({ src: null, alt: '', content: null });
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [videoCarouselIndex, setVideoCarouselIndex] = useState(0);
 
-  const openLightbox = useCallback((src, alt) => setLightbox({ src, alt }), []);
-  const closeLightbox = useCallback(() => setLightbox({ src: null, alt: '' }), []);
+  const openLightbox = useCallback((src, alt) => setLightbox({ src, alt, content: null }), []);
+  const openLightboxContent = useCallback((content) => setLightbox({ src: null, alt: '', content }), []);
+  const closeLightbox = useCallback(() => setLightbox({ src: null, alt: '', content: null }), []);
   const onLightboxKeyDown = useCallback((e, src, alt) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(src, alt); }
   }, [openLightbox]);
@@ -116,7 +118,7 @@ export default function SimbaRoaming() {
         <section className="cs-hero cs-hero--simba-roaming">
           <div className="cs-hero__inner">
             <img
-              src="/assets/images/roaming-thumbnail-v2.png"
+              src="/assets/images/roaming-thumbnail.webp"
               alt="SIMBA Roaming Page — overview of the redesigned roaming experience"
               className="cs-hero__image"
             />
@@ -245,8 +247,68 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                SIMBA's roaming page was generating confusion as users couldn't understand how roaming charges worked or how to get more roaming data, leading to an increase in support tickets and enquiries to sales. The goal was to redesign the page to improve user understanding and reduce support load.
+                SIMBA's roaming page was generating confusion as <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>users couldn't understand how roaming charges worked or how to get more roaming data</strong>, leading to an increase in support tickets and enquiries to sales. The goal was to redesign the page to improve user understanding and reduce support load.
               </motion.p>
+
+              <motion.div
+                className="cs-before-after lightbox-trigger"
+                variants={reveal(0.1)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                tabIndex={0}
+                role="button"
+                aria-label="View before and after comparison"
+                onClick={() => openLightboxContent(
+                  <div className="cs-before-after cs-before-after--lightbox">
+                    <figure className="cs-before-after__item">
+                      <figcaption className="cs-image-caption cs-image-caption--top">Before</figcaption>
+                      <img src="/assets/images/roaming/Roaming-before.webp" alt="Roaming page — before redesign" className="cs-image" />
+                    </figure>
+                    <figure className="cs-before-after__item">
+                      <figcaption className="cs-image-caption cs-image-caption--top">After</figcaption>
+                      <img src="/assets/images/roaming/Roaming-after.webp" alt="Roaming page — after redesign" className="cs-image" />
+                    </figure>
+                  </div>
+                )}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightboxContent(
+                      <div className="cs-before-after cs-before-after--lightbox">
+                        <figure className="cs-before-after__item">
+                          <figcaption className="cs-image-caption cs-image-caption--top">Before</figcaption>
+                          <img src="/assets/images/roaming/Roaming-before.webp" alt="Roaming page — before redesign" className="cs-image" />
+                        </figure>
+                        <figure className="cs-before-after__item">
+                          <figcaption className="cs-image-caption cs-image-caption--top">After</figcaption>
+                          <img src="/assets/images/roaming/Roaming-after.webp" alt="Roaming page — after redesign" className="cs-image" />
+                        </figure>
+                      </div>
+                    );
+                  }
+                }}
+              >
+                <figure className="cs-before-after__item">
+                  <figcaption className="cs-image-caption cs-image-caption--top">Before</figcaption>
+                  <img
+                    src="/assets/images/roaming/Roaming-before.webp"
+                    alt="Roaming page — before redesign"
+                    className="cs-image"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure className="cs-before-after__item">
+                  <figcaption className="cs-image-caption cs-image-caption--top">After</figcaption>
+                  <img
+                    src="/assets/images/roaming/Roaming-after.webp"
+                    alt="Roaming page — after redesign"
+                    className="cs-image"
+                    loading="lazy"
+                  />
+                </figure>
+              </motion.div>
+              <p className="cs-image-caption">Before and after the redesign <em>(scroll me)</em></p>
 
               <motion.div
                 className="cs-goals-grid"
@@ -261,9 +323,49 @@ export default function SimbaRoaming() {
                 </div>
                 <div className="cs-goals-card">
                   <span className="cs-goals-card__label">Business Goals:</span>
-                  <p className="cs-goals-card__body">Reduce support tickets for basic roaming enquiries, increase roaming service adoption and improve SEO page rankings and visibility.</p>
+                  <p className="cs-goals-card__body">Reduce support tickets for basic roaming enquiries, increase roaming page discoverability through SEO, and improve conversion from roaming page to purchase.</p>
                 </div>
               </motion.div>
+
+            </section>
+
+            {/* ── Impact ── */}
+            <section id="impact" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">02</span> Impact
+              </motion.h2>
+
+              <motion.p
+                className="cs-body"
+                style={{ marginTop: 'var(--space-6)' }}
+                variants={reveal(0.08)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                The following metrics are being tracked for post-launch:
+              </motion.p>
+
+              <motion.ul
+                className="cs-list"
+                variants={reveal(0.1)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <li>Volume of roaming-related support tickets</li>
+                <li>Roaming page → Mobile plans page drop-off rate</li>
+                <li>Bounce rate on the roaming page</li>
+                <li>Organic search impressions and clicks for country-specific queries</li>
+                <li>Wallet top-up rate among existing users</li>
+              </motion.ul>
 
             </section>
 
@@ -277,7 +379,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">02</span> Discovery
+                <span className="cs-section__num">03</span> Discovery
               </motion.h2>
 
               {/* User Survey subsection */}
@@ -310,8 +412,8 @@ export default function SimbaRoaming() {
               >
                 <span className="cs-callout__label">The findings</span>
                 <ul className="cs-callout__list">
-                  <li>Roaming top-up process was unclear, users didn't know how to activate roaming.</li>
-                  <li>Users were confused about which roaming groups were included in their mobile plans and which required additional payment.</li>
+                  <li>Roaming <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>top-up process was unclear</strong>, users didn't know how to activate roaming.</li>
+                  <li>Users were <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>confused about which roaming groups were included in their mobile plans</strong> and which required additional payment.</li>
                 </ul>
               </motion.div>
 
@@ -396,7 +498,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">03</span> Reframing the Problem
+                <span className="cs-section__num">04</span> Reframing the Problem
               </motion.h2>
 
               <motion.p
@@ -427,7 +529,7 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.15 }}
               >
                 <span className="cs-callout__label">The Problem</span>
-                <p className="cs-callout__body">How might we help users find roaming information by destination, so they can quickly understand if their plan covers where they're going and what it will cost?</p>
+                <p className="cs-callout__body">How might we help users find roaming information by destination so they know if they're covered, and what it'll cost?</p>
               </motion.div>
 
             </section>
@@ -442,7 +544,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">04</span> Design Explorations
+                <span className="cs-section__num">05</span> Design Explorations
               </motion.h2>
 
               <motion.p
@@ -452,7 +554,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                With the reframed problem in mind, I began exploring design solutions. My goal was to ensure that users understood how SIMBA's roaming model worked.
+                With the reframed problem in mind, I began exploring design solutions. My goal was to <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>ensure that users understood how SIMBA's roaming model worked</strong>.
               </motion.p>
 
               <motion.h3
@@ -472,7 +574,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Surfacing the top 12 destinations upfront reduces our users' cognitive load by focusing on the countries they actually travel to. After choosing the destinations, users will see the plans and roaming groups available, making it a destination-based search rather than plan-based search.
+                Surfacing the top 12 destinations upfront reduces our users' cognitive load by focusing on the countries they actually travel to. After choosing the destinations, users will see the plans and roaming groups available, making it a <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>destination-based search rather than plan-based search</strong>.
               </motion.p>
 
               <motion.div
@@ -552,7 +654,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">05</span> User Testing
+                <span className="cs-section__num">06</span> User Testing
               </motion.h2>
 
               <motion.p
@@ -583,7 +685,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                The testing confirmed what the competitive analysis had surfaced earlier. Users didn't understand SIMBA's service model. They expected to find standalone roaming plans the way every other telco presents them. When they realised the only option was to sign up for a mobile plan, the confusion was immediate.
+                The testing confirmed what the competitive analysis had surfaced earlier. Users didn't understand SIMBA's service model. They <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>expected to find standalone roaming plans the way every other telco presents them</strong>. When they realised the only option was to sign up for a mobile plan, the confusion was immediate.
               </motion.p>
 
               <motion.div
@@ -595,12 +697,12 @@ export default function SimbaRoaming() {
               >
                 <div className="ut-card">
                   <span className="ut-card__num">1</span>
-                  <p className="ut-card__body">Users didn't know how to buy roaming data for countries in which are not included in SIMBA mobile plans.</p>
+                  <p className="ut-card__body">Users <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>didn't know how to buy roaming data</strong> for countries in which are not included in SIMBA mobile plans.</p>
                 </div>
                 <div className="ut-card">
                   <span className="ut-card__num">2</span>
                   <p className="ut-card__body">Users usually buy roaming add-on plans or a separate roaming sim for travels. They were confused when the only option was to buy a mobile plan.</p>
-                  <blockquote className="ut-card__quote">Why do I have to sign up for a new line to buy roaming data?</blockquote>
+                  <blockquote className="ut-card__quote"><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>"Why do I have to sign up for a new line to buy roaming data?"</strong></blockquote>
                 </div>
                 <div className="ut-card">
                   <span className="ut-card__num">3</span>
@@ -608,7 +710,7 @@ export default function SimbaRoaming() {
                 </div>
                 <div className="ut-card">
                   <span className="ut-card__num">4</span>
-                  <p className="ut-card__body">Some existing users were not aware they could top up their wallet to use more data after using up all their data allowance.</p>
+                  <p className="ut-card__body">Some existing users were <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>not aware they could top up their wallet</strong> to use more data after using up all their data allowance.</p>
                 </div>
               </motion.div>
 
@@ -641,7 +743,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                The original design focused on purchase channels — online vs in-stores, which assumed that all users regardless of new or existing had the same starting point. After receiving feedback that new users didn't understand why they needed to sign up for a mobile plan just to roam overseas, I decided to separate the journey by user type, walking new customers through the sign-up process while directing existing customers to top up their wallet.
+                The original design focused on purchase channels — online vs in-stores, which <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>assumed that all users regardless of new or existing had the same starting point</strong>. After receiving feedback that new users didn't understand why they needed to sign up for a mobile plan just to roam overseas, I decided to <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>separate the journey by user type</strong>, walking new customers through the sign-up process while directing existing customers to top up their wallet.
               </motion.p>
 
               <motion.figure
@@ -676,7 +778,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">06</span> Expanding Scope
+                <span className="cs-section__num">07</span> Expanding Scope
               </motion.h2>
 
               <motion.h3
@@ -686,7 +788,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                From Modal to Individual Country Pages
+                From modal to individual country pages
               </motion.h3>
 
               <motion.p
@@ -706,7 +808,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                To fix this, we restructured the modal into dedicated, indexable country pages that search engines and LLMs can surface directly.
+                To fix this, we <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>restructured the modal into dedicated, indexable country pages that search engines and LLMs can surface directly</strong>.
               </motion.p>
 
               <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)' }}>
@@ -773,7 +875,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">07</span> Working with Developers
+                <span className="cs-section__num">08</span> Working with Developers
               </motion.h2>
 
               <motion.h3
@@ -793,7 +895,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. I worked with the developers to move the roaming pages to server-side rendering, <strong style={{ font: 'var(--text-body-1-medium)' }}>migrating the build from React to Next.js</strong> so the HTML that rendered was actually visible to crawlers.
+                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. I worked with the developers to move the roaming pages to server-side rendering, <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>migrating the build from React to Next.js</strong> so the HTML that rendered was actually visible to crawlers.
               </motion.p>
 
               <motion.h3
@@ -814,7 +916,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to, so the developer could review and integrate the code directly, instead of having to rebuild it in the right stack first.
+                <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to</strong>, so the developer could review and integrate the code directly, instead of having to rebuild it in the right stack first.
               </motion.p>
 
             </section>
@@ -829,7 +931,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">08</span> Next Steps
+                <span className="cs-section__num">09</span> Next Steps
               </motion.h2>
 
               <motion.ol
@@ -846,14 +948,7 @@ export default function SimbaRoaming() {
                   To extend this beyond my own workflow, I'm sharing knowledge to help the rest of the team use Claude Code and Git effectively, so everyone can build directly in the codebase.
                 </li>
                 <li>
-                  To validate whether this redesign actually solves the problems I identified, I recommended tracking specific metrics:
-                  <ul className="cs-list cs-nested-list">
-                    <li>Support ticket volume (are roaming questions decreasing?)</li>
-                    <li>Conversion funnel: Roaming page → Plans page → Purchase</li>
-                  </ul>
-                </li>
-                <li>
-                  Discovered Opportunity: Analytics revealed that only 16.4% of users were reaching the roaming page through existing site navigation. So, the next phase will focus on improving information architecture and navigation to increase roaming page visibility.
+                  Post-launch metrics tracking is underway (see <a href="#impact" className="cs-inline-link">Impact</a> section)
                 </li>
               </motion.ol>
 
@@ -869,7 +964,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">09</span> Learnings
+                <span className="cs-section__num">10</span> Learnings
               </motion.h2>
 
               <motion.div
@@ -903,7 +998,7 @@ export default function SimbaRoaming() {
         next={{ title: 'Design Systems', href: '/design-systems' }}
       />
 
-      <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={closeLightbox} />
+      <Lightbox src={lightbox.src} alt={lightbox.alt} content={lightbox.content} onClose={closeLightbox} />
     </PageWrapper>
   );
 }

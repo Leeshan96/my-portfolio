@@ -336,7 +336,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                After my team had decided on the topic, we began to look at the existing menopause apps to identify gaps and opportunities. I focused on Balance app as it is the leading B2C menopause app in the UK with extensive research that could be leveraged on. Through this, I was able to identify similar features competitors had and key problem areas to solve.
+                After my team had decided on the topic, we began to look at the existing menopause apps to identify gaps and opportunities. <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>I focused on Balance app as it is the leading B2C menopause app in the UK with extensive research</strong> that could be leveraged on. Through this, I was able to identify similar features competitors had and key problem areas to solve.
               </motion.p>
 
               <motion.img
@@ -405,7 +405,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                We interviewed 6 diverse menopausal women in their 40s and 50s regarding their awareness, attitudes and experiences related to menopause and their attitudes towards technology.
+                We interviewed 6 diverse menopausal women in their 40s and 50s regarding their <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>awareness, attitudes and experiences related to menopause and their attitudes towards technology</strong>.
               </motion.p>
 
               <motion.h4
@@ -428,23 +428,18 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                {[
-                  { stat: '67%', body: 'Unable to cope with menopausal symptoms due to lack of knowledge' },
-                  { stat: '67%', body: 'Healthcare providers downplay their menopausal symptoms' },
-                  { stat: '83%', body: 'Open towards wearables that fit easily into their lifestyles' },
-                ].map(({ stat, body }) => (
-                  <motion.div
-                    key={stat + body}
-                    className="cs-stat-card"
-                    variants={{
-                      hidden: { opacity: 0, y: 16 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-                    }}
-                  >
-                    <span className="cs-stat-card__stat">{stat}</span>
-                    <p className="cs-stat-card__body">{body}</p>
-                  </motion.div>
-                ))}
+                <motion.div className="cs-stat-card" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}>
+                  <span className="cs-stat-card__stat">67%</span>
+                  <p className="cs-stat-card__body">Unable to cope with menopausal symptoms due to <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>lack of knowledge</strong></p>
+                </motion.div>
+                <motion.div className="cs-stat-card" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}>
+                  <span className="cs-stat-card__stat">67%</span>
+                  <p className="cs-stat-card__body"><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Healthcare providers downplay</strong> their menopausal symptoms</p>
+                </motion.div>
+                <motion.div className="cs-stat-card" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}>
+                  <span className="cs-stat-card__stat">83%</span>
+                  <p className="cs-stat-card__body">Open towards wearables that fit easily into their lifestyles</p>
+                </motion.div>
               </motion.div>
 
               <motion.img
@@ -478,7 +473,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                These insights highlighted a critical need: women required accessible education, practical coping tools, and trusted support to navigate menopause effectively.
+                These insights highlighted a critical need: <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>women required accessible education, practical coping tools, and trusted support to navigate menopause effectively</strong>.
               </motion.p>
 
               {/* ── Personas ── */}
@@ -500,7 +495,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                From the interviews, we identified differences in tech comfort, knowledge and coping strategies. This led to the creation of 2 personas with different tech savvy levels to ensure we made inclusive design decisions.
+                From the interviews, we identified differences in tech comfort, knowledge and coping strategies. This led to the creation of 2 personas with <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>different tech savvy levels</strong> to ensure we made inclusive design decisions.
               </motion.p>
 
               <motion.img
@@ -626,7 +621,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                I created user flows, taking into account insights from my competitive analysis. For "Book a doctor" flow, users could select their previously visited doctor which saved them considerable time during search. For "Emergency alert" flow, we had to determine when users switched from smart watch to mobile interface, and what screen types were needed.
+                I created user flows, taking into account insights from my competitive analysis. For <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>"Book a doctor" flow, users could select their previously visited doctor</strong> which saved them considerable time during search. For <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>"Emergency alert" flow, we had to determine when users switched from smart watch to mobile interface</strong>, and what screen types were needed.
               </motion.p>
 
               <motion.img
@@ -720,7 +715,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                We conducted 2 rounds of usability testing with 4 participants each. The first round was where we faced major setback as most participants could not complete majority tasks without prompts. Each team member conducted 1 usability testing and we gathered only to find that our participants experienced similar difficulties. We were at a lost given that time was running out. Here, I suggested we focus on building the key features (emergency alert, find a doctor, educational content, community) and others were secondary. We took feedback received seriously and made iterations based on them.
+                We conducted 2 rounds of usability testing with 4 participants each. <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>The first round was where we faced major setback as most participants could not complete majority tasks without prompts.</strong> Each team member conducted 1 usability testing and we gathered only to find that our participants experienced similar difficulties. We were at a lost given that time was running out. Here, <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>I suggested we focus on building the key features (emergency alert, find a doctor, educational content, community)</strong> and others were secondary. We took feedback received seriously and made iterations based on them.
               </motion.p>
 
               <motion.h4
@@ -887,7 +882,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                After making 2 rounds of iterations, we managed to significantly improve the task success rates where users were able to complete the core tasks. These improvements validated our design changes, showing that simplifying navigation and layout greatly enhanced usability for our target audience.
+                After making 2 rounds of iterations, we managed to significantly improve the task success rates where users were able to complete the core tasks. These improvements validated our design changes, showing that <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>simplifying navigation and layout greatly enhanced usability for our target audience</strong>.
               </motion.p>
 
               <motion.ul
@@ -897,9 +892,9 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <li>Book a doctor's appointment → 75% improvement</li>
-                <li>Accessing emergency alert screen → 50% improvement</li>
-                <li>Using AI assistance → 100% improvement</li>
+                <li><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Book a doctor's appointment → 75% improvement</strong></li>
+                <li><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Accessing emergency alert screen → 50% improvement</strong></li>
+                <li><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Using AI assistance → 100% improvement</strong></li>
               </motion.ul>
 
               <motion.div

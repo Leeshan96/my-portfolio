@@ -277,7 +277,7 @@
   height: 500px;
   border-radius: var(--radius-lg);
   background: var(--color-bg-primary);
-  overflow: hidden;
+  overflow: visible;
   user-select: none;
 }
 

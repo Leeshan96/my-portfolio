@@ -2,14 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export function Lightbox({ src, alt, onClose }) {
+export function Lightbox({ src, alt, onClose, content }) {
   const closeRef = useRef(null);
   const previousFocusRef = useRef(null);
   const scrollLocked = useRef(false);
 
   /* Scroll lock + focus management */
+  const isOpen = !!(src || content);
+
   useEffect(() => {
-    if (src) {
+    if (isOpen) {
       const scrollY = window.scrollY;
       // Compensate for scrollbar disappearing on desktop to prevent layout shift
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -25,7 +27,7 @@ export function Lightbox({ src, alt, onClose }) {
 
       previousFocusRef.current = document.activeElement;
       closeRef.current?.focus({ preventScroll: true });
-    } else if (scrollLocked.current) {
+    } else if (!isOpen && scrollLocked.current) {
       // Only restore if we actually locked — skip initial mount where src is null
       const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
 
@@ -48,18 +50,18 @@ export function Lightbox({ src, alt, onClose }) {
       previousFocusRef.current?.focus({ preventScroll: true });
       previousFocusRef.current = null;
     }
-  }, [src]);
+  }, [isOpen]);
 
   /* Keyboard: Escape to close, Tab trapped to close button */
   useEffect(() => {
-    if (!src) return;
+    if (!isOpen) return;
     const onKey = (e) => {
       if (e.key === 'Escape') { onClose(); return; }
       if (e.key === 'Tab') { e.preventDefault(); closeRef.current?.focus(); }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [src, onClose]);
+  }, [isOpen, onClose]);
 
   /*
    * Portal into document.body so position:fixed on the overlay is always
@@ -68,7 +70,7 @@ export function Lightbox({ src, alt, onClose }) {
    */
   return ReactDOM.createPortal(
     <AnimatePresence>
-      {src && (
+      {isOpen && (
         <motion.div
           className="lightbox-overlay"
           role="dialog"
@@ -91,16 +93,29 @@ export function Lightbox({ src, alt, onClose }) {
             </svg>
           </button>
 
-          <motion.img
-            src={src}
-            alt={alt}
-            className="lightbox-image"
-            initial={{ scale: 0.88, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.92, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-            onClick={(e) => e.stopPropagation()}
-          />
+          {content ? (
+            <motion.div
+              className="lightbox-content"
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {content}
+            </motion.div>
+          ) : (
+            <motion.img
+              src={src}
+              alt={alt}
+              className="lightbox-image"
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
         </motion.div>
       )}
     </AnimatePresence>,

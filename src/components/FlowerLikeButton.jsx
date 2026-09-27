@@ -65,9 +65,6 @@ export function FlowerLikeButton() {
   }, []);
 
   useEffect(() => {
-    const stored = parseInt(localStorage.getItem('flowerCount'), 10);
-    if (!isNaN(stored)) setCount(stored);
-
     fetch('/api/likes')
       .then(r => r.json())
       .then(d => {
@@ -77,7 +74,7 @@ export function FlowerLikeButton() {
           localStorage.setItem('flowerCount', n);
         }
       })
-      .catch(() => { if (isNaN(stored)) setCount(0); });
+      .catch(() => setCount(0));
   }, []);
 
   const handleClick = useCallback(() => {

@@ -60,7 +60,7 @@ const workCards = [
     description: 'Simplifying a confusing roaming page for SIMBA\'s customers.',
     tags: [],
     year: '2026',
-    thumbnail: '/assets/images/roaming-thumbnail-v2.png',
+    thumbnail: '/assets/images/roaming-thumbnail.webp',
     thumbnailAlt: 'SIMBA Roaming Page case study thumbnail',
     cardBg: 'linear-gradient(160deg, #FFFBE8 0%, #F0E49C 100%)',
     imageAlign: 'center',
@@ -246,7 +246,7 @@ export default function Home() {
               initial={ini}
               animate="visible"
             >
-              A product designer who solves complex problems. Thinking people and systems before pixels.
+              A Product Designer building with AI, seeking opportunities in healthcare.
             </motion.h1>
 
             <motion.p

@@ -167,6 +167,14 @@ button {
   cursor: default;
 }
 
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+}
+
 /* Reduced motion safety net */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

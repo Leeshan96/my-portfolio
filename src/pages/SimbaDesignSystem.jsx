@@ -340,7 +340,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <li>Developers refer to their own component libraries that are convenient and easily accessible.</li>
+                <li><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Developers refer to their own component libraries</strong> that are convenient and easily accessible.</li>
                 <li>No shared vocabulary between design and development.</li>
                 <li>Time wasted recreating similar elements.</li>
               </motion.ul>
@@ -367,7 +367,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Once the design system was ready, I proposed building it into the product together with the developers rather than handing it over as a static Figma file. Leadership and the dev team were on board, however actual implementation kept getting pushed behind other deadlines. So I changed my approach, and found a way to implement the design system myself.
+                Once the design system was ready, I proposed building it into the product together with the developers rather than handing it over as a static Figma file. Leadership and the dev team were on board, however <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>actual implementation kept getting pushed behind other deadlines. So I changed my approach, and found a way to implement the design system myself.</strong>
               </motion.p>
 
             </section>
@@ -402,7 +402,7 @@ export default function SimbaDesignSystem() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                With the design system established in Figma, I connected it to Claude Code via the Figma MCP integration, giving Claude direct read access to component structure, variants and tokens, with no manual spec handoffs needed. I documented the full system in a CLAUDE.md file as the source of truth, so every component Claude generates automatically follows the design system's tokens and conventions. This closed the gap between design and development, and the DS is embedded directly into the workflow.
+                With the design system established in Figma, <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>I connected it to Claude Code via the Figma MCP integration</strong>, giving Claude direct read access to component structure, variants and tokens, with no manual spec handoffs needed. <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>I documented the full system in a CLAUDE.md file</strong> as the source of truth, so every component Claude generates automatically follows the design system's tokens and conventions. This closed the gap between design and development, and the DS is embedded directly into the workflow.
               </motion.p>
 
               <motion.h3
