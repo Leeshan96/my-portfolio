@@ -1,64 +1,146 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { flowerNotes } from '../data/flowerNotes';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { randomNote } from '../data/flowerNotes';
 
 function getFlowerLabel(filename) {
-  return filename.replace('.svg', '').charAt(0).toUpperCase() + filename.replace('.svg', '').slice(1);
+  const base = filename.replace('.svg', '');
+  return base.charAt(0).toUpperCase() + base.slice(1);
 }
 
+function PenIcon() {
+  return (
+    <svg
+      className="tfsby-pen-icon"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M9.5 2L12 4.5L4.5 12H2V9.5L9.5 2Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function EraseIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 3.5h10M5.5 3.5V2.5h3v1M3 3.5l.75 8h6.5L11 3.5"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* Canvas dimensions — 2× for retina */
+const CANVAS_W = 400;
+const CANVAS_H = 72;
+
 export function ThanksForStoppingBy() {
-  const [nickname, setNickname] = useState('');
-  const [selectedMood, setSelectedMood] = useState(null);
-  const [note, setNote] = useState(null);
-  const [inputMaxWidth, setInputMaxWidth] = useState(undefined);
-  const cardRef = useRef(null);
-  const moodsRef = useRef(null);
+  const [note, setNote]       = useState(() => randomNote());
+  const [noteKey, setNoteKey] = useState(0);
+  const [hasDrawn, setHasDrawn] = useState(false);
 
+  const nameCanvasRef = useRef(null);
+  const isDrawing     = useRef(false);
+  const lastPoint     = useRef(null);
+
+  /* Clear canvas whenever a new note is generated */
   useEffect(() => {
-    const el = moodsRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(() => {
-      setInputMaxWidth(el.getBoundingClientRect().width);
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
+    const canvas = nameCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setHasDrawn(false);
+  }, [noteKey]);
 
-  const trimmed = nickname.trim();
-  const canGenerate = trimmed.length > 0 && selectedMood !== null;
-
-  function handleGenerate() {
-    if (!canGenerate) return;
-    const entry = flowerNotes[selectedMood];
-    const quote = entry.quotes[Math.floor(Math.random() * entry.quotes.length)];
-    const interpolated = quote.replace(/{name}/g, trimmed);
-    setNote({ ...entry, interpolated });
+  /* ── Drawing helpers ── */
+  function getPos(e, canvas) {
+    const rect   = canvas.getBoundingClientRect();
+    const scaleX = canvas.width  / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const src    = e.touches ? e.touches[0] : e;
+    return {
+      x: (src.clientX - rect.left) * scaleX,
+      y: (src.clientY - rect.top)  * scaleY,
+    };
   }
 
-  function handleSave() {
-    if (!note) return;
+  const startDraw = useCallback((e) => {
+    e.preventDefault();
+    const canvas = nameCanvasRef.current;
+    if (!canvas) return;
+    isDrawing.current  = true;
+    lastPoint.current  = getPos(e, canvas);
+  }, []);
 
-    const W = 380;
-    const H = 380;
-    // Force at least 2x export resolution — devicePixelRatio reports 1 in some
-    // runtime contexts (external non-retina monitors, mirrored displays, some
-    // embedded webviews) even on a Mac, which was silently producing a
-    // 380x380px PNG identical in fidelity to the on-screen CSS card.
+  const draw = useCallback((e) => {
+    if (!isDrawing.current) return;
+    e.preventDefault();
+    const canvas = nameCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.strokeStyle = '#252422';
+    ctx.lineWidth   = 2.8; // 2× resolution → looks ~1.4px on screen
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+    const point = getPos(e, canvas);
+    ctx.beginPath();
+    ctx.moveTo(lastPoint.current.x, lastPoint.current.y);
+    ctx.lineTo(point.x, point.y);
+    ctx.stroke();
+    lastPoint.current = point;
+    setHasDrawn(true);
+  }, []);
+
+  const endDraw = useCallback(() => {
+    isDrawing.current = false;
+    lastPoint.current = null;
+  }, []);
+
+  /* ── Generate another ── */
+  function handleShuffle() {
+    setNote(randomNote());
+    setNoteKey(k => k + 1);
+  }
+
+  /* ── PNG export ── */
+  function handleSave() {
+    const parts = note.quote.split('\n\n');
+    const body  = parts.slice(1).join('\n\n');
+
+    const W   = 380;
+    const H   = 380;
     const DPR = Math.max(window.devicePixelRatio || 1, 2);
     const canvas = document.createElement('canvas');
-    canvas.width = W * DPR;
+    canvas.width  = W * DPR;
     canvas.height = H * DPR;
     const ctx = canvas.getContext('2d');
     ctx.scale(DPR, DPR);
 
-    const FONT = '"IBM Plex Mono", monospace';
-    const PAD = 32;
-    const TEXT = '#252422';
-    const SECONDARY = '#6F6C62';
+    const FONT        = '"IBM Plex Mono", monospace';
+    const PAD         = 32;
+    const TEXT        = '#252422';
+    const SECONDARY   = '#6F6C62';
     const FLOWER_SIZE = 96;
-    // CSS: default flowers translateX(-12px), sunflower translateX(-22px)
-    const isSunflower = note.flower === 'sunflower.svg';
-    const flower_x = W - PAD - FLOWER_SIZE - (isSunflower ? 22 : 12);
+    const isSunflower = note.flower.svg === 'sunflower.svg';
+    const flower_x    = W - PAD - FLOWER_SIZE - (isSunflower ? 22 : 12);
 
     function wrapText(text, maxWidth) {
       const words = text.split(' ');
@@ -77,33 +159,39 @@ export function ThanksForStoppingBy() {
       return lines;
     }
 
-    function drawCard(img) {
-      // Background
-      ctx.fillStyle = note.bgColor;
+    function drawCard(flowerImg) {
+      ctx.fillStyle = note.flower.bgColor;
       ctx.fillRect(0, 0, W, H);
 
-      const parts = note.interpolated.split('\n\n');
-      const greeting = parts[0];
-      const body = parts.slice(1).join('\n\n');
-
-      // Pre-compute fact lines at correct font so divider can be anchored from bottom
-      const FACT_LINE_H = Math.round(10 * 1.7); // 17px
-      const DIVIDER_MARGIN = 24; // var(--space-5), matches CSS margin: var(--space-5) 0 on divider
+      const FACT_LINE_H    = Math.round(10 * 1.7);
+      const DIVIDER_MARGIN = 24;
       ctx.font = `400 10px ${FONT}`;
-      const factLines = wrapText(note.funFact, W - PAD * 2);
+      const factLines  = wrapText(note.funFact, W - PAD * 2);
       const factBlockH = (1 + factLines.length) * FACT_LINE_H;
-      // Divider y: bottom of canvas minus bottom padding, minus fact block, minus divider margin-below
-      const dividerY = H - PAD - factBlockH - DIVIDER_MARGIN;
+      const dividerY   = H - PAD - factBlockH - DIVIDER_MARGIN;
 
       let y = PAD + 16;
 
-      // Greeting — 500 14px, lh 1.5
+      /* Greeting row — embed drawn name if available */
       ctx.fillStyle = TEXT;
       ctx.font = `500 14px ${FONT}`;
-      ctx.fillText(greeting, PAD, y);
-      y += Math.round(14 * 1.5) + 16; // greeting line-height advance + space-4 gap
+      const nc = nameCanvasRef.current;
+      if (hasDrawn && nc) {
+        const heyPart = 'Hey ';
+        ctx.fillText(heyPart, PAD, y);
+        const heyW = ctx.measureText(heyPart).width;
 
-      // Quote — 400 14px, lh 1.7
+        /* Scale name canvas to match text line height */
+        const nameDrawH = Math.round(14 * 1.5);
+        const nameDrawW = nameDrawH * (nc.width / nc.height);
+        ctx.drawImage(nc, PAD + heyW, y - nameDrawH + 2, nameDrawW, nameDrawH);
+        ctx.fillText(',', PAD + heyW + nameDrawW, y);
+      } else {
+        ctx.fillText('Hey _____,', PAD, y);
+      }
+      y += Math.round(14 * 1.5) + 16;
+
+      /* Body */
       ctx.font = `400 14px ${FONT}`;
       const quoteLines = wrapText(body, W - PAD * 2);
       for (const ln of quoteLines) {
@@ -111,78 +199,74 @@ export function ThanksForStoppingBy() {
         y += Math.round(14 * 1.7);
       }
 
-      // Sign row — margin-top: -12px
+      /* Sign row */
       y -= 12;
       const flower_y = y;
-
-      // Sign text — bottom-aligned with flower
       const nameBase = flower_y + FLOWER_SIZE - 4;
-      const preBase = nameBase - Math.round(14 * 1.4) - 6;
+      const preBase  = nameBase - Math.round(14 * 1.4) - 6;
       ctx.fillStyle = TEXT;
       ctx.font = `400 12px ${FONT}`;
       ctx.fillText('Thanks for stopping by,', PAD, preBase);
       ctx.font = `500 14px ${FONT}`;
       ctx.fillText('Lee Shan', PAD, nameBase);
 
-      // Flower image — object-fit: contain within FLOWER_SIZE × FLOWER_SIZE box
-      if (img) {
-        const nw = img.naturalWidth > 0 ? img.naturalWidth : FLOWER_SIZE;
-        const nh = img.naturalHeight > 0 ? img.naturalHeight : FLOWER_SIZE;
+      /* Flower */
+      if (flowerImg) {
+        const nw = flowerImg.naturalWidth  > 0 ? flowerImg.naturalWidth  : FLOWER_SIZE;
+        const nh = flowerImg.naturalHeight > 0 ? flowerImg.naturalHeight : FLOWER_SIZE;
         const scale = Math.min(FLOWER_SIZE / nw, FLOWER_SIZE / nh);
         const dw = nw * scale;
         const dh = nh * scale;
-        const dx = flower_x + (FLOWER_SIZE - dw) / 2;
-        const dy = flower_y + (FLOWER_SIZE - dh) / 2;
-        ctx.drawImage(img, dx, dy, dw, dh);
+        ctx.drawImage(flowerImg, flower_x + (FLOWER_SIZE - dw) / 2, flower_y + (FLOWER_SIZE - dh) / 2, dw, dh);
       }
 
-      // Flower label — bottom-right
-      // CSS: sunflower label has translateX(30%), shifting it 30% of its own width right
+      /* Flower label */
       ctx.fillStyle = SECONDARY;
       ctx.font = `400 10px ${FONT}`;
-      const label = getFlowerLabel(note.flower);
-      const lw = ctx.measureText(label).width;
+      const label  = getFlowerLabel(note.flower.svg);
+      const lw     = ctx.measureText(label).width;
       const labelX = flower_x + FLOWER_SIZE - lw + (isSunflower ? lw * 0.3 : 0);
       ctx.fillText(label, labelX, flower_y + FLOWER_SIZE - 2);
 
-      // Dashed divider — anchored from bottom so fun fact always sits at PAD from card edge
-      y = dividerY;
+      /* Dashed divider */
+      ctx.save();
       ctx.setLineDash([4, 4]);
       ctx.strokeStyle = SECONDARY;
-      ctx.lineWidth = 1;
+      ctx.lineWidth   = 1;
       ctx.globalAlpha = 0.5;
       ctx.beginPath();
-      ctx.moveTo(PAD, y);
-      ctx.lineTo(W - PAD, y);
+      ctx.moveTo(PAD, dividerY);
+      ctx.lineTo(W - PAD, dividerY);
       ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.globalAlpha = 1;
+      ctx.restore();
 
-      // Fun fact — 10px, using pre-computed factLines
-      y = dividerY + DIVIDER_MARGIN;
+      /* Fun fact */
+      let fy = dividerY + DIVIDER_MARGIN;
       ctx.fillStyle = SECONDARY;
       ctx.font = `400 10px ${FONT}`;
-      ctx.fillText('Fun fact:', PAD, y);
-      y += FACT_LINE_H;
+      ctx.fillText('Fun fact:', PAD, fy);
+      fy += FACT_LINE_H;
       for (const ln of factLines) {
-        ctx.fillText(ln, PAD, y);
-        y += FACT_LINE_H;
+        ctx.fillText(ln, PAD, fy);
+        fy += FACT_LINE_H;
       }
 
-      const a = document.createElement('a');
-      a.download = `${note.flower.replace('.svg', '')}-note-for-${trimmed.replace(/\s+/g, '-')}.png`;
-      a.href = canvas.toDataURL('image/png');
+      const a    = document.createElement('a');
+      a.download = `${note.flower.svg.replace('.svg', '')}-note.png`;
+      a.href     = canvas.toDataURL('image/png');
       a.click();
     }
 
-    // Wait for web fonts, then load flower image, then draw
     document.fonts.ready.then(() => {
-      const img = new Image();
-      img.src = `/assets/icons/${note.flower}`;
-      img.onload = () => drawCard(img);
+      const img   = new Image();
+      img.src     = `/assets/icons/${note.flower.svg}`;
+      img.onload  = () => drawCard(img);
       img.onerror = () => drawCard(null);
     });
   }
+
+  const parts = note.quote.split('\n\n');
+  const body  = parts.slice(1).join('\n\n');
 
   return (
     <section className="tfsby-section" aria-label="Thanks for stopping by">
@@ -215,145 +299,112 @@ export function ThanksForStoppingBy() {
           </h2>
         </motion.div>
 
-        <div className="tfsby-layout">
+        <motion.div
+          className="tfsby-card-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+        >
+          <div className="tfsby-card-wrap">
 
-          {/* Left: form */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-            className="tfsby-form"
-          >
-            <div className="tfsby-field">
-              <label htmlFor="tfsby-nickname" className="tfsby-label">Nickname</label>
-              <input
-                id="tfsby-nickname"
-                type="text"
-                className="tfsby-input"
-                placeholder="What should I call you?"
-                value={nickname}
-                maxLength={25}
-                onChange={e => setNickname(e.target.value)}
-                style={inputMaxWidth ? { maxWidth: inputMaxWidth } : undefined}
-              />
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={noteKey}
+                className="tfsby-card"
+                style={{ backgroundColor: note.flower.bgColor }}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+              >
+                <div className="tfsby-card__body">
+                  <div className="tfsby-card__note">
 
-            <div className="tfsby-field">
-              <span className="tfsby-label">Select your mood</span>
-              <div className="tfsby-moods" role="group" aria-label="Mood selection" ref={moodsRef}>
-                {flowerNotes.map((entry, i) => (
-                  <button
-                    key={entry.mood}
-                    type="button"
-                    className={`tfsby-pill${selectedMood === i ? ' tfsby-pill--active' : ''}`}
-                    onClick={() => setSelectedMood(prev => prev === i ? null : i)}
-                    aria-pressed={selectedMood === i}
-                  >
-                    {entry.mood}
-                  </button>
-                ))}
-              </div>
-            </div>
+                    {/* Greeting with drawable name slot */}
+                    <p className="tfsby-card__greeting">
+                      Hey{' '}
+                      <span className="tfsby-name-slot">
+                        <canvas
+                          ref={nameCanvasRef}
+                          className="tfsby-name-canvas"
+                          width={CANVAS_W}
+                          height={CANVAS_H}
+                          onMouseDown={startDraw}
+                          onMouseMove={draw}
+                          onMouseUp={endDraw}
+                          onMouseLeave={endDraw}
+                          onTouchStart={startDraw}
+                          onTouchMove={draw}
+                          onTouchEnd={endDraw}
+                          aria-label="Draw your name here"
+                          role="img"
+                        />
 
-            <motion.button
-              type="button"
-              className="btn btn--primary tfsby-cta"
-              onClick={handleGenerate}
-              disabled={!canGenerate}
-              whileHover={canGenerate ? { y: -2, boxShadow: '0 6px 20px rgba(37,36,34,0.18)' } : {}}
-              whileTap={canGenerate ? { scale: 0.97 } : {}}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-            >
-              Get my message
-            </motion.button>
-          </motion.div>
+                        <span className="tfsby-name-icons">
+                          {hasDrawn && (
+                            <button
+                              type="button"
+                              className="tfsby-erase-btn"
+                              onClick={() => {
+                                const canvas = nameCanvasRef.current;
+                                if (!canvas) return;
+                                canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+                                setHasDrawn(false);
+                              }}
+                              aria-label="Clear drawing"
+                            >
+                              <EraseIcon />
+                            </button>
+                          )}
+                        </span>
+                      </span>
+                      ,
+                    </p>
 
-          {/* Right: note card preview */}
-          <div className="tfsby-preview">
-            {note ? (
-              <div className="tfsby-card-wrap">
-                <motion.div
-                  key={note.mood + note.interpolated}
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.45, ease: 'easeOut' }}
-                  style={{ backgroundColor: note.bgColor }}
-                  className="tfsby-card"
-                  ref={cardRef}
-                >
-                  <div className="tfsby-card__body">
-                    <div className="tfsby-card__note">
-                      {(() => {
-                        const parts = note.interpolated.split('\n\n');
-                        const greeting = parts[0];
-                        const body = parts.slice(1).join('\n\n');
-                        return (
-                          <>
-                            <p className="tfsby-card__greeting">{greeting}</p>
-                            <p className="tfsby-card__quote">{body}</p>
-                          </>
-                        );
-                      })()}
+                    <p className="tfsby-card__quote">{body}</p>
 
-                      <div className="tfsby-card__sign">
-                        <div>
-                          <p className="tfsby-card__sign-pre">Thanks for stopping by,</p>
-                          <p className="tfsby-card__sign-name">Lee Shan</p>
-                        </div>
-                        <div className="tfsby-card__flower" data-flower={note.flower}>
-                          <img
-                            src={`/assets/icons/${note.flower}`}
-                            alt={getFlowerLabel(note.flower)}
-                            className="tfsby-card__flower-img"
-                          />
-                          <span className="tfsby-card__flower-label">{getFlowerLabel(note.flower)}</span>
-                        </div>
+                    <div className="tfsby-card__sign">
+                      <div>
+                        <p className="tfsby-card__sign-pre">Thanks for stopping by,</p>
+                        <p className="tfsby-card__sign-name">Lee Shan</p>
                       </div>
-                    </div>
-
-                    <div className="tfsby-card__divider" aria-hidden="true" />
-
-                    <div className="tfsby-card__fact">
-                      <span className="tfsby-card__fact-label">Fun fact:</span>
-                      <p className="tfsby-card__fact-body">{note.funFact}</p>
+                      <div className="tfsby-card__flower" data-flower={note.flower.svg}>
+                        <img
+                          src={`/assets/icons/${note.flower.svg}`}
+                          alt={getFlowerLabel(note.flower.svg)}
+                          className="tfsby-card__flower-img"
+                        />
+                        <span className="tfsby-card__flower-label">{getFlowerLabel(note.flower.svg)}</span>
+                      </div>
                     </div>
                   </div>
 
-                </motion.div>
 
-                <motion.div
-                  className="tfsby-actions"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, ease: 'easeOut', delay: 0.15 }}
-                >
-                  <button
-                    type="button"
-                    className="tfsby-save"
-                    onClick={handleSave}
-                  >
-                    Save as PNG
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                      <path d="M8 2v8m0 0L5 7m3 3 3-3M2 12h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-                </motion.div>
-              </div>
-            ) : (
-              <div className="tfsby-preview-empty" aria-hidden="true">
-                <img
-                  src="/assets/icons/flower-bouquet.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="tfsby-preview-empty__icon"
-                />
-                <span className="tfsby-preview-empty__hint">Get your message to see preview</span>
-              </div>
-            )}
+                  <div className="tfsby-card__divider" aria-hidden="true" />
+
+                  <div className="tfsby-card__fact">
+                    <span className="tfsby-card__fact-label">Fun fact:</span>
+                    <p className="tfsby-card__fact-body">{note.funFact}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="tfsby-actions">
+              <button type="button" className="tfsby-save" onClick={handleSave}>
+                Save as PNG
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 2v8m0 0L5 7m3 3 3-3M2 12h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button type="button" className="tfsby-reshuffle" onClick={handleShuffle}>
+                Generate another ↺
+              </button>
+            </div>
+
           </div>
-
-        </div>
+        </motion.div>
 
       </div>
     </section>

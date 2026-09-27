@@ -198,6 +198,23 @@ export default function CaseStudy1() {
                 This was a 0 → 1 design project done as part of the IterateUX Design Challenge 2024, where my team won first place. I led the team, managed the project timeline, and owned the full design process from research to prototype.
               </motion.p>
 
+              <motion.div
+                variants={reveal(0.32)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                style={{ marginTop: 'var(--space-5)' }}
+              >
+                <a
+                  href="https://www.figma.com/proto/eEtCkYxeqE8rm4YkItaNxp/Menocare?node-id=270-15491&viewport=534%2C1070%2C0.25&t=811aacUHHhmruHYZ-1&scaling=scale-down&content-scaling=fixed&page-id=270%3A14464&starting-point-node-id=270%3A15491"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary"
+                >
+                  Live prototype ↗
+                </a>
+              </motion.div>
+
             </section>
 
             {/* ── Background ── */}

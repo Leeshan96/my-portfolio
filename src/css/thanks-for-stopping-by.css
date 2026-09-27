@@ -36,10 +36,6 @@
   border-top: 1.5px dashed var(--color-border-primary);
 }
 
-.tfsby-inner {
-  /* layout handled by .content-wrap */
-}
-
 /* ── Heading block ── */
 .tfsby-heading-block {
   margin-bottom: var(--space-7);
@@ -74,152 +70,56 @@
   flex-shrink: 0;
 }
 
-/* ── Two-column layout: form left, preview right ── */
-.tfsby-layout {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: var(--space-10);
-  align-items: start;
+/* ── Single-column centred layout ── */
+.tfsby-card-center {
+  display: flex;
   justify-content: center;
 }
 
-/* ── Form (left column) ── */
-.tfsby-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-}
-
-/* ── Preview (right column) ── */
-.tfsby-preview {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Wrapper that keeps card + actions as one unit, sized together */
 .tfsby-card-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(380px, 100%);
+  width: min(400px, 100%);
+  padding-top: 0;
 }
 
-.tfsby-preview-empty {
-  width: min(380px, 100%);
-  aspect-ratio: 1 / 1;
-  background: var(--color-card-simba-roaming);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-}
-
-.tfsby-preview-empty__icon {
-  width: 48px;
-  height: 48px;
-  opacity: 0.3;
-}
-
-.tfsby-preview-empty__hint {
-  font: var(--text-body-2-regular);
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--color-text-secondary);
-  letter-spacing: 0.02em;
-  text-align: center;
-  padding: 0 var(--space-6);
-}
-
-.tfsby-field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.tfsby-label {
-  font: var(--text-body-2-medium);
-  color: var(--color-text-secondary);
-  letter-spacing: 0.02em;
-}
-
-.tfsby-input {
-  width: 100%;
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-border-primary);
-  border-radius: var(--radius-md);
-  font: var(--text-body-1-regular);
-  color: var(--color-text-primary);
-  background: var(--color-bg-primary);
-  letter-spacing: 0.02em;
-  box-shadow: none;
-  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
-  box-sizing: border-box;
-}
-
-.tfsby-input::placeholder {
-  color: var(--color-text-secondary);
-}
-
-.tfsby-input:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.tfsby-input:focus {
-  outline: none;
-  border-color: var(--color-text-primary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* ── Mood pills ── */
-.tfsby-moods {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.tfsby-pill {
-  padding: var(--space-1) var(--space-4);
-  border-radius: var(--radius-full);
-  border: 1.5px solid transparent;
-  background: var(--color-bg-secondary);
-  color: var(--color-text-secondary);
-  font: var(--text-body-2-regular);
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  box-shadow: none;
-  transition: border-color 0.2s ease-out, color 0.2s ease-out, background 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-
-.tfsby-pill:hover {
-  color: var(--color-text-primary);
-}
-
-
-.tfsby-pill--active {
-  background: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-text-primary);
-}
-
-/* ── CTA button ── */
-.tfsby-cta {
-  align-self: flex-start; /* keeps pill-width, left-aligned within cta-wrap */
-}
-
-.tfsby-cta:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* ── Note card — IBM Plex Mono scoped here ── */
+/* ── Skeuomorphic note card ── */
 .tfsby-card {
-  padding: var(--space-6);
+  position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.09),
+    0 8px 32px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   font-family: 'IBM Plex Mono', monospace;
+  transform: rotate(-1.2deg);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: default;
+}
+
+.tfsby-card:hover {
+  transform: rotate(0deg);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 8px 24px rgba(0, 0, 0, 0.11),
+    0 16px 40px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Tape pinned above the card */
+.tfsby-card__tape {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .tfsby-card__body {
@@ -243,6 +143,76 @@
   letter-spacing: 0.01em;
 }
 
+/* Inline name drawing slot */
+.tfsby-name-slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+/* The drawable canvas — transparent so paper texture shows through */
+.tfsby-name-canvas {
+  width: 200px;
+  height: 36px;
+  border-bottom: 1.5px solid var(--color-text-primary);
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M14 2L18 6 7 17H3v-4L14 2Z' stroke='%23252422' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") 0 20, crosshair;
+  touch-action: none;
+  display: block;
+  background: transparent;
+}
+
+/* Placeholder underscores — hidden once user has drawn */
+.tfsby-name-placeholder {
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  opacity: 0.45;
+  pointer-events: none;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+/* Icon group (pen + erase) — hidden until card is hovered */
+.tfsby-name-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.tfsby-card:hover .tfsby-name-icons {
+  opacity: 1;
+}
+
+.tfsby-pen-icon {
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.tfsby-erase-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease;
+  line-height: 1;
+}
+
+.tfsby-erase-btn:hover {
+  color: var(--color-text-primary);
+}
+
 .tfsby-card__quote {
   font-weight: 400;
   font-size: 14px;
@@ -252,7 +222,7 @@
   letter-spacing: 0.01em;
 }
 
-/* Sign-off row: text left, flower right */
+/* Sign-off row */
 .tfsby-card__sign {
   display: flex;
   justify-content: space-between;
@@ -342,36 +312,18 @@
   letter-spacing: 0.01em;
 }
 
-/* Actions block below card */
+/* ── Actions below card ── */
 .tfsby-actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
   width: 100%;
-  align-items: center;
-  margin-top: var(--space-4);
 }
 
-/* Gift row */
-.tfsby-gift-row {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-wrap: nowrap;
-}
-
-.tfsby-gift-label {
-  font: var(--text-body-2-regular);
-  color: var(--color-text-secondary);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-/* Save link */
-.tfsby-save {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
+/* Generate another */
+.tfsby-reshuffle {
   background: none;
   border: none;
   padding: 0;
@@ -383,34 +335,33 @@
   transition: color 0.2s ease-out;
 }
 
-.tfsby-save:hover {
+.tfsby-reshuffle:hover {
   color: var(--color-text-primary);
 }
 
+/* Save button — outline pill */
+.tfsby-save {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: 1.5px solid var(--color-text-primary);
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-5);
+  cursor: pointer;
+  font: var(--text-body-2-medium);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease-out, color 0.2s ease-out;
+}
+
+.tfsby-save:hover {
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+}
+
 /* ── Responsive ── */
-@media (max-width: 1024px) {
-  .tfsby-layout {
-    grid-template-columns: 1fr;
-    gap: var(--space-7);
-  }
-
-  .tfsby-input {
-    box-sizing: border-box;
-  }
-
-  .tfsby-preview {
-    width: 100%;
-  }
-
-}
-
-@media (max-width: 640px) {
-.tfsby-card__flower-img {
-    width: 96px;
-    height: 96px;
-  }
-}
-
 @media (max-width: 510px) {
   .tfsby-heading {
     font: var(--text-h3);
