@@ -291,13 +291,14 @@ export function ThanksForStoppingBy() {
                 alt=""
                 aria-hidden="true"
                 className="tfsby-bouquet-icon"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+                animate={{ y: [0, -10, 0], rotate: [0, 6, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
               />
               {' '}message just for you
             </span>
           </h2>
         </motion.div>
+
 
         <motion.div
           className="tfsby-card-center"
