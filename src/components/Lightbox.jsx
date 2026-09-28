@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -6,6 +6,17 @@ export function Lightbox({ src, alt, onClose, content }) {
   const closeRef = useRef(null);
   const previousFocusRef = useRef(null);
   const scrollLocked = useRef(false);
+  const [decoded, setDecoded] = useState(false);
+
+  /* Pre-decode image before animating to avoid pop-in lag */
+  useEffect(() => {
+    if (!src) { setDecoded(false); return; }
+    const img = new Image();
+    img.src = src;
+    img.decode()
+      .then(() => setDecoded(true))
+      .catch(() => setDecoded(true));
+  }, [src]);
 
   /* Scroll lock + focus management */
   const isOpen = !!(src || content);
@@ -70,7 +81,7 @@ export function Lightbox({ src, alt, onClose, content }) {
    */
   return ReactDOM.createPortal(
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && (decoded || !!content) && (
         <motion.div
           className="lightbox-overlay"
           role="dialog"
@@ -96,10 +107,10 @@ export function Lightbox({ src, alt, onClose, content }) {
           {content ? (
             <motion.div
               className="lightbox-content"
-              initial={{ scale: 0.88, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={(e) => e.stopPropagation()}
             >
               {content}
@@ -109,10 +120,10 @@ export function Lightbox({ src, alt, onClose, content }) {
               src={src}
               alt={alt}
               className="lightbox-image"
-              initial={{ scale: 0.88, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={(e) => e.stopPropagation()}
             />
           )}
