@@ -537,3 +537,110 @@
     display: none;
   }
 }
+
+/* ── Shared carousel (used by SimbaRoaming, Menocare, etc.) ── */
+.cs-video-carousel {
+  margin-top: var(--space-5);
+}
+
+.cs-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) 0 var(--space-3);
+}
+
+.cs-carousel__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.cs-carousel__chevron:hover:not(:disabled) {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-secondary);
+}
+
+.cs-carousel__chevron:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cs-carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-border-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.cs-carousel__dot--active {
+  background: var(--color-text-secondary);
+  transform: scale(1.3);
+}
+
+/* ── Inline image carousel (chevrons overlaid on image) ── */
+.cs-inline-carousel {
+  margin-top: var(--space-5);
+}
+
+
+.cs-inline-carousel__stage {
+  position: relative;
+  background: #F2F6FD;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cs-inline-carousel__stage img {
+  width: 100%;
+  display: block;
+}
+
+.cs-inline-carousel__chevron {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.cs-inline-carousel__chevron:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--color-border-primary);
+}
+
+.cs-inline-carousel__chevron--prev { left: var(--space-4); }
+.cs-inline-carousel__chevron--next { right: var(--space-4); }
+
+.cs-inline-carousel__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) 0 0;
+}

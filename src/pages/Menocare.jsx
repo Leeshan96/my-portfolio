@@ -13,6 +13,7 @@ const sections = [
   { id: 'mvp',             label: 'Determining the MVP' },
   { id: 'conceptualising', label: 'Conceptualising the Ideas' },
   { id: 'prototype',       label: 'Prototype & Testing' },
+  { id: 'solution',        label: 'Solution' },
   { id: 'impact',          label: 'Impact' },
   { id: 'learnings',       label: 'Learnings' },
 ];
@@ -81,11 +82,26 @@ const reveal = (delay = 0) => ({
 });
 
 /* ── Component ── */
+const FINAL_PROTO_IMAGES = [
+  { src: '/assets/images/menocare/Final-Prototype-AI.webp',              alt: 'Final prototype — AI assistance screen' },
+  { src: '/assets/images/menocare/Final-Prototype-Emergency alert.webp', alt: 'Final prototype — Emergency alert screen' },
+  { src: '/assets/images/menocare/Final-Prototype-Community.webp',       alt: 'Final prototype — Community screen' },
+  { src: '/assets/images/menocare/Final-Prototype-Find-doctor.webp',     alt: 'Final prototype — Find a doctor flow' },
+];
+
 export default function CaseStudy1() {
   const sectionIds = sections.map(s => s.id);
   const [activeId, scrollToSection] = useSidenav(sectionIds);
 
   const [lightbox, setLightbox] = useState({ src: null, alt: '' });
+  const [finalProtoIndex, setFinalProtoIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFinalProtoIndex(i => (i + 1) % FINAL_PROTO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
   const openLightbox = useCallback((src, alt) => setLightbox({ src, alt }), []);
   const closeLightbox = useCallback(() => setLightbox({ src: null, alt: '' }), []);
   const onLightboxKeyDown = useCallback((e, src, alt) => {
@@ -392,11 +408,11 @@ export default function CaseStudy1() {
 
               <motion.img
                 loading="lazy"
-                src="/assets/images/menocare/Competitor_Analysis_-_Book_consultation.webp"
+                src="/assets/images/menocare/Competitor_Analysis-Book_consultation.webp"
                 alt="Balance App book consultation flow analysis"
                 className="cs-image cs-image--no-shadow lightbox-trigger" tabIndex={0} role="button"
-                onClick={() => openLightbox('/assets/images/menocare/Competitor_Analysis_-_Book_consultation.webp', 'Balance App book consultation flow analysis')}
-                onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/menocare/Competitor_Analysis_-_Book_consultation.webp', 'Balance App book consultation flow analysis')}
+                onClick={() => openLightbox('/assets/images/menocare/Competitor_Analysis-Book_consultation.webp', 'Balance App book consultation flow analysis')}
+                onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/menocare/Competitor_Analysis-Book_consultation.webp', 'Balance App book consultation flow analysis')}
                 variants={reveal(0.18)}
                 initial="hidden"
                 whileInView="visible"
@@ -869,6 +885,77 @@ export default function CaseStudy1() {
               </motion.p>
 
             </section>
+
+            {/* ── Solution ── */}
+            <section id="solution" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">06</span> Solution
+              </motion.h2>
+
+              <motion.div
+                className="cs-inline-carousel"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <div className="cs-inline-carousel__stage">
+                  {FINAL_PROTO_IMAGES.map((img, i) => (
+                    <div key={i} style={{ display: finalProtoIndex === i ? 'block' : 'none' }}>
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="cs-image"
+                        style={{ cursor: 'zoom-in', borderRadius: 'var(--radius-lg)', margin: 0 }}
+                        tabIndex={0}
+                        role="button"
+                        onClick={() => openLightbox(img.src, img.alt)}
+                        onKeyDown={(e) => onLightboxKeyDown(e, img.src, img.alt)}
+                      />
+                    </div>
+                  ))}
+
+                  <button
+                    className="cs-inline-carousel__chevron cs-inline-carousel__chevron--prev"
+                    onClick={() => setFinalProtoIndex(i => (i - 1 + FINAL_PROTO_IMAGES.length) % FINAL_PROTO_IMAGES.length)}
+                    aria-label="Previous image"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+
+                  <button
+                    className="cs-inline-carousel__chevron cs-inline-carousel__chevron--next"
+                    onClick={() => setFinalProtoIndex(i => (i + 1) % FINAL_PROTO_IMAGES.length)}
+                    aria-label="Next image"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="cs-inline-carousel__dots">
+                  {FINAL_PROTO_IMAGES.map((img, i) => (
+                    <button
+                      key={i}
+                      className={`cs-carousel__dot${finalProtoIndex === i ? ' cs-carousel__dot--active' : ''}`}
+                      onClick={() => setFinalProtoIndex(i)}
+                      aria-label={img.alt}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+
+            </section>
             {/* ── Impact ── */}
             <section id="impact" className="cs-section">
 
@@ -879,7 +966,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">06</span> Impact
+                <span className="cs-section__num">07</span> Impact
               </motion.h2>
 
               <motion.h3
@@ -936,7 +1023,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">07</span> Learnings
+                <span className="cs-section__num">08</span> Learnings
               </motion.h2>
 
               <motion.p
