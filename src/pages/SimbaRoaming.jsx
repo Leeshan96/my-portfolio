@@ -94,6 +94,7 @@ export default function SimbaRoaming() {
 
   const [lightbox, setLightbox] = useState({ src: null, alt: '', content: null });
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [mobileBAIndex, setMobileBAIndex] = useState(0);
   const [videoCarouselIndex, setVideoCarouselIndex] = useState(0);
   const [expandingIndex, setExpandingIndex] = useState(0);
 
@@ -106,6 +107,13 @@ export default function SimbaRoaming() {
     const timer = setInterval(() => {
       setExpandingIndex(i => (i + 1) % EXPANDING_IMAGES.length);
     }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setMobileBAIndex(i => (i + 1) % 2);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -265,7 +273,7 @@ export default function SimbaRoaming() {
               </motion.p>
 
               <motion.div
-                className="cs-before-after lightbox-trigger"
+                className="cs-before-after lightbox-trigger cs-before-after--desktop-only"
                 variants={reveal(0.1)}
                 initial="hidden"
                 whileInView="visible"
@@ -322,7 +330,62 @@ export default function SimbaRoaming() {
                   />
                 </figure>
               </motion.div>
-              <p className="cs-image-caption">Before and after the redesign <em>(scroll me)</em></p>
+              <p className="cs-image-caption cs-before-after--desktop-only">Before and after the redesign <em>(scroll me)</em></p>
+
+              {/* Mobile-only before/after carousel */}
+              <div className="cs-before-after--mobile-only">
+                <div className="cs-inline-carousel__stage">
+                  {/* Before — contained, fixed height */}
+                  <div style={{ display: mobileBAIndex === 0 ? 'flex' : 'none', height: '404px', alignItems: 'center', justifyContent: 'center' }}>
+                    <img
+                      src="/assets/images/roaming/Roaming-before.webp"
+                      alt="Roaming page — before redesign"
+                      loading="lazy"
+                      style={{ width: 'auto', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
+                    />
+                  </div>
+                  {/* After — scrollable, same fixed height */}
+                  <div style={{ display: mobileBAIndex === 1 ? 'block' : 'none', maxHeight: '404px', overflowY: 'auto', padding: 'var(--space-5) 0' }}>
+                    <img
+                      src="/assets/images/roaming/Roaming-after.webp"
+                      alt="Roaming page — after redesign"
+                      loading="lazy"
+                      style={{ width: '80%', margin: '0 auto', display: 'block' }}
+                    />
+                  </div>
+                  <button
+                    className="cs-inline-carousel__chevron cs-inline-carousel__chevron--prev"
+                    onClick={() => setMobileBAIndex(i => (i - 1 + 2) % 2)}
+                    aria-label="Before"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <button
+                    className="cs-inline-carousel__chevron cs-inline-carousel__chevron--next"
+                    onClick={() => setMobileBAIndex(i => (i + 1) % 2)}
+                    aria-label="After"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div className="cs-inline-carousel__dots">
+                  {['Before', 'After'].map((label, i) => (
+                    <button
+                      key={i}
+                      className={`cs-carousel__dot${mobileBAIndex === i ? ' cs-carousel__dot--active' : ''}`}
+                      onClick={() => setMobileBAIndex(i)}
+                      aria-label={label}
+                    />
+                  ))}
+                </div>
+                <p className="cs-image-caption" style={{ marginTop: 'var(--space-2)' }}>
+                  {mobileBAIndex === 0 ? 'Before' : 'After'} — Before and after the redesign
+                </p>
+              </div>
 
               <motion.div
                 className="cs-goals-grid"

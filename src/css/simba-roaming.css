@@ -468,3 +468,11 @@
   width: 100%;
   display: block;
 }
+
+/* ── Before/after mobile carousel ── */
+.cs-before-after--mobile-only { display: none; }
+
+@media (max-width: 640px) {
+  .cs-before-after--desktop-only { display: none !important; }
+  .cs-before-after--mobile-only  { display: block; }
+}
