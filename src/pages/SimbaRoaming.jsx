@@ -16,6 +16,7 @@ const sections = [
   { id: 'exploration',       label: 'Design Explorations' },
   { id: 'solution',          label: 'User Testing' },
   { id: 'expanding-scope',   label: 'Expanding Scope' },
+  { id: 'final-prototype',   label: 'Final Prototype' },
   { id: 'working-with-devs', label: 'Working with Developers' },
   { id: 'next-steps',        label: 'Next Steps' },
   { id: 'learnings',         label: 'Learnings' },
@@ -94,6 +95,19 @@ export default function SimbaRoaming() {
   const [lightbox, setLightbox] = useState({ src: null, alt: '', content: null });
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [videoCarouselIndex, setVideoCarouselIndex] = useState(0);
+  const [expandingIndex, setExpandingIndex] = useState(0);
+
+  const EXPANDING_IMAGES = [
+    { src: '/assets/images/roaming/Modal.webp',                   alt: 'Before — SIMBA roaming modal showing Malaysia plan details' },
+    { src: '/assets/images/roaming/south-korea-country-page.webp', alt: 'After — dedicated South Korea country page with full roaming details' },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setExpandingIndex(i => (i + 1) % EXPANDING_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const openLightbox = useCallback((src, alt) => setLightbox({ src, alt, content: null }), []);
   const openLightboxContent = useCallback((content) => setLightbox({ src: null, alt: '', content }), []);
@@ -363,7 +377,6 @@ export default function SimbaRoaming() {
                 <li>Volume of roaming-related support tickets</li>
                 <li>Roaming page → Mobile plans page drop-off rate</li>
                 <li>Bounce rate on the roaming page</li>
-                <li>Organic search impressions and clicks for country-specific queries</li>
                 <li>Wallet top-up rate among existing users</li>
               </motion.ul>
 
@@ -812,7 +825,7 @@ export default function SimbaRoaming() {
               </motion.p>
 
               <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)' }}>
-                Modal vs Indexable country pages <em>(scroll me)</em>
+                Modal vs Indexable country pages
               </p>
 
               <motion.div
@@ -822,19 +835,16 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                <div className="cs-expanding-comparison--static" style={{ display: carouselIndex === 0 ? 'flex' : 'none' }}>
+                <div className="cs-expanding-comparison--static" style={{ display: expandingIndex === 0 ? 'flex' : 'none' }}>
                   <img src="/assets/images/roaming/Modal.webp" alt="Before — SIMBA roaming modal showing Malaysia plan details" />
                 </div>
-                <div className="cs-expanding-comparison--scroll" style={{ display: carouselIndex === 1 ? 'block' : 'none' }}>
+                <div className="cs-expanding-comparison--scroll" style={{ display: expandingIndex === 1 ? 'block' : 'none' }}>
                   <img src="/assets/images/roaming/south-korea-country-page.webp" alt="After — dedicated South Korea country page with full roaming details" />
                 </div>
-              </motion.div>
 
-              <div className="cs-carousel__controls">
                 <button
-                  className="cs-carousel__chevron"
-                  onClick={() => setCarouselIndex(i => Math.max(0, i - 1))}
-                  disabled={carouselIndex === 0}
+                  className="cs-inline-carousel__chevron cs-inline-carousel__chevron--prev"
+                  onClick={() => setExpandingIndex(i => (i - 1 + EXPANDING_IMAGES.length) % EXPANDING_IMAGES.length)}
                   aria-label="Previous image"
                 >
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -842,26 +852,67 @@ export default function SimbaRoaming() {
                   </svg>
                 </button>
 
-                {['Before: Modal', 'After: Country page'].map((label, i) => (
-                  <button
-                    key={i}
-                    className={`cs-carousel__dot${carouselIndex === i ? ' cs-carousel__dot--active' : ''}`}
-                    onClick={() => setCarouselIndex(i)}
-                    aria-label={label}
-                  />
-                ))}
-
                 <button
-                  className="cs-carousel__chevron"
-                  onClick={() => setCarouselIndex(i => Math.min(1, i + 1))}
-                  disabled={carouselIndex === 1}
+                  className="cs-inline-carousel__chevron cs-inline-carousel__chevron--next"
+                  onClick={() => setExpandingIndex(i => (i + 1) % EXPANDING_IMAGES.length)}
                   aria-label="Next image"
                 >
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                     <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
+              </motion.div>
+
+              <div className="cs-inline-carousel__dots">
+                {['Before: Modal', 'After: Country page'].map((label, i) => (
+                  <button
+                    key={i}
+                    className={`cs-carousel__dot${expandingIndex === i ? ' cs-carousel__dot--active' : ''}`}
+                    onClick={() => setExpandingIndex(i)}
+                    aria-label={label}
+                  />
+                ))}
               </div>
+
+            </section>
+
+            {/* ── Final Prototype ── */}
+            <section id="final-prototype" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">08</span> Final Prototype
+              </motion.h2>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                style={{ borderRadius: '12px', overflow: 'hidden' }}
+              >
+                <div className="proto-browser__chrome" style={{ borderRadius: '12px 12px 0 0' }}>
+                  <div className="proto-browser__dots">
+                    <span className="proto-browser__dot proto-browser__dot--red" />
+                    <span className="proto-browser__dot proto-browser__dot--yellow" />
+                    <span className="proto-browser__dot proto-browser__dot--green" />
+                  </div>
+                  <div className="proto-browser__url">roaming.vercel.app</div>
+                </div>
+                <video
+                  src="/assets/videos/simba-roaming/roaming-final-prototype.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: '100%', display: 'block', borderLeft: '1px solid #f0f0f0', borderRight: '1px solid #f0f0f0', borderBottom: '1px solid #f0f0f0', borderRadius: '0 0 12px 12px' }}
+                />
+              </motion.div>
 
             </section>
 
@@ -875,7 +926,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">08</span> Working with Developers
+                <span className="cs-section__num">09</span> Working with Developers
               </motion.h2>
 
               <motion.h3
@@ -931,7 +982,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">09</span> Next Steps
+                <span className="cs-section__num">10</span> Next Steps
               </motion.h2>
 
               <motion.ol
@@ -964,7 +1015,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">10</span> Learnings
+                <span className="cs-section__num">11</span> Learnings
               </motion.h2>
 
               <motion.div
