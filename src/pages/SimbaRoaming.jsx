@@ -10,14 +10,14 @@ import '../css/simba-roaming.css';
 /* ── Sidenav sections ── */
 const sections = [
   { id: 'background',        label: 'Background' },
-  { id: 'impact',            label: 'Impact' },
   { id: 'research',          label: 'Discovery' },
   { id: 'problem',           label: 'Reframing the Problem' },
   { id: 'exploration',       label: 'Design Explorations' },
   { id: 'solution',          label: 'User Testing' },
   { id: 'expanding-scope',   label: 'Expanding Scope' },
   { id: 'final-prototype',   label: 'Final Prototype' },
-  { id: 'working-with-devs', label: 'Working with Developers' },
+  { id: 'working-with-devs', label: 'Building for Handoff' },
+  { id: 'impact',            label: 'Measuring Success' },
   { id: 'next-steps',        label: 'Next Steps' },
   { id: 'learnings',         label: 'Learnings' },
 ];
@@ -400,48 +400,13 @@ export default function SimbaRoaming() {
                 </div>
                 <div className="cs-goals-card">
                   <span className="cs-goals-card__label">Business Goals:</span>
-                  <p className="cs-goals-card__body">Reduce support tickets for basic roaming enquiries, increase roaming page discoverability through SEO, and improve conversion from roaming page to purchase.</p>
+                  <ul className="cs-goals-card__body cs-callout__list">
+                    <li>Reduce roaming-related support tickets by 20%</li>
+                    <li>Improve roaming page → mobile plan purchase conversion rate by 15%</li>
+                    <li>Increase roaming page discoverability through SEO</li>
+                  </ul>
                 </div>
               </motion.div>
-
-            </section>
-
-            {/* ── Impact ── */}
-            <section id="impact" className="cs-section">
-
-              <motion.h2
-                className="cs-section__heading"
-                variants={reveal(0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                <span className="cs-section__num">02</span> Impact
-              </motion.h2>
-
-              <motion.p
-                className="cs-body"
-                style={{ marginTop: 'var(--space-6)' }}
-                variants={reveal(0.08)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                The following metrics are being tracked for post-launch:
-              </motion.p>
-
-              <motion.ul
-                className="cs-list"
-                variants={reveal(0.1)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                <li>Volume of roaming-related support tickets</li>
-                <li>Roaming page → Mobile plans page drop-off rate</li>
-                <li>Bounce rate on the roaming page</li>
-                <li>Wallet top-up rate among existing users</li>
-              </motion.ul>
 
             </section>
 
@@ -740,7 +705,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                I conducted in-person moderated testing with 4 users and showed them the design for feedback.
+                I conducted in-person moderated testing with 4 users, a mix of existing SIMBA customers and first-time visitors.
               </motion.p>
 
               <motion.h3
@@ -782,7 +747,7 @@ export default function SimbaRoaming() {
                 </div>
                 <div className="ut-card">
                   <span className="ut-card__num">3</span>
-                  <p className="ut-card__body">Users liked the mobile data allowance chart as it was clear how deductions worked.</p>
+                  <p className="ut-card__body">Information was clearly displayed in the roaming data table.</p>
                 </div>
                 <div className="ut-card">
                   <span className="ut-card__num">4</span>
@@ -989,7 +954,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">09</span> Working with Developers
+                <span className="cs-section__num">09</span> Building for Handoff
               </motion.h2>
 
               <motion.h3
@@ -1030,8 +995,46 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to</strong>, so the developer could review and integrate the code directly, instead of having to rebuild it in the right stack first.
+                <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Since I was building the new pages myself in Claude Code, I made sure they were built in Next.js, the same framework the site had moved to</strong>, so the developer could review and integrate the code directly, instead of having to rebuild it in the right stack first. <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>I pushed to Git, where the developer, a collaborator of the repository, pulled the latest updates for implementation.</strong>
               </motion.p>
+
+            </section>
+
+            {/* ── Measuring Success ── */}
+            <section id="impact" className="cs-section">
+
+              <motion.h2
+                className="cs-section__heading"
+                variants={reveal(0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-section__num">10</span> Measuring Success
+              </motion.h2>
+
+              <motion.p
+                className="cs-body"
+                style={{ marginTop: 'var(--space-6)' }}
+                variants={reveal(0.08)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                The following metrics are being tracked for post-launch:
+              </motion.p>
+
+              <motion.ul
+                className="cs-list"
+                variants={reveal(0.1)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <li>Volume of roaming-related support tickets — Target: ↓20%</li>
+                <li>Roaming page → mobile plan purchase conversion rate — Target: ↑15%</li>
+                <li>Bounce rate on the roaming page</li>
+              </motion.ul>
 
             </section>
 
@@ -1045,7 +1048,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">10</span> Next Steps
+                <span className="cs-section__num">11</span> Next Steps
               </motion.h2>
 
               <motion.ol
@@ -1056,13 +1059,13 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.15 }}
               >
                 <li>
-                  The code has been pushed to Git, where the developer, added as a collaborator on the repository, pulls the latest updates for implementation.
+                  Our stats showed that only 16.4% of users were reaching the roaming page through existing site navigation, which will inform the next phase of work.
+                </li>
+                <li>
+                  Continue iterating on individual country pages, with further stakeholder alignment underway.
                 </li>
                 <li>
                   To extend this beyond my own workflow, I'm sharing knowledge to help the rest of the team use Claude Code and Git effectively, so everyone can build directly in the codebase.
-                </li>
-                <li>
-                  Post-launch metrics tracking is underway (see <a href="#impact" className="cs-inline-link">Impact</a> section)
                 </li>
               </motion.ol>
 
@@ -1078,7 +1081,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">11</span> Learnings
+                <span className="cs-section__num">12</span> Learnings
               </motion.h2>
 
               <motion.div
