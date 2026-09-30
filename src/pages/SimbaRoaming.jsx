@@ -929,7 +929,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. I worked with the developers to move the roaming pages to server-side rendering, <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>migrating the build from React to Next.js</strong> so the HTML that rendered was actually visible to crawlers.
+                Restructuring into individual country pages solved the indexability problem structurally, but the site was still client-side rendered, so search engines only saw an empty shell rather than the actual content. To fix this constraint, I worked with the developers to move the roaming pages to server-side rendering, <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>migrating the build from React to Next.js</strong> so the HTML that rendered was actually visible to crawlers.
               </motion.p>
 
               <motion.h3
