@@ -95,7 +95,6 @@ export default function SimbaRoaming() {
   const [lightbox, setLightbox] = useState({ src: null, alt: '', content: null });
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [mobileBAIndex, setMobileBAIndex] = useState(0);
-  const [videoCarouselIndex, setVideoCarouselIndex] = useState(0);
   const [expandingIndex, setExpandingIndex] = useState(0);
 
   const EXPANDING_IMAGES = [
@@ -618,69 +617,25 @@ export default function SimbaRoaming() {
                 Surfacing the top 12 destinations upfront reduces our users' cognitive load by focusing on the countries they actually travel to. After choosing the destinations, users will see the plans and roaming groups available, making it a <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>destination-based search rather than plan-based search</strong>.
               </motion.p>
 
-              <motion.div
-                className="cs-video-carousel"
+              <motion.figure
+                className="cs-figure-captioned"
                 variants={reveal(0.22)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                <div style={{ display: videoCarouselIndex === 0 ? 'block' : 'none' }}>
-                  <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)', marginTop: 0 }}>Modal Ver 1 — users see roaming details</p>
-                  <video
-                    src="/assets/videos/simba-roaming/modal-ver-1.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-label="Design exploration — Top 12 destinations, version 1"
-                  />
-                </div>
-                <div style={{ display: videoCarouselIndex === 1 ? 'block' : 'none' }}>
-                  <p className="cs-image-caption" style={{ marginBottom: 'var(--space-3)', marginTop: 0 }}>Modal Ver 2 — stronger CTA to directly buy plans</p>
-                  <video
-                    src="/assets/videos/simba-roaming/modal-ver-2.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-label="Design exploration — Top 12 destinations, version 2"
-                  />
-                </div>
-              </motion.div>
-
-              <div className="cs-carousel__controls">
-                <button
-                  className="cs-carousel__chevron"
-                  onClick={() => setVideoCarouselIndex(i => Math.max(0, i - 1))}
-                  disabled={videoCarouselIndex === 0}
-                  aria-label="Previous video"
-                >
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-
-                {['Version 1', 'Version 2'].map((label, i) => (
-                  <button
-                    key={i}
-                    className={`cs-carousel__dot${videoCarouselIndex === i ? ' cs-carousel__dot--active' : ''}`}
-                    onClick={() => setVideoCarouselIndex(i)}
-                    aria-label={label}
-                  />
-                ))}
-
-                <button
-                  className="cs-carousel__chevron"
-                  onClick={() => setVideoCarouselIndex(i => Math.min(1, i + 1))}
-                  disabled={videoCarouselIndex === 1}
-                  aria-label="Next video"
-                >
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
+                <img
+                  src="/assets/images/roaming/Design-exploration-1.webp"
+                  alt="Design exploration — Modal Ver 1 and Ver 2 comparison"
+                  className="cs-image cs-image--no-shadow lightbox-trigger"
+                  loading="lazy"
+                  tabIndex={0}
+                  role="button"
+                  onClick={() => openLightbox('/assets/images/roaming/Design-exploration-1.webp', 'Design exploration — Modal Ver 1 and Ver 2 comparison')}
+                  onKeyDown={(e) => onLightboxKeyDown(e, '/assets/images/roaming/Design-exploration-1.webp', 'Design exploration — Modal Ver 1 and Ver 2 comparison')}
+                />
+                <figcaption className="cs-image-caption">Modal Ver 1 vs Ver 2</figcaption>
+              </motion.figure>
 
 
             </section>
