@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { PageWrapper } from '../components/PageWrapper';
 import { Lightbox } from '../components/Lightbox';
 import { ProjectNav } from '../components/ProjectNav';
@@ -110,6 +111,10 @@ export default function CaseStudy1() {
 
   return (
     <PageWrapper>
+      <Helmet>
+        <title>Menocare — Lian Lee Shan</title>
+        <meta name="description" content="Case study: designing Menocare, a menopause support app — winner of a 2023 design challenge. Research, ideation, and interaction design." />
+      </Helmet>
       <main id="main-content">
 
         {/* ── Title ── */}

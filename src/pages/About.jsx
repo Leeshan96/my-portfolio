@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { PageWrapper } from '../components/PageWrapper';
 import '../css/about.css';
 
@@ -188,6 +189,10 @@ const craftImages = [
 export default function About() {
   return (
     <PageWrapper>
+      <Helmet>
+        <title>About — Lian Lee Shan</title>
+        <meta name="description" content="Product designer based in Singapore. Currently at SIMBA Telecom, designing for people, systems, and constraints." />
+      </Helmet>
       <main>
 
         {/* ── Hero / Intro ── */}

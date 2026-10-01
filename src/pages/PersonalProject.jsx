@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { PageWrapper } from '../components/PageWrapper';
 import { ProjectNav } from '../components/ProjectNav';
 import '../css/case-study.css';
@@ -92,6 +93,10 @@ export default function PersonalProject() {
 
   return (
     <PageWrapper>
+      <Helmet>
+        <title>Currently App — Lian Lee Shan</title>
+        <meta name="description" content="Side project: designing Currently, a daily status app built with Lovable. Concept, UX, and visual design." />
+      </Helmet>
       <main id="main-content">
 
         {/* ── Title ── */}

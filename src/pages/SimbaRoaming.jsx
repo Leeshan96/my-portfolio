@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { PageWrapper } from '../components/PageWrapper';
 import { Lightbox } from '../components/Lightbox';
 import { ProjectNav } from '../components/ProjectNav';
@@ -125,6 +126,10 @@ export default function SimbaRoaming() {
 
   return (
     <PageWrapper>
+      <Helmet>
+        <title>SIMBA Roaming Page — Lian Lee Shan</title>
+        <meta name="description" content="Case study: redesigning SIMBA Telecom's data roaming page to improve clarity, conversion, and SEO — from discovery through handoff." />
+      </Helmet>
       <main id="main-content">
 
         {/* ── Title ── */}

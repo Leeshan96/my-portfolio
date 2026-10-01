@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { PageWrapper } from '../components/PageWrapper';
 import { Lightbox } from '../components/Lightbox';
 import { ProjectNav } from '../components/ProjectNav';
@@ -97,6 +98,10 @@ export default function SimbaDesignSystem() {
 
   return (
     <PageWrapper>
+      <Helmet>
+        <title>SIMBA Design System — Lian Lee Shan</title>
+        <meta name="description" content="Case study: building a scalable design system for SIMBA Telecom — components, tokens, and documentation to align design and engineering." />
+      </Helmet>
       <main id="main-content">
 
         {/* ── Title ── */}

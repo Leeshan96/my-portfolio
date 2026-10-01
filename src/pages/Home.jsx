@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 const getPrefersReducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -219,6 +220,10 @@ export default function Home() {
 
   return (
     <PageWrapper>
+      <Helmet>
+        <title>Lian Lee Shan — Product Designer</title>
+        <meta name="description" content="Product designer based in Singapore who solves complex problems. Thinking people, systems, and constraints before pixels." />
+      </Helmet>
       <main className="page-home">
 
         {/* ── Hero ── */}
