@@ -218,7 +218,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                SIMBA's roaming page was confusing users. They couldn't tell how roaming charges worked or how to top up when more data was needed, which increased support tickets and sales enquiries. I redesigned the page to make charges and top-up options clear at a glance. The goal was to reduce roaming related support tickets and transform confusion into conversion.
+                Data roaming is SIMBA's Unique Selling Point (USP) in a crowded telco market. A confusing roaming page meant users couldn't understand what they were getting, leading to lost conversions and increased support tickets and sales enquiries. I redesigned the page so users could understand their coverage, costs, and next steps without friction.
               </motion.p>
               <motion.p
                 className="cs-overview__body"
@@ -227,7 +227,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                I was the sole designer, from research through to build, where I handed off the code to the developer. I also worked cross-functionally, presenting research findings to stakeholders and aligning marketing around a shared design direction.
+                I was the sole designer, from research through to build, where I handed off the code to the developer. I also worked cross-functionally, engaging stakeholders throughout the process to build alignment on the design direction.
               </motion.p>
 
               <motion.div
