@@ -1048,13 +1048,13 @@ export default function SimbaRoaming() {
               >
                 <div className="ut-card">
                   <span className="ut-card__num">1</span>
-                  <p className="ut-card__title">Using Research to Align Stakeholder Goals</p>
-                  <p className="ut-card__body">By understanding different stakeholder's perspectives, I was able to view different priorities not as conflicting goals, but rather find solutions to work together. In this case, I managed to align stakeholder goals through user research data.</p>
+                  <p className="ut-card__title">User Testing Surfaces Blind Spots</p>
+                  <p className="ut-card__body">Being close to the product made me assume that buying a mobile plan for roaming data was intuitive, but user testing revealed the opposite. This reinforced the idea that <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>assumptions formed through product familiarity need to be tested.</strong></p>
                 </div>
                 <div className="ut-card">
                   <span className="ut-card__num">2</span>
-                  <p className="ut-card__title">Mental Models Matter</p>
-                  <p className="ut-card__body">Users expect standalone roaming plans (industry norm). SIMBA requires a mobile line first. Instead of expecting behavioural change, I designed clear communication to align user expectations with SIMBA's service model.</p>
+                  <p className="ut-card__title">Technical Constraints Shape Design Outcomes</p>
+                  <p className="ut-card__body">Without fixing the technical constraint, the redesign wouldn't achieve its SEO goal. Working closely with the developer pushed me beyond my comfort zone to understand new technical terms. It taught me that design solutions sometimes require <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>understanding constraints that sit outside of design.</strong></p>
                 </div>
               </motion.div>
 

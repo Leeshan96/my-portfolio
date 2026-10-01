@@ -1039,7 +1039,7 @@ export default function CaseStudy1() {
                   }}
                 >
                   <span className="cs-stat-card__stat">1</span>
-                  <p className="cs-stat-card__body--rich"><strong>User attitudes</strong> Women from diverse cultures were guarded about discussing sexual health, reinforcing how sensitive the topic is. Making them feel safe and seen was a priority.</p>
+                  <p className="cs-stat-card__body--rich"><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>User attitudes</strong> — Women from diverse cultures were guarded about discussing sexual health, reinforcing how sensitive the topic is. Making them feel safe and seen was a priority.</p>
                 </motion.div>
 
                 <motion.div
@@ -1050,7 +1050,7 @@ export default function CaseStudy1() {
                   }}
                 >
                   <span className="cs-stat-card__stat">2</span>
-                  <p className="cs-stat-card__body--rich"><strong>Designing for target audience</strong> We initially overlooked that our users were women 40+, many not tech-savvy — a gap our first usability testing quickly exposed.</p>
+                  <p className="cs-stat-card__body--rich"><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Designing for target audience</strong> — We initially overlooked that our users were women 40+, many not tech-savvy — a gap our first usability testing quickly exposed.</p>
                 </motion.div>
 
                 <motion.div
@@ -1061,7 +1061,7 @@ export default function CaseStudy1() {
                   }}
                 >
                   <span className="cs-stat-card__stat">3</span>
-                  <p className="cs-stat-card__body--rich"><strong>Personal growth</strong> This challenge sharpened my ability to translate research into inclusive design, collaborate under pressure, and advocate for users in overlooked spaces.</p>
+                  <p className="cs-stat-card__body--rich"><strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Personal growth</strong> — This challenge sharpened my ability to translate research into inclusive design, collaborate under pressure, and advocate for users in overlooked spaces.</p>
                 </motion.div>
               </motion.div>
 
