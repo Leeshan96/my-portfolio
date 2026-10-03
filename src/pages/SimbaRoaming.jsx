@@ -1001,7 +1001,7 @@ export default function SimbaRoaming() {
                   <p className="ut-card__body">
                     <span style={{ color: 'var(--color-text-primary)' }}>Target: ↓20% | Actual: ↓22.4%</span>
                     <br /><br />
-                    <em style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6, fontStyle: 'italic' }}>Tracked the two enquiry types the redesign targeted: data and coverage questions.</em>
+                    <em style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6, fontStyle: 'italic' }}>Tracked the two enquiry types the redesign targeted: data and coverage enquiries.</em>
                   </p>
                 </div>
                 <div className="ut-card">
