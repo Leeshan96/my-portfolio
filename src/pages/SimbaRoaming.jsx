@@ -178,7 +178,7 @@ export default function SimbaRoaming() {
 
               {/* ── Metadata row ── */}
               <motion.div
-                className="cs-meta"
+                className="cs-meta cs-meta--no-divider"
                 variants={reveal(0)}
                 initial="hidden"
                 whileInView="visible"
@@ -214,8 +214,11 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-result-stat__value">↓22.4%</span>
-                <span className="cs-result-stat__label">Roaming support tickets</span>
+                <span className="cs-result-stat__eyebrow">Key Results</span>
+                <div className="cs-result-stat__row">
+                  <span className="cs-result-stat__label">Roaming support tickets (Data + Coverage):</span>
+                  <span className="cs-result-stat__value">↓22.4%</span>
+                </div>
               </motion.div>
 
               <motion.p
@@ -992,7 +995,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                The following metrics are being tracked for post-launch:
+                The following metrics are being tracked:
               </motion.p>
 
               <motion.ul
@@ -1003,8 +1006,7 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.15 }}
               >
                 <li>Roaming support tickets (no-data + coverage enquiries): <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Target: ↓20% | Actual: ↓22.4%</strong></li>
-                <li>Roaming page → mobile plan purchase conversion rate — Target: ↑15%</li>
-                <li>Bounce rate on the roaming page</li>
+                <li>Roaming page → mobile plan purchase conversion rate: Target: ↑15% (in-progress)</li>
               </motion.ul>
 
             </section>

@@ -358,23 +358,40 @@
   }
 }
 
+/* ── Remove metadata divider — results card replaces it ── */
+.cs-meta--no-divider {
+  border-bottom: none;
+}
+
 /* ── Result stat callout ── */
 .cs-result-stat {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  padding: var(--space-6) 0;
-  border-top: 1px solid var(--color-border-primary);
-  border-bottom: 1px solid var(--color-border-primary);
-  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  margin: var(--space-5) 0;
+}
+
+.cs-result-stat__eyebrow {
+  font: var(--text-body-2-medium);
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.cs-result-stat__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
 }
 
 .cs-result-stat__value {
-  font: var(--text-h1);
-  font-size: 56px;
+  font: var(--text-body-1-medium);
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
-  line-height: 1;
+  letter-spacing: 0.02em;
 }
 
 .cs-result-stat__label {
