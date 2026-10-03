@@ -18,7 +18,7 @@ const sections = [
   { id: 'expanding-scope',   label: 'Expanding Scope' },
   { id: 'final-prototype',   label: 'Final Prototype' },
   { id: 'working-with-devs', label: 'Building for Handoff' },
-  { id: 'impact',            label: 'Measuring Success' },
+  { id: 'impact',            label: 'Impact' },
   { id: 'next-steps',        label: 'Next Steps' },
   { id: 'learnings',         label: 'Learnings' },
 ];
@@ -970,7 +970,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <span className="cs-section__num">10</span> Measuring Success
+                <span className="cs-section__num">10</span> Impact
               </motion.h2>
 
               <motion.p
@@ -991,7 +991,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <li>Volume of roaming-related support tickets — Target: ↓20%</li>
+                <li>Volume of roaming-related support tickets — <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Target: ↓20% | Actual: ↓22.4%</strong></li>
                 <li>Roaming page → mobile plan purchase conversion rate — Target: ↑15%</li>
                 <li>Bounce rate on the roaming page</li>
               </motion.ul>
