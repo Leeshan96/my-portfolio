@@ -358,13 +358,22 @@
   }
 }
 
-/* ── Impact cards — override ut-card typography to body-1 ── */
+/* ── Impact cards — override ut-card typography to body-1, goals-style bg ── */
 #impact .ut-card__title {
   font: var(--text-body-1-medium);
 }
 
 #impact .ut-card__body {
   font: var(--text-body-1-regular);
+}
+
+#impact .ut-card {
+  background: var(--color-bg-secondary);
+  border: none;
+}
+
+#impact .ut-cards {
+  grid-template-columns: 1fr;
 }
 
 /* ── Impact metric block ── */

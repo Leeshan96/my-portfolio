@@ -996,16 +996,14 @@ export default function SimbaRoaming() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 <div className="ut-card">
-                  <span className="ut-card__num">1</span>
                   <p className="ut-card__title">Roaming support tickets</p>
                   <p className="ut-card__body">
                     <span style={{ color: 'var(--color-text-primary)' }}>Target: ↓20% | Actual: ↓22.4%</span>
                     <br /><br />
-                    <em style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6, fontStyle: 'italic' }}>Tracked the two enquiry types the redesign targeted: data and coverage enquiries.</em>
+                    <em style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6, fontStyle: 'italic' }}>Tracked the two enquiry types the redesign targeted: data and coverage.</em>
                   </p>
                 </div>
                 <div className="ut-card">
-                  <span className="ut-card__num">2</span>
                   <p className="ut-card__title">Roaming page → mobile plan purchase conversion</p>
                   <p className="ut-card__body" style={{ color: 'var(--color-text-primary)' }}>Target: ↑15% (in-progress)</p>
                 </div>
