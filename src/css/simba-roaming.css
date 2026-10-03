@@ -358,6 +358,45 @@
   }
 }
 
+/* ── Impact cards — override ut-card typography to body-1 ── */
+#impact .ut-card__title {
+  font: var(--text-body-1-medium);
+}
+
+#impact .ut-card__body {
+  font: var(--text-body-1-regular);
+}
+
+/* ── Impact metric block ── */
+.cs-impact-metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+}
+
+.cs-impact-metric__title {
+  font: var(--text-body-1-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.cs-impact-metric__value {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.cs-impact-metric__note {
+  font: var(--text-body-2-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  font-style: italic;
+  margin: 0;
+}
+
 /* ── Remove metadata divider — results card replaces it ── */
 .cs-meta--no-divider {
   border-bottom: none;

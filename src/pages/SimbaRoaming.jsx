@@ -987,27 +987,29 @@ export default function SimbaRoaming() {
                 <span className="cs-section__num">10</span> Impact
               </motion.h2>
 
-              <motion.p
-                className="cs-body"
+              <motion.div
+                className="ut-cards"
                 style={{ marginTop: 'var(--space-6)' }}
-                variants={reveal(0.08)}
+                variants={reveal(0.06)}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.1 }}
               >
-                The following metrics are being tracked:
-              </motion.p>
-
-              <motion.ul
-                className="cs-list"
-                variants={reveal(0.1)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-              >
-                <li>Roaming support tickets (no-data + coverage enquiries): <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Target: ↓20% | Actual: ↓22.4%</strong></li>
-                <li>Roaming page → mobile plan purchase conversion rate: Target: ↑15% (in-progress)</li>
-              </motion.ul>
+                <div className="ut-card">
+                  <span className="ut-card__num">1</span>
+                  <p className="ut-card__title">Roaming support tickets</p>
+                  <p className="ut-card__body">
+                    <span style={{ color: 'var(--color-text-primary)' }}>Target: ↓20% | Actual: ↓22.4%</span>
+                    <br /><br />
+                    <em style={{ fontSize: '14px', fontWeight: 400, lineHeight: 1.6, fontStyle: 'italic' }}>Tracked the two enquiry types the redesign targeted: data and coverage questions.</em>
+                  </p>
+                </div>
+                <div className="ut-card">
+                  <span className="ut-card__num">2</span>
+                  <p className="ut-card__title">Roaming page → mobile plan purchase conversion</p>
+                  <p className="ut-card__body" style={{ color: 'var(--color-text-primary)' }}>Target: ↑15% (in-progress)</p>
+                </div>
+              </motion.div>
 
             </section>
 
