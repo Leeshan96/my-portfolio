@@ -358,6 +358,31 @@
   }
 }
 
+/* ── Result stat callout ── */
+.cs-result-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--color-border-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+  margin: var(--space-6) 0;
+}
+
+.cs-result-stat__value {
+  font: var(--text-h1);
+  font-size: 56px;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.cs-result-stat__label {
+  font: var(--text-body-1-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
 /* ── Goals two-column grid ── */
 .cs-goals-grid {
   display: grid;

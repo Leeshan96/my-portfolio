@@ -207,6 +207,17 @@ export default function SimbaRoaming() {
                 </div>
               </motion.div>
 
+              <motion.div
+                className="cs-result-stat"
+                variants={reveal(0.06)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <span className="cs-result-stat__value">↓22.4%</span>
+                <span className="cs-result-stat__label">Roaming support tickets</span>
+              </motion.div>
+
               <motion.p
                 className="cs-overview__label"
                 variants={reveal(0.08)}
@@ -991,7 +1002,7 @@ export default function SimbaRoaming() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                <li>Volume of roaming-related support tickets — <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Target: ↓20% | Actual: ↓22.4%</strong></li>
+                <li>Roaming support tickets (no-data + coverage enquiries): <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Target: ↓20% | Actual: ↓22.4%</strong></li>
                 <li>Roaming page → mobile plan purchase conversion rate — Target: ↑15%</li>
                 <li>Bounce rate on the roaming page</li>
               </motion.ul>
