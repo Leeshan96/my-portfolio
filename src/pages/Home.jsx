@@ -98,7 +98,7 @@ const workCards = [
     description: 'Empowering menopausal women to cope with the transitional phase with ease.',
     tags: [],
     year: '2023',
-    thumbnail: '/assets/images/menocare-thumbnail.png',
+    thumbnail: '/assets/images/menocare/menocare-thumbnail.webp',
     thumbnailAlt: 'Menocare design challenge thumbnail',
     cardBg: 'var(--bg-cs-menocare)',
     imageAlign: 'center',

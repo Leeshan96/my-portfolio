@@ -129,7 +129,7 @@ export default function CaseStudy1() {
         <section className="cs-hero cs-hero--menocare">
           <div className="cs-hero__inner">
             <img
-              src="/assets/images/menocare-hero.webp"
+              src="/assets/images/menocare/menocare-hero.webp"
               alt="Menocare design challenge — winning team"
               className="cs-hero__image"
             />
