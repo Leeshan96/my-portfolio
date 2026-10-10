@@ -99,7 +99,7 @@
   background: var(--color-bg-secondary);
   border: none;
   border-radius: var(--radius-full);
-  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-2);
+  padding: var(--space-1) var(--space-2);
   min-height: 32px;
   cursor: pointer;
   color: var(--color-text-secondary);

@@ -113,7 +113,7 @@ export default function SimbaRoaming() {
   useEffect(() => {
     const timer = setInterval(() => {
       setMobileBAIndex(i => (i + 1) % 2);
-    }, 4000);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
@@ -401,7 +401,7 @@ export default function SimbaRoaming() {
                   ))}
                 </div>
                 <p className="cs-image-caption" style={{ marginTop: 'var(--space-2)' }}>
-                  {mobileBAIndex === 0 ? 'Before' : 'After'} — Before and after the redesign
+                  {mobileBAIndex === 0 ? 'Before redesign' : 'After redesign'}
                 </p>
               </div>
 
