@@ -385,6 +385,14 @@
   margin: 0 0 var(--space-3);
 }
 
+.cs-carousel-label {
+  font: var(--text-body-2-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0 0 var(--space-3);
+}
+
 .cs-before-after {
   display: grid;
   grid-template-columns: 1fr 1fr;

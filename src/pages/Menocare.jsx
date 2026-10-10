@@ -84,10 +84,10 @@ const reveal = (delay = 0) => ({
 
 /* ── Component ── */
 const FINAL_PROTO_IMAGES = [
-  { src: '/assets/images/menocare/Final-Prototype-AI.webp',              alt: 'Final prototype — AI assistance screen' },
-  { src: '/assets/images/menocare/Final-Prototype-Emergency alert.webp', alt: 'Final prototype — Emergency alert screen' },
-  { src: '/assets/images/menocare/Final-Prototype-Community.webp',       alt: 'Final prototype — Community screen' },
-  { src: '/assets/images/menocare/Final-Prototype-Find-doctor.webp',     alt: 'Final prototype — Find a doctor flow' },
+  { src: '/assets/images/menocare/Final-Prototype-AI.webp',              alt: 'Final prototype — AI assistance screen',   label: 'AI assistant' },
+  { src: '/assets/images/menocare/Final-Prototype-Emergency alert.webp', alt: 'Final prototype — Emergency alert screen', label: 'Emergency alert' },
+  { src: '/assets/images/menocare/Final-Prototype-Community.webp',       alt: 'Final prototype — Community screen',       label: 'Community' },
+  { src: '/assets/images/menocare/Final-Prototype-Find-doctor.webp',     alt: 'Final prototype — Find a doctor flow',     label: 'Find a doctor' },
 ];
 
 export default function CaseStudy1() {
@@ -799,7 +799,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
               >
-                Based on the feedback received, we iterated on the designs to make them more intuitive for middle-aged users. I made iterations for the Home screen and worked on the UI for all final versions after the Design Challenge concluded.
+                Based on the feedback received, we iterated on the designs to make them more intuitive for middle-aged users. I designed the UI across all final screens after the Design Challenge concluded.
               </motion.p>
 
               <motion.img
@@ -896,6 +896,7 @@ export default function CaseStudy1() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
+                <p className="cs-carousel-label">{FINAL_PROTO_IMAGES[finalProtoIndex].label}</p>
                 <div className="cs-inline-carousel__stage">
                   {FINAL_PROTO_IMAGES.map((img, i) => (
                     <div key={i} style={{ display: finalProtoIndex === i ? 'block' : 'none' }}>

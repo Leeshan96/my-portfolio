@@ -517,7 +517,6 @@ export default function PersonalProject() {
         prev={{ title: 'Menocare', href: '/menocare' }}
         next={{ title: 'SIMBA Roaming', href: '/roaming' }}
       />
-
     </PageWrapper>
   );
 }
