@@ -251,7 +251,7 @@ export default function Home() {
               initial={ini}
               animate="visible"
             >
-              A Product Designer building with AI, seeking opportunities in healthcare.
+              A Product Designer building with AI, turning problems into intuitive designs.
             </motion.h1>
 
             <motion.p
